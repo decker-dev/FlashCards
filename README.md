@@ -3,7 +3,7 @@
 
 ## Introducción
 
-El proyecto consiste en desarrollar una aplicación de flashcards para facilitar el estudio mediante tarjetas de preguntas y respuestas. La aplicación permitirá a los usuarios crear, gestionar y revisar tarjetas de manera eficiente, proporcionando una herramienta útil para el aprendizaje, todo desde la consola.
+El proyecto consiste en desarrollar una aplicación de flashcards para facilitar el estudio mediante tarjetas de preguntas y respuestas. La aplicación permitirá a los usuarios crear, gestionar y revisar tarjetas de manera eficiente, proporcionando una herramienta útil para el aprendizaje.
 
 ## Objetivos del Proyecto
 
@@ -14,11 +14,11 @@ El proyecto consiste en desarrollar una aplicación de flashcards para facilitar
 ## Funcionalidades del Proyecto
 
 1.	Gestión de Tarjetas
-- Creación de Tarjetas: Permitir a los usuarios crear nuevas tarjetas con preguntas y respuestas desde la consola.
+- Creación de Tarjetas: Permitir a los usuarios crear nuevas tarjetas con preguntas y respuestas.
 - Edición de Tarjetas: Facilitar la edición de tarjetas existentes para actualizar la información.
 - Eliminación de Tarjetas: Proporcionar la opción de eliminar tarjetas que ya no sean necesarias.
 2.	Organización de Tarjetas
-- Categorías y Etiquetas: Permitir a los usuarios clasificar las tarjetas en diferentes categorías y añadir etiquetas para facilitar la búsqueda.
+- Categorías y Etiquetas: Permitir a los usuarios clasificar las tarjetas en diferentes categorías.
 - Búsqueda y Filtrado: Implementar funcionalidades de búsqueda y filtrado para encontrar tarjetas específicas rápidamente.
 3.	Revisión de Tarjetas
 - Modo de Estudio: Proporcionar un modo de estudio donde los usuarios puedan revisar las tarjetas de manera secuencial o aleatoria.
@@ -32,4 +32,3 @@ El proyecto consiste en desarrollar una aplicación de flashcards para facilitar
 - Importación y Exportación: Permitir a los usuarios importar y exportar tarjetas en diferentes formatos.
 6.	Pruebas y Calidad
 - Pruebas Unitarias: Escribir pruebas unitarias para asegurar el correcto funcionamiento de las funcionalidades.
-- Pruebas de Integración: Realizar pruebas de integración para asegurar que todas las partes del sistema funcionen correctamente juntas.
