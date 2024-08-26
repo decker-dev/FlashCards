@@ -29,6 +29,6 @@ El proyecto consiste en desarrollar una aplicación de flashcards para facilitar
 - Interacción Usuario: Facilitar la interacción del usuario mediante comandos simples y mensajes claros.
 5.	Almacenamiento y Persistencia
 - Archivos de Texto y JSON: Utilizar archivos de texto y JSON para almacenar las tarjetas de manera persistente.
-- Importación y Exportación: Permitir a los usuarios importar y exportar tarjetas en diferentes formatos.
+- Importación: Permitir a los usuarios importar tarjetas.
 6.	Pruebas y Calidad
 - Pruebas Unitarias: Escribir pruebas unitarias para asegurar el correcto funcionamiento de las funcionalidades.
