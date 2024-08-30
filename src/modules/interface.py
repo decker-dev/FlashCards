@@ -1,5 +1,5 @@
-from card import create_card
-from review import study_mode
+from modules.card import create_card
+from modules.review import study_mode
 
 def show_main_menu():
     while True:

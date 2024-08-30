@@ -1,16 +1,7 @@
-import modules.card as card
-import modules.interface as interface
-import modules.organization as organization
-import modules.review as review
-import modules.user as user
+from modules.interface import show_main_menu
+
 
 def main():
-    """
-    Main function to run the flashcard application.
-
-    Returns:
-    None
-    """
-    interface.show_main_menu()
+    show_main_menu()
 
 main()

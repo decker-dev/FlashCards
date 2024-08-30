@@ -1,4 +1,4 @@
-from card import list_all_cards
+from modules.card import list_all_cards
 
 def study_mode():
     cards = list_all_cards()
