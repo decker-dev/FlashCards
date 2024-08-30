@@ -1,14 +1,18 @@
-def study_mode(sequential=True):
-    """
-    Provide a study mode where users can review cards sequentially or randomly.
+from card import list_all_cards
 
-    Parameters:
-    sequential (bool): If True, review cards sequentially. If False, review cards randomly.
+def study_mode():
+    cards = list_all_cards()
+    correct_answers = 0
 
-    Returns:
-    None
-    """
-    pass
+    for card in cards:
+        print(f"Question: {card['question']}")
+        input("Press Enter to see the answer...")
+        print(f"Answer: {card['answer']}")
+        correct = input("Did you answer correctly? (y/n): ").strip().lower() == 'y'
+        if correct:
+            correct_answers += 1
+
+    show_statistics(len(cards), correct_answers)
 
 def update_progress(card_id, correct):
     """
@@ -23,14 +27,13 @@ def update_progress(card_id, correct):
     """
     pass
 
-def show_statistics():
-    """
-    Show the user's study statistics.
+def show_statistics(total_cards, correct_answers):
+    accuracy = (correct_answers / total_cards) * 100 if total_cards > 0 else 0
+    print(f"\nStudy Session Complete!")
+    print(f"Total Cards: {total_cards}")
+    print(f"Correct Answers: {correct_answers}")
+    print(f"Accuracy: {accuracy:.2f}%")
 
-    Returns:
-    dict: A dictionary containing the user's study statistics.
-    """
-    pass
 
 def get_due_cards():
     """

@@ -1,11 +1,25 @@
-def show_main_menu():
-    """
-    Display the main menu and handle option navigation.
+from card import create_card
+from review import study_mode
 
-    Returns:
-    None
-    """
-    pass
+def show_main_menu():
+    while True:
+        print("\nFlashcard Management System")
+        print("1. Create Card")
+        print("2. Study Mode")
+        print("0. Exit")
+        choice = input("Choose an option: ")
+
+        if choice == '1':
+            question = input("Enter the question: ")
+            answer = input("Enter the answer: ")
+            create_card(question, answer)
+            print("Card created successfully!")
+        elif choice == '2':
+            study_mode()
+        elif choice == '0':
+            break
+        else:
+            print("Invalid choice. Please try again.")
 
 def navigate_options():
     """

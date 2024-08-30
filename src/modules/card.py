@@ -1,15 +1,15 @@
+cards = []
+
 def create_card(question, answer):
-    """
-    Create a new card with a question and answer.
-
-    Parameters:
-    question (str): The question for the flashcard.
-    answer (str): The answer for the flashcard.
-
-    Returns:
-    dict: A dictionary representing the created card.
-    """
-    pass
+    card_id = len(cards) + 1
+    card = {
+        'id': card_id,
+        'question': question,
+        'answer': answer,
+        'progress': 0
+    }
+    cards.append(card)
+    return card
 
 def edit_card(card_id, new_question, new_answer):
     """
@@ -50,10 +50,4 @@ def get_card_by_id(card_id):
     pass
 
 def list_all_cards():
-    """
-    List all available cards.
-
-    Returns:
-    list: A list of dictionaries, each representing a card.
-    """
-    pass
+    return cards
