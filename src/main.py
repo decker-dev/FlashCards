@@ -1,7 +1,12 @@
-from src.modules import interface
-
+from modules.interface import show_main_menu
 
 def main():
-    interface.show_main_menu()
+    """
+    Main function to run the flashcard application.
+
+    Returns:
+    None
+    """
+    show_main_menu()
 
 main()
