@@ -8,7 +8,7 @@ def study_mode():
         print(f"Question: {card['question']}")
         input("Press Enter to see the answer...")
         print(f"Answer: {card['answer']}")
-        correct = input("Did you answer correctly? (y/n): ").strip().lower() == 'y'
+        correct = input("Did you answer correctly? (y/n): ") == 'y'
         if correct:
             correct_answers += 1
 
