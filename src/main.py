@@ -1,4 +1,8 @@
-from modules.interface import show_main_menu
+import modules.card as card
+import modules.interface as interface
+import modules.organization as organization
+import modules.review as review
+import modules.user as user
 
 def main():
     """
@@ -7,6 +11,6 @@ def main():
     Returns:
     None
     """
-    show_main_menu()
+    interface.show_main_menu()
 
 main()
