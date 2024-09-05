@@ -4,7 +4,15 @@ from study_mode import study_mode
 
 
 def show_welcome_menu():
-    input("Bienvenido a Flashcard. Para comenzar, presione Enter...")
+    flashcards_ascii = """
+███████ ██       █████  ███████ ██   ██  ██████  █████  ██████  ██████  ███████ 
+██      ██      ██   ██ ██      ██   ██ ██      ██   ██ ██   ██ ██   ██ ██      
+█████   ██      ███████ ███████ ███████ ██      ███████ ██████  ██   ██ ███████ 
+██      ██      ██   ██      ██ ██   ██ ██      ██   ██ ██   ██ ██   ██      ██ 
+██      ███████ ██   ██ ███████ ██   ██  ██████ ██   ██ ██   ██ ██████  ███████ 
+"""
+    print(flashcards_ascii)
+    input("Para comenzar, presione Enter...")
     show_main_menu()
 
 
