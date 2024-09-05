@@ -19,12 +19,23 @@ def study_card(card):
     print(f"Pregunta: {card['question']}")
     input("Presione Enter para ver la respuesta...")
     print(f"Respuesta: {card['answer']}")
-    rating = input("¿Cómo lo respondiste? (Perfecto/Bien/Mal/Nada): ").strip().lower()
+    print("¿Cómo lo respondiste?")
+    print("1. Perfecto")
+    print("2. Bien")
+    print("3. Mal")
+    print("4. Nada")
+    rating = input("Seleccione una opción: ").strip()
 
-    if rating in ["perfecto", "bien", "mal", "nada"]:
-        return rating
+    if rating == "1":
+        return "perfecto"
+    elif rating == "2":
+        return "bien"
+    elif rating == "3":
+        return "mal"
+    elif rating == "4":
+        return "nada"
     else:
-        print("Respuesta no válida, se tomará como 'Nada'.")
+        print("Opción no válida, se tomará como 'Nada'.")
         return "nada"
 
 def show_results(results):
