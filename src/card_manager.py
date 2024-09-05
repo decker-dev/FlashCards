@@ -59,12 +59,12 @@ def move_card():
 
 def search_cards():
     query = input("Ingrese parte del contenido a buscar (pregunta o respuesta): ")
-    pattern = re.compile(query, re.IGNORECASE)
     found_cards = []
 
     for deck_name, cards in decks.items():
-        for i, card in enumerate(cards):
-            if pattern.search(card["question"]) or pattern.search(card["answer"]):
+        for i in range(len(cards)):
+            card = cards[i]
+            if re.search(query, card["question"], re.IGNORECASE) or re.search(query, card["answer"], re.IGNORECASE):
                 found_cards.append((deck_name, i, card))
 
     if found_cards:
