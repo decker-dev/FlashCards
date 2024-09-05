@@ -1,11 +1,15 @@
 from random import shuffle
-from card_manager import cards
+from card_manager import decks, list_decks
+
 
 def study_mode(sequential=True):
-    if not cards:
-        print("No hay tarjetas disponibles para estudiar.")
+    list_decks()
+    deck_name = input("Seleccione el mazo para estudiar: ")
+    if deck_name not in decks or not decks[deck_name]:
+        print("El mazo no existe o está vacío.")
         return
 
+    cards = decks[deck_name]
     if sequential:
         results = [study_card(card) for card in cards]
     else:

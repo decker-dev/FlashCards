@@ -1,4 +1,4 @@
-from card_manager import create_card, edit_card, delete_card, list_cards
+from card_manager import create_card, edit_card, delete_card, list_cards, move_card, create_deck, list_decks
 from study_mode import study_mode
 
 
@@ -12,7 +12,8 @@ def show_main_menu():
         print("\n--- Menú Principal ---")
         print("1. Empezar Estudio")
         print("2. Gestionar Tarjetas")
-        print("3. Salir")
+        print("3. Gestionar Mazos")
+        print("4. Salir")
 
         option = input("Seleccione una opción: ")
 
@@ -21,6 +22,8 @@ def show_main_menu():
         elif option == "2":
             show_card_management_menu()
         elif option == "3":
+            show_deck_management_menu()
+        elif option == "4":
             print("Saliendo...")
             break
         else:
@@ -53,7 +56,8 @@ def show_card_management_menu():
         print("2. Editar Tarjeta")
         print("3. Eliminar Tarjeta")
         print("4. Listar Tarjetas")
-        print("5. Volver al Menú Principal")
+        print("5. Mover Tarjeta a Mazo")
+        print("6. Volver al Menú Principal")
 
         option = input("Seleccione una opción: ")
 
@@ -66,6 +70,27 @@ def show_card_management_menu():
         elif option == "4":
             list_cards()
         elif option == "5":
+            move_card()
+        elif option == "6":
+            break
+        else:
+            print("Opción no válida. Intente de nuevo.")
+
+
+def show_deck_management_menu():
+    while True:
+        print("\n--- Gestionar Mazos ---")
+        print("1. Crear Mazo")
+        print("2. Listar Mazos")
+        print("3. Volver al Menú Principal")
+
+        option = input("Seleccione una opción: ")
+
+        if option == "1":
+            create_deck()
+        elif option == "2":
+            list_decks()
+        elif option == "3":
             break
         else:
             print("Opción no válida. Intente de nuevo.")
