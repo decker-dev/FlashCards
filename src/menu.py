@@ -17,7 +17,8 @@ def show_welcome_menu():
 
 
 def show_main_menu():
-    while True:
+    menu_active = True
+    while menu_active:
         print("\n--- Menú Principal ---")
         print("1. Empezar Estudio")
         print("2. Gestionar Tarjetas")
@@ -34,13 +35,13 @@ def show_main_menu():
             show_deck_management_menu()
         elif option == "4":
             print("Saliendo...")
-            break
+            menu_active = False
         else:
             print("Opción no válida. Intente de nuevo.")
 
-
 def show_study_menu():
-    while True:
+    menu_active = True
+    while menu_active:
         print("\n--- Empezar Estudio ---")
         print("1. Modo Secuencial")
         print("2. Modo Aleatorio")
@@ -49,17 +50,17 @@ def show_study_menu():
         option = input("Seleccione una opción: ")
 
         if option == "1":
-            study_mode(sequential=True)
+            study_mode(True)
         elif option == "2":
-            study_mode(sequential=False)
+            study_mode(False)
         elif option == "3":
-            break
+            menu_active = False
         else:
             print("Opción no válida. Intente de nuevo.")
 
-
 def show_card_management_menu():
-    while True:
+    menu_active = True
+    while menu_active:
         print("\n--- Gestionar Tarjetas ---")
         print("1. Crear Tarjeta")
         print("2. Editar Tarjeta")
@@ -84,13 +85,13 @@ def show_card_management_menu():
         elif option == "6":
             search_cards()
         elif option == "7":
-            break
+            menu_active = False
         else:
             print("Opción no válida. Intente de nuevo.")
 
-
 def show_deck_management_menu():
-    while True:
+    menu_active = True
+    while menu_active:
         print("\n--- Gestionar Mazos ---")
         print("1. Crear Mazo")
         print("2. Listar Mazos")
@@ -103,6 +104,7 @@ def show_deck_management_menu():
         elif option == "2":
             list_decks()
         elif option == "3":
-            break
+            menu_active = False
         else:
             print("Opción no válida. Intente de nuevo.")
+
