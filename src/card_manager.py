@@ -1,4 +1,6 @@
+import re
 from file_operations import save_decks, load_decks
+from deck_manager import list_decks
 
 decks = load_decks()
 
@@ -54,3 +56,20 @@ def move_card():
             print("El mazo no existe.")
     else:
         print("Índice no válido.")
+
+def search_cards():
+    query = input("Ingrese parte del contenido a buscar (pregunta o respuesta): ")
+    pattern = re.compile(query, re.IGNORECASE)
+    found_cards = []
+
+    for deck_name, cards in decks.items():
+        for i, card in enumerate(cards):
+            if pattern.search(card["question"]) or pattern.search(card["answer"]):
+                found_cards.append((deck_name, i, card))
+
+    if found_cards:
+        print("Tarjetas encontradas:")
+        for deck_name, i, card in found_cards:
+            print(f"Mazo: {deck_name}, Tarjeta {i}: Pregunta: {card['question']}, Respuesta: {card['answer']}")
+    else:
+        print("No se encontraron tarjetas que coincidan con la búsqueda.")

@@ -1,7 +1,6 @@
 from random import shuffle
 from deck_manager import decks, list_decks
 
-
 def study_mode(sequential=True):
     list_decks()
     deck_name = input("Seleccione el mazo para estudiar: ")

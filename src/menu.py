@@ -1,4 +1,4 @@
-from card_manager import create_card, edit_card, delete_card, list_cards, move_card
+from card_manager import create_card, edit_card, delete_card, list_cards, move_card, search_cards
 from deck_manager import create_deck, list_decks
 from study_mode import study_mode
 
@@ -58,7 +58,8 @@ def show_card_management_menu():
         print("3. Eliminar Tarjeta")
         print("4. Listar Tarjetas")
         print("5. Mover Tarjeta a Mazo")
-        print("6. Volver al Menú Principal")
+        print("6. Buscar Tarjetas")
+        print("7. Volver al Menú Principal")
 
         option = input("Seleccione una opción: ")
 
@@ -73,6 +74,8 @@ def show_card_management_menu():
         elif option == "5":
             move_card()
         elif option == "6":
+            search_cards()
+        elif option == "7":
             break
         else:
             print("Opción no válida. Intente de nuevo.")
