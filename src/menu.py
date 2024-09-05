@@ -43,7 +43,7 @@ def show_study_menu():
     menu_active = True
     while menu_active:
         print("\n--- Empezar Estudio ---")
-        print("1. Modo Secuencial")
+        print("1. Modo Flashcards")
         print("2. Modo Aleatorio")
         print("3. Volver al Menú Principal")
 

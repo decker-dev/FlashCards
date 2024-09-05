@@ -1,6 +1,7 @@
 from random import shuffle
 from deck_manager import decks, list_decks
 
+
 def study_mode(sequential=True):
     list_decks()
     deck_name = input("Seleccione el mazo para estudiar: ")
@@ -17,6 +18,7 @@ def study_mode(sequential=True):
         results = [study_card(card) for card in shuffled_cards]
 
     show_results(results)
+
 
 def study_card(card):
     print(f"Pregunta: {card['question']}")
@@ -40,6 +42,7 @@ def study_card(card):
     else:
         print("Opción no válida, se tomará como 'Nada'.")
         return "nada"
+
 
 def show_results(results):
     total = len(results)
