@@ -1,7 +1,7 @@
-from modules.interface import show_main_menu
-
+from menu import show_main_menu
 
 def main():
     show_main_menu()
 
-main()
+if __name__ == "__main__":
+    main()
