@@ -1,4 +1,5 @@
-from card_manager import create_card, edit_card, delete_card, list_cards, move_card, create_deck, list_decks
+from card_manager import create_card, edit_card, delete_card, list_cards, move_card
+from deck_manager import create_deck, list_decks
 from study_mode import study_mode
 
 

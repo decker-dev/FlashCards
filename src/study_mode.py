@@ -1,5 +1,5 @@
 from random import shuffle
-from card_manager import decks, list_decks
+from deck_manager import decks, list_decks
 
 
 def study_mode(sequential=True):
