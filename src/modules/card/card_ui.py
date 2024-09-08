@@ -28,13 +28,16 @@ def delete_card_ui():
     else:
         print("Índice no válido.")
 
-def list_cards_ui(deck_name="default"):
-    cards = list_cards(deck_name)
-    if cards:
-        for i, card in enumerate(cards):
-            print(f"{i}. Pregunta: {card['question']}, Respuesta: {card['answer']}")
-    else:
-        print("No hay tarjetas disponibles.")
+def list_cards_ui():
+    decks = list_decks_controller()
+    for deck_name in decks:
+        print(f"\nMazo: {deck_name}")
+        cards = list_cards(deck_name)
+        if cards:
+            for i, card in enumerate(cards):
+                print(f"  {i}. Pregunta: {card['question']}, Respuesta: {card['answer']}")
+        else:
+            print("  No hay tarjetas disponibles.")
 
 def move_card_ui():
     list_cards_ui()
