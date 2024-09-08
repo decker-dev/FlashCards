@@ -1,5 +1,5 @@
 from random import shuffle
-from deck_manager import decks, list_decks
+from src.modules.deck_manager import decks, list_decks
 
 
 def study_mode(is_flashcard_mode):

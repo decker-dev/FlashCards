@@ -1,6 +1,7 @@
 import re
-from file_operations import save_decks, load_decks
-from deck_manager import list_decks
+
+from src.modules.deck_manager import list_decks
+from src.modules.file_operations import load_decks, save_decks
 
 decks = load_decks()
 
