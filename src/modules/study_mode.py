@@ -1,6 +1,6 @@
 from random import shuffle
 from src.modules.deck.deck_ui import list_decks_ui
-from src.modules.file_manager import load_data
+from src.modules.utils.file_manager import load_data
 
 decks = load_data()
 
