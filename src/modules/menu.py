@@ -1,4 +1,5 @@
-from src.modules.card.card_ui import create_card_ui, edit_card_ui, delete_card_ui, list_cards_ui, move_card_ui, search_cards_ui
+from src.modules.card.card_ui import create_card_ui, edit_card_ui, delete_card_ui, list_cards_ui, move_card_ui, \
+    search_cards_ui
 from src.modules.deck.deck_ui import create_deck_ui, list_decks_ui
 from src.modules.study_mode import study_mode
 
@@ -14,6 +15,7 @@ def show_welcome_menu():
     print(flashcards_ascii)
     input("Para comenzar, presione Enter...")
     show_main_menu()
+
 
 def show_main_menu():
     menu_active = True
@@ -38,6 +40,7 @@ def show_main_menu():
         else:
             print("Opción no válida. Intente de nuevo.")
 
+
 def show_study_menu():
     menu_active = True
     while menu_active:
@@ -56,6 +59,7 @@ def show_study_menu():
             menu_active = False
         else:
             print("Opción no válida. Intente de nuevo.")
+
 
 def show_card_management_menu():
     menu_active = True
@@ -87,6 +91,7 @@ def show_card_management_menu():
             menu_active = False
         else:
             print("Opción no válida. Intente de nuevo.")
+
 
 def show_deck_management_menu():
     menu_active = True

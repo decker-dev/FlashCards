@@ -1,12 +1,15 @@
-from src.modules.card.card_controller import add_card_to_deck, edit_card_in_deck, delete_card_from_deck, move_card_between_decks, search_cards_in_decks, list_cards
+from src.modules.card.card_controller import add_card_to_deck, edit_card_in_deck, delete_card_from_deck, \
+    move_card_between_decks, search_cards_in_decks, list_cards
 from src.modules.deck.deck_ui import list_decks_ui
 from src.modules.deck.deck_controller import list_decks_controller
+
 
 def create_card_ui():
     question = input("Ingrese la pregunta: ")
     answer = input("Ingrese la respuesta: ")
     add_card_to_deck("default", question, answer)
     print("Tarjeta creada exitosamente.")
+
 
 def edit_card_ui():
     list_cards_ui()
@@ -19,6 +22,7 @@ def edit_card_ui():
     else:
         print("Índice no válido.")
 
+
 def delete_card_ui():
     list_cards_ui()
     index = int(input("Seleccione el número de la tarjeta a eliminar: "))
@@ -27,6 +31,7 @@ def delete_card_ui():
         print("Tarjeta eliminada exitosamente.")
     else:
         print("Índice no válido.")
+
 
 def list_cards_ui():
     decks = list_decks_controller()
@@ -38,6 +43,7 @@ def list_cards_ui():
                 print(f"  {i}. Pregunta: {card['question']}, Respuesta: {card['answer']}")
         else:
             print("  No hay tarjetas disponibles.")
+
 
 def move_card_ui():
     list_cards_ui()
@@ -52,6 +58,7 @@ def move_card_ui():
             print("El mazo no existe.")
     else:
         print("Índice no válido.")
+
 
 def search_cards_ui():
     query = input("Ingrese parte del contenido a buscar (pregunta o respuesta): ")

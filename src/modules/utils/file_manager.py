@@ -6,9 +6,11 @@ data_store = {
     ]
 }
 
+
 def save_data(data):
     global data_store
     data_store = data
+
 
 def load_data():
     global data_store

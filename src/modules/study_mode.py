@@ -5,6 +5,7 @@ from src.modules.utils.list import shuffle_copy
 
 decks = load_data()
 
+
 def study_mode(is_flashcard_mode):
     list_decks_ui()
     deck_name = input("Seleccione el mazo para estudiar: ")
@@ -19,6 +20,7 @@ def study_mode(is_flashcard_mode):
     else:
         random_mode(cards)
 
+
 def flashcard_mode(cards):
     results = []
     for card in cards:
@@ -27,6 +29,7 @@ def flashcard_mode(cards):
 
     show_results(results)
 
+
 def random_mode(cards):
     shuffled_cards = shuffle_copy(cards)
     for card in shuffled_cards:
@@ -34,6 +37,7 @@ def random_mode(cards):
         input("Presione Enter para ver la respuesta...")
         print(f"Respuesta: {card['answer']}")
         input("Presione Enter para continuar...")
+
 
 def study_card(card):
     print(f"\nPregunta: {card['question']}")
@@ -57,6 +61,7 @@ def study_card(card):
     else:
         print("Opción no válida, se tomará como 'Nada'.")
         return "nada"
+
 
 def show_results(results):
     total = len(results)
