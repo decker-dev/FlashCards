@@ -1,65 +1,32 @@
-from src.modules.card.card import add_card_to_deck, edit_card_in_deck, delete_card_from_deck, move_card_between_decks, \
-    search_cards_in_decks
-from src.modules.deck_manager import list_decks
-from src.modules.file_manager import load_decks
+import re
+from src.modules.file_manager import load_decks, save_decks
 
 decks = load_decks()
 
+def add_card_to_deck(deck_name, card):
+    decks[deck_name].append(card)
+    save_decks(decks)
 
-def create_card_ui():
-    question = input("Ingrese la pregunta: ")
-    answer = input("Ingrese la respuesta: ")
-    card = {"question": question, "answer": answer}
-    add_card_to_deck(decks, "default", card)
-    print("Tarjeta creada exitosamente.")
+def edit_card_in_deck(deck_name, index, card):
+    decks[deck_name][index] = card
+    save_decks(decks)
 
-def edit_card_ui():
-    list_cards_ui()
-    index = int(input("Seleccione el número de la tarjeta a editar: "))
-    if 0 <= index < len(decks["default"]):
-        question = input("Ingrese la nueva pregunta: ")
-        answer = input("Ingrese la nueva respuesta: ")
-        edit_card_in_deck(decks, "default", index, {"question": question, "answer": answer})
-        print("Tarjeta editada exitosamente.")
-    else:
-        print("Índice no válido.")
+def delete_card_from_deck(deck_name, index):
+    decks[deck_name].pop(index)
+    save_decks(decks)
 
-def delete_card_ui():
-    list_cards_ui()
-    index = int(input("Seleccione el número de la tarjeta a eliminar: "))
-    if 0 <= index < len(decks["default"]):
-        delete_card_from_deck(decks, "default", index)
-        print("Tarjeta eliminada exitosamente.")
-    else:
-        print("Índice no válido.")
+def move_card_between_decks(from_deck, to_deck, index):
+    card = decks[from_deck].pop(index)
+    decks[to_deck].append(card)
+    save_decks(decks)
 
-def list_cards_ui(deck_name="default"):
-    if decks[deck_name]:
-        for i, card in enumerate(decks[deck_name]):
-            print(f"{i}. Pregunta: {card['question']}, Respuesta: {card['answer']}")
-    else:
-        print("No hay tarjetas disponibles.")
+def search_cards_in_decks(query):
+    found_cards = []
+    for deck_name, cards in decks.items():
+        for i, card in enumerate(cards):
+            if re.search(query, card["question"], re.IGNORECASE) or re.search(query, card["answer"], re.IGNORECASE):
+                found_cards.append((deck_name, i, card))
+    return found_cards
 
-def move_card_ui():
-    list_cards_ui()
-    index = int(input("Seleccione el número de la tarjeta a mover: "))
-    if 0 <= index < len(decks["default"]):
-        list_decks()
-        deck_name = input("Ingrese el nombre del mazo destino: ")
-        if deck_name in decks:
-            move_card_between_decks(decks, "default", deck_name, index)
-            print("Tarjeta movida exitosamente.")
-        else:
-            print("El mazo no existe.")
-    else:
-        print("Índice no válido.")
-
-def search_cards_ui():
-    query = input("Ingrese parte del contenido a buscar (pregunta o respuesta): ")
-    found_cards = search_cards_in_decks(decks, query)
-    if found_cards:
-        print("Tarjetas encontradas:")
-        for deck_name, i, card in found_cards:
-            print(f"Mazo: {deck_name}, Tarjeta {i}: Pregunta: {card['question']}, Respuesta: {card['answer']}")
-    else:
-        print("No se encontraron tarjetas que coincidan con la búsqueda.")
+def list_cards(deck_name="default"):
+    return decks.get(deck_name, [])
