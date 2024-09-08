@@ -1,4 +1,4 @@
-from file_operations import save_decks, load_decks
+from src.modules.file_manager import save_decks, load_decks
 
 decks = load_decks()
 

@@ -1,6 +1,6 @@
 from src.modules.card_manager import create_card, edit_card, delete_card, list_cards, move_card, search_cards
-from deck_manager import create_deck, list_decks
-from study_mode import study_mode
+from src.modules.deck_manager import create_deck, list_decks
+from src.modules.study_mode import study_mode
 
 
 def show_welcome_menu():
