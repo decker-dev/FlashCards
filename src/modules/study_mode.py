@@ -1,5 +1,9 @@
 from random import shuffle
-from src.modules.deck_manager import decks, list_decks
+
+from modules import menu
+from modules.deck_manager import list_decks, decks
+
+
 
 
 def study_mode(is_flashcard_mode):
@@ -45,6 +49,7 @@ def study_card(card):
     print("2. Bien")
     print("3. Mal")
     print("4. Nada")
+    print("5. Abandonar partida")
     rating = input("Seleccione una opción: ").strip()
 
     if rating == "1":
@@ -55,6 +60,8 @@ def study_card(card):
         return "mal"
     elif rating == "4":
         return "nada"
+    elif rating == "5":
+        menu.show_main_menu()
     else:
         print("Opción no válida, se tomará como 'Nada'.")
         return "nada"

@@ -1,6 +1,9 @@
-from src.modules.file_manager import save_decks, load_decks
 
-decks = load_decks()
+
+from modules.file_manager import load_decks, save_decks
+
+
+decks: dict[str, list[dict[str, str]]] = load_decks()
 
 def create_deck():
     deck_name = input("Ingrese el nombre del nuevo mazo: ")
