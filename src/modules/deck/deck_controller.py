@@ -1,11 +1,11 @@
-from src.modules.file_manager import save_decks, load_decks
+from src.modules.file_manager import save_data, load_data
 from src.modules.deck.deck import create_deck
 
-decks = load_decks()
+decks = load_data()
 
 def create_deck_controller(deck_name):
     if create_deck(decks, deck_name):
-        save_decks(decks)
+        save_data(decks)
         return True
     else:
         return False

@@ -1,8 +1,8 @@
 from random import shuffle
 from src.modules.deck.deck_ui import list_decks_ui
-from src.modules.file_manager import load_decks
+from src.modules.file_manager import load_data
 
-decks = load_decks()
+decks = load_data()
 
 def study_mode(is_flashcard_mode):
     list_decks_ui()
