@@ -1,5 +1,5 @@
-from src.modules.card_manager import create_card, edit_card, delete_card, list_cards, move_card, search_cards
-from src.modules.deck_manager import create_deck, list_decks
+from src.modules.card.card_ui import create_card_ui, edit_card_ui, delete_card_ui, list_cards_ui, move_card_ui, search_cards_ui
+from src.modules.deck.deck_ui import create_deck_ui, list_decks_ui
 from src.modules.study_mode import study_mode
 
 
@@ -14,7 +14,6 @@ def show_welcome_menu():
     print(flashcards_ascii)
     input("Para comenzar, presione Enter...")
     show_main_menu()
-
 
 def show_main_menu():
     menu_active = True
@@ -73,17 +72,17 @@ def show_card_management_menu():
         option = input("Seleccione una opción: ")
 
         if option == "1":
-            create_card()
+            create_card_ui()
         elif option == "2":
-            edit_card()
+            edit_card_ui()
         elif option == "3":
-            delete_card()
+            delete_card_ui()
         elif option == "4":
-            list_cards()
+            list_cards_ui()
         elif option == "5":
-            move_card()
+            move_card_ui()
         elif option == "6":
-            search_cards()
+            search_cards_ui()
         elif option == "7":
             menu_active = False
         else:
@@ -100,11 +99,10 @@ def show_deck_management_menu():
         option = input("Seleccione una opción: ")
 
         if option == "1":
-            create_deck()
+            create_deck_ui()
         elif option == "2":
-            list_decks()
+            list_decks_ui()
         elif option == "3":
             menu_active = False
         else:
             print("Opción no válida. Intente de nuevo.")
-

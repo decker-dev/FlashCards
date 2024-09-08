@@ -1,4 +1,3 @@
-# src/modules/card/card_controller.py
 from src.modules.file_manager import save_decks, load_decks
 from src.modules.card.card import create_card
 

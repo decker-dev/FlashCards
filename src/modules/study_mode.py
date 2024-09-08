@@ -1,9 +1,11 @@
 from random import shuffle
-from src.modules.deck_manager import decks, list_decks
+from src.modules.deck.deck_ui import list_decks_ui
+from src.modules.file_manager import load_decks
 
+decks = load_decks()
 
 def study_mode(is_flashcard_mode):
-    list_decks()
+    list_decks_ui()
     deck_name = input("Seleccione el mazo para estudiar: ")
     if deck_name not in decks or not decks[deck_name]:
         print("El mazo no existe o está vacío.")
@@ -16,7 +18,6 @@ def study_mode(is_flashcard_mode):
     else:
         random_mode(cards)
 
-
 def flashcard_mode(cards):
     results = []
     for card in cards:
@@ -24,7 +25,6 @@ def flashcard_mode(cards):
         results.append(result)
 
     show_results(results)
-
 
 def random_mode(cards):
     shuffled_cards = cards[:]
@@ -34,7 +34,6 @@ def random_mode(cards):
         input("Presione Enter para ver la respuesta...")
         print(f"Respuesta: {card['answer']}")
         input("Presione Enter para continuar...")
-
 
 def study_card(card):
     print(f"\nPregunta: {card['question']}")
@@ -58,7 +57,6 @@ def study_card(card):
     else:
         print("Opción no válida, se tomará como 'Nada'.")
         return "nada"
-
 
 def show_results(results):
     total = len(results)
