@@ -1,6 +1,7 @@
 from random import shuffle
 from src.modules.deck.deck_ui import list_decks_ui
 from src.modules.utils.file_manager import load_data
+from src.modules.utils.list import shuffle_copy
 
 decks = load_data()
 
@@ -27,8 +28,7 @@ def flashcard_mode(cards):
     show_results(results)
 
 def random_mode(cards):
-    shuffled_cards = cards[:]
-    shuffle(shuffled_cards)
+    shuffled_cards = shuffle_copy(cards)
     for card in shuffled_cards:
         print(f"\nPregunta: {card['question']}")
         input("Presione Enter para ver la respuesta...")
