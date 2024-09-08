@@ -1,5 +1,6 @@
 from src.modules.card.card_controller import add_card_to_deck, edit_card_in_deck, delete_card_from_deck, move_card_between_decks, search_cards_in_decks, list_cards
 from src.modules.deck.deck_ui import list_decks_ui
+from src.modules.deck.deck_controller import list_decks_controller
 
 def create_card_ui():
     question = input("Ingrese la pregunta: ")
@@ -41,7 +42,7 @@ def move_card_ui():
     if 0 <= index < len(list_cards("default")):
         list_decks_ui()
         deck_name = input("Ingrese el nombre del mazo destino: ")
-        if deck_name in list_cards():
+        if deck_name in list_decks_controller():
             move_card_between_decks("default", deck_name, index)
             print("Tarjeta movida exitosamente.")
         else:
