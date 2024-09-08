@@ -1,7 +1,7 @@
 from src.modules.card.card_ui import create_card_ui, edit_card_ui, delete_card_ui, list_cards_ui, move_card_ui, \
     search_cards_ui
 from src.modules.deck.deck_ui import create_deck_ui, list_decks_ui
-from src.modules.study_mode import study_mode
+from src.study_mode import study_mode
 
 
 def show_welcome_menu():
