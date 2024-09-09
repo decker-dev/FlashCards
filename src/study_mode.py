@@ -1,4 +1,3 @@
-from src.menu import show_main_menu
 from src.modules.deck.deck_ui import list_decks_ui
 from src.modules.utils.file_manager import load_data
 from src.modules.utils.list import shuffle_copy
@@ -25,6 +24,8 @@ def flashcard_mode(cards):
     results = []
     for card in cards:
         result = study_card(card)
+        if result == "abandonar":
+            return
         results.append(result)
 
     show_results(results)
@@ -60,7 +61,7 @@ def study_card(card):
     elif rating == "4":
         return "nada"
     elif rating == "5":
-        show_main_menu()
+        return "abandonar"
     else:
         print("Opción no válida, se tomará como 'Nada'.")
         return "nada"
