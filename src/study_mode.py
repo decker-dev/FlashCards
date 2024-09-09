@@ -1,3 +1,4 @@
+from src.menu import show_main_menu
 from src.modules.deck.deck_ui import list_decks_ui
 from src.modules.utils.file_manager import load_data
 from src.modules.utils.list import shuffle_copy
@@ -47,6 +48,7 @@ def study_card(card):
     print("2. Bien")
     print("3. Mal")
     print("4. Nada")
+    print("5. Abandonar partida")
     rating = input("Seleccione una opción: ").strip()
 
     if rating == "1":
@@ -57,6 +59,8 @@ def study_card(card):
         return "mal"
     elif rating == "4":
         return "nada"
+    elif rating == "5":
+        show_main_menu()
     else:
         print("Opción no válida, se tomará como 'Nada'.")
         return "nada"
