@@ -6,7 +6,7 @@ from modules.file_manager import load_decks, save_decks
 decks: dict[str, list[dict[str, str]]] = load_decks()
 
 def create_deck():
-    deck_name = input("Ingrese el nombre del nuevo mazo: ")
+    deck_name = input("\nIngrese el nombre del nuevo mazo: ")
     if deck_name not in decks:
         decks[deck_name] = []
         save_decks(decks)

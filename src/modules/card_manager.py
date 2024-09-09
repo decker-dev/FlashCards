@@ -1,7 +1,10 @@
 import re
 
+from modules import menu
 from modules.deck_manager import list_decks
 from modules.file_manager import load_decks, save_decks
+
+
 
 decks = load_decks()
 
@@ -14,8 +17,10 @@ def create_card():
     print("Tarjeta creada exitosamente.")
 
 def edit_card():
+    print("\n--- Editor de Tarjetas ---")
     list_cards()
-    index = int(input("Seleccione el número de la tarjeta a editar: "))
+    number_edit = show_exit_option("Seleccione el número de la tarjeta a editar: ")
+    index = int(number_edit)
     if 0 <= index < len(decks["default"]):
         question = input("Ingrese la nueva pregunta: ")
         answer = input("Ingrese la nueva respuesta: ")
@@ -41,6 +46,15 @@ def list_cards(deck_name="default"):
             print(f"{i}. Pregunta: {card['question']}, Respuesta: {card['answer']}")
     else:
         print("No hay tarjetas disponibles.")
+
+def show_exit_option(message:str):
+    print("Ingrese E (Exit) para volver al Menu Principal")
+    user_input = input(message)
+    if user_input == "E" or "e":
+        menu.show_main_menu()
+    else:
+        return user_input
+
 
 def move_card():
     list_cards()
