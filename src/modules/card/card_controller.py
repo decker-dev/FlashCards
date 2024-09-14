@@ -1,5 +1,6 @@
 from src.utils.file_manager import save_data, load_data
 from src.modules.card.card import create_card
+import re
 
 decks = load_data()
 
@@ -29,10 +30,14 @@ def move_card_between_decks(from_deck, to_deck, index):
 
 def search_cards_in_decks(query):
     found_cards = []
-    for deck_name, cards in decks.items():
-        for i, card in enumerate(cards):
-            if query.lower() in card["question"].lower() or query.lower() in card["answer"].lower():
+    for deck_name in decks:
+        cards = decks[deck_name]
+        i = 0
+        for card in cards:
+            if (re.search(query, card["question"], re.IGNORECASE) or
+                re.search(query, card["answer"], re.IGNORECASE)):
                 found_cards.append((deck_name, i, card))
+            i += 1
     return found_cards
 
 
