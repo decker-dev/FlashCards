@@ -1,6 +1,6 @@
 from src.modules.deck.deck_ui import list_decks_ui
-from src.modules.utils.file_manager import load_data
-from src.modules.utils.list import shuffle_copy
+from src.utils.file_manager import load_data
+from src.utils.list import shuffle_copy
 
 decks = load_data()
 
