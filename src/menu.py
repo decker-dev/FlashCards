@@ -1,7 +1,7 @@
 from src.modules.card.card_ui import create_card_ui, edit_card_ui, delete_card_ui, list_cards_ui, move_card_ui, \
     search_cards_ui
 from src.modules.deck.deck_ui import create_deck_ui, list_decks_ui
-from src.study_mode import study_mode
+from src.modules.study_mode.study_mode_ui import start_study_mode
 
 
 def show_welcome_menu():
@@ -52,9 +52,9 @@ def show_study_menu():
         option = input("Seleccione una opción: ")
 
         if option == "1":
-            study_mode(True)
+            start_study_mode(True)
         elif option == "2":
-            study_mode(False)
+            start_study_mode(False)
         elif option == "3":
             menu_active = False
         else:
