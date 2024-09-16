@@ -1,13 +1,14 @@
-from src.modules.deck.deck_ui import list_decks_ui
-from src.modules.utils.file_manager import load_data
-from src.modules.utils.list import shuffle_copy
+from modules.deck.deck_ui import list_decks_ui
+from modules.graphics import print_boxed_code
+from modules.utils.file_manager import load_data
+from modules.utils.list import shuffle_copy
 
 decks = load_data()
 
 
 def study_mode(is_flashcard_mode):
     list_decks_ui()
-    deck_name = input("Seleccione el mazo para estudiar: ")
+    deck_name = input("\nSeleccione el mazo para estudiar: ")
     if deck_name not in decks or not decks[deck_name]:
         print("El mazo no existe o está vacío.")
         return
@@ -36,14 +37,14 @@ def random_mode(cards):
     for card in shuffled_cards:
         print(f"\nPregunta: {card['question']}")
         input("Presione Enter para ver la respuesta...")
-        print(f"Respuesta: {card['answer']}")
+        print(f"\nRespuesta: {card['answer']}")
         input("Presione Enter para continuar...")
 
 
 def study_card(card):
     print(f"\nPregunta: {card['question']}")
     input("Presione Enter para ver la respuesta...")
-    print(f"Respuesta: {card['answer']}")
+    print(f"'\nRespuesta: {card['answer']}")
     print("¿Cómo lo respondiste?")
     print("1. Perfecto")
     print("2. Bien")
@@ -74,7 +75,7 @@ def show_results(results):
     bad = results.count("mal")
     none = results.count("nada")
 
-    print("\n--- Resultados del Estudio ---")
+    print("\n--- RESULTADOS DEL ESTUDIO ---")
     print(f"Total de tarjetas: {total}")
     print(f"Perfecto: {perfect} ({(perfect / total) * 100:.2f}%)")
     print(f"Bien: {good} ({(good / total) * 100:.2f}%)")
@@ -82,4 +83,4 @@ def show_results(results):
     print(f"Nada: {none} ({(none / total) * 100:.2f}%)")
 
     score = (perfect * 10 + good * 6 + bad * 4 + none * 1) / total
-    print(f"\nPuntaje final: {score:.2f} / 10")
+    print_boxed_code(f"Puntaje final: {score:.2f} / 10")

@@ -1,5 +1,5 @@
-from src.modules.utils.file_manager import save_data, load_data
-from src.modules.card.card import create_card
+from modules.utils.file_manager import save_data, load_data
+from modules.card.card import create_card
 
 decks = load_data()
 

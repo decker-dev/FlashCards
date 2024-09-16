@@ -1,10 +1,13 @@
-from src.modules.card.card_ui import create_card_ui, edit_card_ui, delete_card_ui, list_cards_ui, move_card_ui, \
+from modules.card.card_ui import create_card_ui, edit_card_ui, delete_card_ui, list_cards_ui, move_card_ui, \
     search_cards_ui
-from src.modules.deck.deck_ui import create_deck_ui, list_decks_ui
-from src.study_mode import study_mode
+from modules.deck.deck_ui import create_deck_ui, list_decks_ui
+from modules.graphics import print_boxed_code
+from study_mode import study_mode
+
 
 
 def show_welcome_menu():
+
     flashcards_ascii = """
 ███████ ██       █████  ███████ ██   ██  ██████  █████  ██████  ██████  ███████ 
 ██      ██      ██   ██ ██      ██   ██ ██      ██   ██ ██   ██ ██   ██ ██      
@@ -12,7 +15,7 @@ def show_welcome_menu():
 ██      ██      ██   ██      ██ ██   ██ ██      ██   ██ ██   ██ ██   ██      ██ 
 ██      ███████ ██   ██ ███████ ██   ██  ██████ ██   ██ ██   ██ ██████  ███████ 
 """
-    print(flashcards_ascii)
+    print_boxed_code(flashcards_ascii)
     input("Para comenzar, presione Enter...")
     show_main_menu()
 
@@ -20,13 +23,13 @@ def show_welcome_menu():
 def show_main_menu():
     menu_active = True
     while menu_active:
-        print("\n--- Menú Principal ---")
+        print("\n--- MENÚ PRINCIPAL ---")
         print("1. Empezar Estudio")
         print("2. Gestionar Tarjetas")
         print("3. Gestionar Mazos")
-        print("4. Salir")
+        print("S. Salir")
 
-        option = input("Seleccione una opción: ")
+        option = input("\nSeleccione una opción: ")
 
         if option == "1":
             show_study_menu()
@@ -34,8 +37,8 @@ def show_main_menu():
             show_card_management_menu()
         elif option == "3":
             show_deck_management_menu()
-        elif option == "4":
-            print("Saliendo...")
+        elif option == "S" or option =="s":
+            print("\nSaliendo...\n")
             menu_active = False
         else:
             print("Opción no válida. Intente de nuevo.")
@@ -44,12 +47,13 @@ def show_main_menu():
 def show_study_menu():
     menu_active = True
     while menu_active:
-        print("\n--- Empezar Estudio ---")
+        print("\n--- EMPEZAR ESTUDIO ---")
         print("1. Modo Flashcards")
         print("2. Modo Aleatorio")
         print("3. Volver al Menú Principal")
+        print("S. Salir")
 
-        option = input("Seleccione una opción: ")
+        option = input("\nSeleccione una opción: ")
 
         if option == "1":
             study_mode(True)
@@ -57,6 +61,9 @@ def show_study_menu():
             study_mode(False)
         elif option == "3":
             menu_active = False
+        elif option == "s" or option == "S":
+            exit("\nSaliendo...\n")
+            
         else:
             print("Opción no válida. Intente de nuevo.")
 
@@ -64,7 +71,7 @@ def show_study_menu():
 def show_card_management_menu():
     menu_active = True
     while menu_active:
-        print("\n--- Gestionar Tarjetas ---")
+        print("\n--- GESTIONAR TARJETAS ---")
         print("1. Crear Tarjeta")
         print("2. Editar Tarjeta")
         print("3. Eliminar Tarjeta")
@@ -72,8 +79,10 @@ def show_card_management_menu():
         print("5. Mover Tarjeta a Mazo")
         print("6. Buscar Tarjetas")
         print("7. Volver al Menú Principal")
+        print("S. Salir")
+        
 
-        option = input("Seleccione una opción: ")
+        option = input("\nSeleccione una opción: ")
 
         if option == "1":
             create_card_ui()
@@ -89,6 +98,8 @@ def show_card_management_menu():
             search_cards_ui()
         elif option == "7":
             menu_active = False
+        elif option == "s" or option == "S":
+            exit("\nSaliendo...\n")
         else:
             print("Opción no válida. Intente de nuevo.")
 
@@ -96,12 +107,13 @@ def show_card_management_menu():
 def show_deck_management_menu():
     menu_active = True
     while menu_active:
-        print("\n--- Gestionar Mazos ---")
+        print("\n--- GESTIONAR MAZOS ---")
         print("1. Crear Mazo")
         print("2. Listar Mazos")
         print("3. Volver al Menú Principal")
+        print("S. Salir")
 
-        option = input("Seleccione una opción: ")
+        option = input("\nSeleccione una opción: ")
 
         if option == "1":
             create_deck_ui()
@@ -109,5 +121,7 @@ def show_deck_management_menu():
             list_decks_ui()
         elif option == "3":
             menu_active = False
+        elif option == "s" or option == "S":
+            exit("\nSaliendo...\n")
         else:
             print("Opción no válida. Intente de nuevo.")

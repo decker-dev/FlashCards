@@ -1,7 +1,7 @@
-from src.modules.card.card_controller import add_card_to_deck, edit_card_in_deck, delete_card_from_deck, \
+from modules.card.card_controller import add_card_to_deck, edit_card_in_deck, delete_card_from_deck, \
     move_card_between_decks, search_cards_in_decks, list_cards
-from src.modules.deck.deck_ui import list_decks_ui
-from src.modules.deck.deck_controller import list_decks_controller
+from modules.deck.deck_ui import list_decks_ui
+from modules.deck.deck_controller import list_decks_controller
 
 
 def create_card_ui():
@@ -18,14 +18,14 @@ def edit_card_ui():
         question = input("Ingrese la nueva pregunta: ")
         answer = input("Ingrese la nueva respuesta: ")
         edit_card_in_deck("default", index, question, answer)
-        print("Tarjeta editada exitosamente.")
+        print("\nTarjeta editada exitosamente.")
     else:
-        print("Índice no válido.")
+        print("\nÍndice no válido.")
 
 
 def delete_card_ui():
     list_cards_ui()
-    index = int(input("Seleccione el número de la tarjeta a eliminar: "))
+    index = int(input("\nSeleccione el número de la tarjeta a eliminar: "))
     if 0 <= index < len(list_cards("default")):
         delete_card_from_deck("default", index)
         print("Tarjeta eliminada exitosamente.")
@@ -39,15 +39,16 @@ def list_cards_ui():
         print(f"\nMazo: {deck_name}")
         cards = list_cards(deck_name)
         if cards:
+            cards = sorted(cards, key=lambda card: card['question'])
             for i, card in enumerate(cards):
                 print(f"  {i}. Pregunta: {card['question']}, Respuesta: {card['answer']}")
         else:
-            print("  No hay tarjetas disponibles.")
+            print("\n No hay tarjetas disponibles.")
 
 
 def move_card_ui():
     list_cards_ui()
-    index = int(input("Seleccione el número de la tarjeta a mover: "))
+    index = int(input("\nSeleccione el número de la tarjeta a mover: "))
     if 0 <= index < len(list_cards("default")):
         list_decks_ui()
         deck_name = input("Ingrese el nombre del mazo destino: ")
@@ -55,9 +56,9 @@ def move_card_ui():
             move_card_between_decks("default", deck_name, index)
             print("Tarjeta movida exitosamente.")
         else:
-            print("El mazo no existe.")
+            print("\nEl mazo no existe.")
     else:
-        print("Índice no válido.")
+        print("\nÍndice no válido.")
 
 
 def search_cards_ui():

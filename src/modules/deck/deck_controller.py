@@ -1,5 +1,5 @@
-from src.modules.utils.file_manager import save_data, load_data
-from src.modules.deck.deck import create_deck
+from modules.utils.file_manager import save_data, load_data
+from modules.deck.deck import create_deck
 
 decks = load_data()
 
