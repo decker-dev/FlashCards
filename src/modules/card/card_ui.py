@@ -39,9 +39,9 @@ def list_cards_ui():
         print(f"\nMazo: {deck_name}")
         cards = list_cards(deck_name)
         if cards:
-            cards = sorted(cards, key=lambda card: card['question'])
-            for i, card in enumerate(cards):
-                print(f"  {i}. Pregunta: {card['question']}, Respuesta: {card['answer']}")
+            cards = sorted(cards, key = lambda card: card['question'])
+            for card in cards:
+                print(f"Pregunta: {card['question']}, Respuesta: {card['answer']}")
         else:
             print("\n No hay tarjetas disponibles.")
 
