@@ -11,5 +11,6 @@ def create_deck_ui():
 
 def list_decks_ui():
     print("Mazos disponibles:")
-    for deck_name in list_decks_controller():
+    decks = list_decks_controller()
+    for deck_name in decks:
         print(f"- {deck_name}")

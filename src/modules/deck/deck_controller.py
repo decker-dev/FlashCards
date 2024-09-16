@@ -1,16 +1,8 @@
 from modules.utils.file_manager import save_data, load_data
 from modules.deck.deck import create_deck
 
-decks = load_data()
-
-
 def create_deck_controller(deck_name):
-    if create_deck(decks, deck_name):
-        save_data(decks)
-        return True
-    else:
-        return False
-
+    return create_deck(deck_name)
 
 def list_decks_controller():
-    return list(decks.keys())
+    return list_decks()

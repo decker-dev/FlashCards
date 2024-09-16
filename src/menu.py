@@ -56,14 +56,14 @@ def show_study_menu():
         option = input("\nSeleccione una opción: ")
 
         if option == "1":
-            study_mode(True)
+            start_study_mode(True)
         elif option == "2":
-            study_mode(False)
+            start_study_mode(False)
         elif option == "3":
             menu_active = False
         elif option == "s" or option == "S":
             exit("\nSaliendo...\n")
-            
+
         else:
             print("Opción no válida. Intente de nuevo.")
 
@@ -80,7 +80,7 @@ def show_card_management_menu():
         print("6. Buscar Tarjetas")
         print("7. Volver al Menú Principal")
         print("S. Salir")
-        
+
 
         option = input("\nSeleccione una opción: ")
 
