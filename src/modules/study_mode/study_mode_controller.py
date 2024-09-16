@@ -1,4 +1,3 @@
-from src.modules.deck.deck_ui import list_decks_ui
 from src.modules.graphics import print_boxed_code
 from src.utils.file_manager import load_data
 from src.utils.list import shuffle_copy

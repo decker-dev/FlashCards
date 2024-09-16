@@ -1,4 +1,4 @@
-from modules.deck.deck_controller import create_deck_controller, list_decks_controller
+from src.modules.deck.deck_controller import create_deck_controller, list_decks_controller
 
 
 def create_deck_ui():
