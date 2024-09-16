@@ -9,7 +9,6 @@ def get_decks():
     return decks
 
 def study_mode(deck_name,is_flashcard_mode):
-    list_decks_ui()
     if deck_name not in decks or not decks[deck_name]:
         return None, "El mazo no existe o está vacío."
 
@@ -36,7 +35,7 @@ def random_mode(cards):
 def study_card(card):
     print(f"\nPregunta: {card['question']}")
     input("Presione Enter para ver la respuesta...")
-    print(f"'\nRespuesta: {card['answer']}")
+    print(f"\nRespuesta: {card['answer']}")
     print("¿Cómo lo respondiste?")
     print("1. Perfecto")
     print("2. Bien")
