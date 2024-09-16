@@ -2,8 +2,7 @@ from modules.card.card_ui import create_card_ui, edit_card_ui, delete_card_ui, l
     search_cards_ui
 from modules.deck.deck_ui import create_deck_ui, list_decks_ui
 from modules.graphics import print_boxed_code
-from study_mode import study_mode
-
+from src.modules.study_mode.study_mode_ui import start_study_mode
 
 
 def show_welcome_menu():

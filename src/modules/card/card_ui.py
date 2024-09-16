@@ -1,7 +1,7 @@
-from modules.card.card_controller import add_card_to_deck, edit_card_in_deck, delete_card_from_deck, \
-    move_card_between_decks, search_cards_in_decks, list_cards
-from modules.deck.deck_ui import list_decks_ui
-from modules.deck.deck_controller import list_decks_controller
+from src.modules.card.card_controller import add_card_to_deck, list_cards, edit_card_in_deck, delete_card_from_deck, \
+    move_card_between_decks, search_cards_in_decks
+from src.modules.deck.deck_controller import list_decks_controller
+from src.modules.deck.deck_ui import list_decks_ui
 
 
 def create_card_ui():
