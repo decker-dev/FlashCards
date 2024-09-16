@@ -8,9 +8,8 @@ decks = load_data()
 def get_decks():
     return decks
 
-def study_mode(is_flashcard_mode):
+def study_mode(deck_name,is_flashcard_mode):
     list_decks_ui()
-    deck_name = input("\nSeleccione el mazo para estudiar: ")
     if deck_name not in decks or not decks[deck_name]:
         return None, "El mazo no existe o está vacío."
 
