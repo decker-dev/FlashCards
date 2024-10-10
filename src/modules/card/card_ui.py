@@ -35,16 +35,19 @@ def delete_card_ui():
 
 def list_cards_ui():
     decks = list_decks_controller()
+    i = 0
     for deck_name in decks:
         print(f"\nMazo: {deck_name}")
         cards = list_cards(deck_name)
         if cards:
-            cards = sorted(cards, key = lambda card: card['question'])
+            # Ordenar las cartas por la pregunta
+            cards = sorted(cards, key=lambda card: card['question'])
+            # Inicializar un contador manual
             for card in cards:
-                print(f"Pregunta: {card['question']}, Respuesta: {card['answer']}")
+                print(f"  {i}. Pregunta: {card['question']}, Respuesta: {card['answer']}")
+                i += 1  # Incrementar el contador manualmente
         else:
-            print("\n No hay tarjetas disponibles.")
-
+            print("No hay tarjetas disponibles.")
 
 def move_card_ui():
     list_cards_ui()
