@@ -4,10 +4,12 @@ from src.utils.list import shuffle_copy
 
 decks = load_data()
 
+
 def get_decks():
     return decks
 
-def study_mode(deck_name,is_flashcard_mode):
+
+def study_mode(deck_name, is_flashcard_mode):
     if deck_name not in decks or not decks[deck_name]:
         return None, "El mazo no existe o está vacío."
 
@@ -18,6 +20,7 @@ def study_mode(deck_name,is_flashcard_mode):
     else:
         return random_mode(cards), None
 
+
 def flashcard_mode(cards):
     results = []
     for card in cards:
@@ -27,9 +30,11 @@ def flashcard_mode(cards):
         results.append(result)
     return results
 
+
 def random_mode(cards):
     shuffled_cards = shuffle_copy(cards)
     return shuffled_cards
+
 
 def study_card(card):
     print(f"\nPregunta: {card['question']}")
@@ -60,6 +65,12 @@ def study_card(card):
 
 def show_results(results):
     total = len(results)
+
+    if total == 0:
+        print("\n--- RESULTADOS DEL ESTUDIO ---")
+        print("No hay resultados para mostrar.")
+        return
+
     perfect = results.count("perfecto")
     good = results.count("bien")
     bad = results.count("mal")
