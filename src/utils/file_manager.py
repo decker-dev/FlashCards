@@ -1,4 +1,10 @@
-data_store = {
+import json
+import os
+
+# Nombre del archivo donde se guardarán los datos
+FILE_NAME = 'data_store.json'
+
+initial_data = {
     "default": [
         {"question": "¿Cuál es la capital de Francia?", "answer": "París"},
         {"question": "¿Cuál es el resultado de 2 + 2?", "answer": "4"},
@@ -27,12 +33,18 @@ data_store = {
 }
 
 
-
 def save_data(data):
-    global data_store
-    data_store = data
+    """Guarda los datos en el archivo JSON."""
+    with open(FILE_NAME, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
 
 
 def load_data():
-    global data_store
-    return data_store
+    """Carga los datos desde el archivo JSON. Si no existe, lo crea con los datos iniciales."""
+    if os.path.exists(FILE_NAME):
+        with open(FILE_NAME, 'r', encoding='utf-8') as file:
+            return json.load(file)
+    else:
+        print(f"El archivo {FILE_NAME} no existe. Creando archivo con datos iniciales.")
+        save_data(initial_data)
+        return initial_data
