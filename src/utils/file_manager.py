@@ -14,8 +14,11 @@ initial_data = {
 def save_data(data):
     """Guarda los datos en el archivo JSON."""
     try:
-        with open(FILE_NAME, 'w', encoding='utf-8') as file:
+        file = open(FILE_NAME, 'w', encoding='utf-8')
+        try:
             json.dump(data, file, ensure_ascii=False, indent=2)
+        finally:
+            file.close()
     except IOError as e:
         print(f"Error al guardar los datos en {FILE_NAME}: {e}")
 
@@ -23,8 +26,11 @@ def load_data():
     """Carga los datos desde el archivo JSON. Si no existe, lo crea con los datos iniciales."""
     try:
         if os.path.exists(FILE_NAME):
-            with open(FILE_NAME, 'r', encoding='utf-8') as file:
+            file = open(FILE_NAME, 'r', encoding='utf-8')
+            try:
                 return json.load(file)
+            finally:
+                file.close()
         else:
             print(f"El archivo {FILE_NAME} no existe. Creando archivo con datos iniciales.")
             save_data(initial_data)
