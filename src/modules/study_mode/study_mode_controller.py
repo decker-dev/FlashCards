@@ -23,11 +23,23 @@ def study_mode(deck_name, is_flashcard_mode):
 
 def flashcard_mode(cards):
     results = []
-    for card in cards:
+    index = 0
+
+    while index < len(cards):
+        card = cards[index]
         result = study_card(card)
+
         if result == "abandonar":
             return results
+
+        if result == "perfecto":
+            cards.pop(index)
+        else:
+            cards.append(card)
+            index += 1
+
         results.append(result)
+
     return results
 
 

@@ -11,6 +11,7 @@ initial_data = {
     ],
 }
 
+
 def save_data(data):
     """Guarda los datos en el archivo JSON."""
     try:
@@ -21,6 +22,7 @@ def save_data(data):
             file.close()
     except IOError as e:
         print(f"Error al guardar los datos en {FILE_NAME}: {e}")
+
 
 def load_data():
     """Carga los datos desde el archivo JSON. Si no existe, lo crea con los datos iniciales."""
