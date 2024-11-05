@@ -31,21 +31,21 @@ def save_data(decks, users, card_history, scores):
 
 def show_error(message):
     print(f"\n{message}")
-    input("Press Enter to continue...")
+    input("Enter para continuar...")
 
 
 def select_user(users):
     while True:
         clear_screen()
-        print("\n=== User Selection ===")
+        print("\n=== Seleccionar Usuario ===")
 
         if users:
-            print("\nExisting users:")
+            print("\nUsuarios Existentes:")
             for i, name in enumerate(users.keys(), 1):
                 print(f"{i}. {name}")
-            print(f"{len(users) + 1}. Create new user")
+            print(f"{len(users) + 1}. Crear Nuevo Usuario")
 
-            option = input("\nChoose an option: ")
+            option = input("\nElegir una Opción: ")
             if option.isdigit():
                 option = int(option)
                 if 1 <= option <= len(users):
@@ -53,10 +53,10 @@ def select_user(users):
                 elif option == len(users) + 1:
                     return create_user(users)
         else:
-            print("\nNo registered users.")
+            print("\nUsuario no registrado.")
             return create_user(users)
 
-        show_error("Invalid option.")
+        show_error("Opción Inválida.")
 
 
 def update_score(scores, user, results):
@@ -96,8 +96,8 @@ def update_score(scores, user, results):
 def create_user(users):
     while True:
         clear_screen()
-        print("\n=== Create New User ===")
-        name = input("\nEnter your name: ").strip()
+        print("\n=== Crear Nuevo Usuario ===")
+        name = input("\nIngresar Nombre de Usuario: ").strip()
 
         if name and name not in users:
             users[name] = {
@@ -105,7 +105,7 @@ def create_user(users):
             }
             return name
 
-        show_error("Invalid or already existing name. Try another one.")
+        show_error("Usuario ya Existente o Inválido. Intentar con otro nombre.")
 
 
 def select_deck(decks, mode="practice"):
