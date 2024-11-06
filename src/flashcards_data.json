@@ -1,0 +1,19 @@
+{
+  "decks": {
+    "General": [
+      {
+        "id": "General_1",
+        "question": "1",
+        "answer": "1",
+        "deck": "General"
+      }
+    ]
+  },
+  "users": {
+    "b": {
+      "registration_date": "2024-11-06 01:27:41"
+    }
+  },
+  "card_history": {},
+  "scores": {}
+}

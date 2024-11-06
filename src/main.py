@@ -2,6 +2,7 @@ import json
 import random
 from datetime import datetime, timedelta
 
+
 def clear_screen():
     print('\n' * 100)
 
@@ -31,21 +32,21 @@ def save_data(decks, users, card_history, scores):
 
 def show_error(message):
     print(f"\n{message}")
-    input("Enter para continuar...")
+    input("Press Enter to continue...")
 
 
 def select_user(users):
     while True:
         clear_screen()
-        print("\n=== Seleccionar Usuario ===")
+        print("\n=== User Selection ===")
 
         if users:
-            print("\nUsuarios Existentes:")
+            print("\nExisting users:")
             for i, name in enumerate(users.keys(), 1):
                 print(f"{i}. {name}")
-            print(f"{len(users) + 1}. Crear Nuevo Usuario")
+            print(f"{len(users) + 1}. Create new user")
 
-            option = input("\nElegir una Opción: ")
+            option = input("\nChoose an option: ")
             if option.isdigit():
                 option = int(option)
                 if 1 <= option <= len(users):
@@ -53,10 +54,10 @@ def select_user(users):
                 elif option == len(users) + 1:
                     return create_user(users)
         else:
-            print("\nUsuario no registrado.")
+            print("\nNo registered users.")
             return create_user(users)
 
-        show_error("Opción Inválida.")
+        show_error("Invalid option.")
 
 
 def update_score(scores, user, results):
@@ -96,8 +97,8 @@ def update_score(scores, user, results):
 def create_user(users):
     while True:
         clear_screen()
-        print("\n=== Crear Nuevo Usuario ===")
-        name = input("\nIngresar Nombre de Usuario: ").strip()
+        print("\n=== Create New User ===")
+        name = input("\nEnter your name: ").strip()
 
         if name and name not in users:
             users[name] = {
@@ -105,7 +106,7 @@ def create_user(users):
             }
             return name
 
-        show_error("Usuario ya Existente o Inválido. Intentar con otro nombre.")
+        show_error("Invalid or already existing name. Try another one.")
 
 
 def select_deck(decks, mode="practice"):
@@ -341,22 +342,22 @@ def practice(decks, user, card_history, scores):
 
 def show_results(results, total_cards):
     clear_screen()
-    print("\n=== Session Results ===")
-    print("\nBreakdown by rating:")
+    print("\n=== Resultados de la Jugada ===")
+    print("\nBreaks según el Rating:")
     for rating, count in results.items():
         percentage = (count / total_cards) * 100 if total_cards > 0 else 0
-        print(f"{rating}: {count} cards ({percentage:.1f}%)")
+        print(f"{rating}: {count} Tarjetas ({percentage:.1f}%)")
 
-        if rating == 'Perfect':
-            print("  → Next review in 1 week")
-        elif rating == 'Good':
-            print("  → Next review in 1 day")
-        elif rating == 'Bad':
-            print("  → Next review in 10 minutes")
+        if rating == 'Perfecto!':
+            print("  → Próxima Revisión en 1 semana")
+        elif rating == 'Bien':
+            print("  → Próxima Revisión en 1 día")
+        elif rating == 'Mal':
+            print("  → Próxima Revisión en 10 minutes")
         else:
-            print("  → Will appear in the next session")
+            print("  → Aparecerá en la Próxima sesión")
 
-    input("\nPress Enter to continue...")
+    input("\nPresionar Enter para continuar...")
 
 
 def view_cards(decks, user, card_history):
@@ -365,33 +366,33 @@ def view_cards(decks, user, card_history):
 
     clear_screen()
     if not cards:
-        show_error(f"There are no cards in the deck '{deck_name}'.")
+        show_error(f"No Existen Tarjetas en este Mazo '{deck_name}'.")
     else:
-        print(f"\n=== Cards of Deck '{deck_name}' ===\n")
+        print(f"\n=== Tarjetas del Mazo'{deck_name}' ===\n")
         for i, card in enumerate(cards, 1):
-            print(f"Card {i}:")
-            print(f"Question: {card['question']}")
-            print(f"Answer: {card['answer']}")
+            print(f"Tarjetas {i}:")
+            print(f"Pregunta: {card['Pregunta']}")
+            print(f"Respuesta: {card['Respuesta']}")
 
             history_key = f"{user}_{card['id']}"
             if history_key in card_history:
                 last_review = datetime.strptime(
-                    card_history[history_key]['last_review'],
+                    card_history[history_key]['Última Revisión'],
                     "%Y-%m-%d %H:%M:%S"
                 )
-                interval = timedelta(seconds=card_history[history_key]['interval'])
+                interval = timedelta(seconds=card_history[history_key]['Intervalo'])
                 next_review = last_review + interval
                 now = datetime.now()
 
                 if now < next_review:
                     remaining_time = next_review - now
-                    print(f"Status: Locked - Available in {format_time(remaining_time)}")
+                    print(f"Status: Locked - Disponible en: {format_time(remaining_time)}")
                 else:
-                    print("Status: Available for review")
+                    print("Status: Disponible para Revisar")
             else:
-                print("Status: New - Not studied yet")
+                print("Status: Nuevo - Aún No Estudiado")
             print()
-    input("\nPress Enter to continue...")
+    input("\nPresionar Enter para continuar...")
 
 
 def format_time(td):
@@ -400,86 +401,86 @@ def format_time(td):
     minutes = (td.seconds % 3600) // 60
 
     if days > 0:
-        return f"{days} days, {hours} hours"
+        return f"{days} días, {hours} horas"
     elif hours > 0:
-        return f"{hours} hours, {minutes} minutes"
+        return f"{hours} horas, {minutes} minutos"
     else:
-        return f"{minutes} minutes"
+        return f"{minutes} minutos"
 
 
 def edit_card(decks):
     deck_name = select_deck(decks)
     cards = decks[deck_name]
     if not cards:
-        show_error(f"There are no cards in the deck '{deck_name}'.")
+        show_error(f"No Existen Tarjetas en este Mazo '{deck_name}'.")
         return
 
     while True:
         clear_screen()
-        print(f"\n=== Edit Card in Deck '{deck_name}' ===")
+        print(f"\n=== Editar Tarjetas en el Mazo '{deck_name}' ===")
         for i, card in enumerate(cards, 1):
-            print(f"{i}. {card['question']}")
+            print(f"{i}. {card['Pregunta']}")
 
-        option = input("\nChoose a card to edit (0 to cancel): ")
+        option = input("\nElegir una Tarjeta para Editar (0 para cancelar): ")
         if option == '0':
             return
         if option.isdigit() and 1 <= int(option) <= len(cards):
             card = cards[int(option) - 1]
-            card['question'] = input(
-                f"Current question: {card['question']} \nNew question (leave blank to keep): ") or card['question']
+            card['Pregunta'] = input(
+                f"Pregunta Actual: {card['question']} \nNueva Pregunta (dejar en Blanco para conservar): ") or card['Pregunta']
             card['answer'] = input(
-                f"Current answer: {card['answer']} \nNew answer (leave blank to keep): ") or card['answer']
-            print("\nCard successfully edited!")
-            input("Press Enter to continue...")
+                f"Respuesta Actual: {card['Respuesta']} \nNueva Respuesta (dejar en Blanco para conservar): ") or card['Respuesta']
+            print("\nTarjeta correctamente Editada!")
+            input("Presionar Enter para continuar...")
             return
-        show_error("Invalid option.")
+        show_error("Opción Invalida.")
 
 
 def delete_card(decks):
     deck_name = select_deck(decks)
     cards = decks[deck_name]
     if not cards:
-        show_error(f"There are no cards in the deck '{deck_name}'.")
+        show_error(f"No hay Tarjetas en el Mazo '{deck_name}'.")
         return
 
     while True:
         clear_screen()
-        print(f"\n=== Delete Card in Deck '{deck_name}' ===")
+        print(f"\n=== Eliminar Tarjetas en un Mazo '{deck_name}' ===")
         for i, card in enumerate(cards, 1):
-            print(f"{i}. {card['question']}")
+            print(f"{i}. {card['Pregunta']}")
 
-        option = input("\nChoose a card to delete (0 to cancel): ")
+        option = input("\nElegir la Tarjeta que desea Eliminar (0 para cancelar): ")
         if option == '0':
             return
         if option.isdigit() and 1 <= int(option) <= len(cards):
             cards.pop(int(option) - 1)
-            print("\nCard successfully deleted!")
-            input("Press Enter to continue...")
+            print("\nTarjeta Eliminada Correctamente!")
+            input("Presionar Enter para continuar...")
             return
-        show_error("Invalid option.")
+        show_error("Opción Invalida.")
 
 
 def edit_deck(decks):
     deck_name = select_deck(decks, mode="edit")
-    new_name = input(f"\nEnter the new name for the deck '{deck_name}' (Enter to cancel): ").strip()
+    new_name = input(f"\nIngresar el nuevo Nombre del Mazo '{deck_name}' (Enter para cancelar): ").strip() #en Tarjetas usamos "0" para cancelar
     if not new_name:
         return
     if new_name and new_name not in decks:
         decks[new_name] = decks.pop(deck_name)
-        print("\nDeck successfully renamed!")
-        input("Press Enter to continue...")
+        print("\nMazo Renombrado Correctamente!")
+        input("Presionar Enter para continuar...")
     else:
-        show_error("Invalid or already existing name.")
+        show_error("Nombre Invalido o ya Existente.")
 
 
 def delete_deck(decks):
     deck_name = select_deck(decks)
-    confirmation = input(f"\nAre you sure you want to delete the deck '{deck_name}' and all its cards? (y/n): ").lower()
+    confirmation = input(f"\n Está seguro que desea Eliminar el Mazo '{deck_name}' y Todas sus Tarjetas? (y/n): ").lower()
     if confirmation == 'y':
         del decks[deck_name]
-        print("\nDeck successfully deleted!")
+        print("\nMazo Eliminado Correctamente!")
     else:
-        show_error("Deletion canceled.")
+        show_error("Eliminación Cancelada.")
 
 
 def main_menu():
@@ -488,21 +489,21 @@ def main_menu():
     exit_program = True
     while exit_program:
         clear_screen()
-        print(f"\n=== 🎮 Flashcard Game - User: {current_user} ===")
-        print("\n1. 📝 Add card")
-        print("2. 🎯 Practice")
-        print("3. 📊 View cards and statuses")
-        print("4. 📚 Create new deck")
-        print("5. 👤 Change user")
-        print("6. ✏️ Edit card")
-        print("7. 🗑️ Delete card")
-        print("8. 📋 Edit deck")
-        print("9. ❌ Delete deck")
-        print("10. 🏆 View global ranking")
-        print("11. 📈 View my stats")
-        print("12. 🚪 Exit")
+        print(f"\n=== 🎮 Flashcard Game - Usuario: {current_user} ===")
+        print("\n1. 📝 Añadir Tarjeta")
+        print("2. 🎯 Práctica")
+        print("3. 📊 Ver Tarjetas y Status")
+        print("4. 📚 Crear Nuevo Mazo")
+        print("5. 👤 Cambiar de Usuario")
+        print("6. ✏️ Editar Tarjeta")
+        print("7. 🗑️ Eliminar Tarjeta")
+        print("8. 📋 Editar Mazo")
+        print("9. ❌ Eliminar Mazo")
+        print("10. 🏆 Ver Ranking Global")
+        print("11. 📈 Ver mis Estadísticas")
+        print("12. 🚪 Salir")
 
-        option = input("\nChoose an option (1-12): ")
+        option = input("\nElegir una opción del 1 al 12")
 
         if option == '1':
             decks = add_card(decks)
@@ -530,9 +531,10 @@ def main_menu():
             print("\nGoodbye! 👋")
             exit_program = False
         else:
-            show_error("Invalid option. Please choose an option from 1 to 12.")
+            show_error("Opción Inválida. Please, elija una opción del 1 al 12")
 
         save_data(decks, users, card_history, scores)
+
 
 if __name__ == "__main__":
     main_menu()
