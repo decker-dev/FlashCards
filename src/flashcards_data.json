@@ -44,54 +44,54 @@
     ]
   },
   "users": {
-    "JuanPerez": {
+    "Decker": {
       "registration_date": "2024-01-15 10:23:45"
     },
-    "AnaLopez": {
+    "Bere": {
       "registration_date": "2024-02-10 14:05:32"
     },
-    "CarlosGomez": {
+    "Julia": {
       "registration_date": "2024-03-20 18:17:11"
     }
   },
   "card_history": {
-    "JuanPerez_Matemáticas_1": {
+    "Decker_Matemáticas_1": {
       "last_review": "2024-04-01 10:30:00",
       "rating": "Perfecto",
       "interval": 604800
     },
-    "AnaLopez_Historia_1": {
+    "Bere_Historia_1": {
       "last_review": "2024-04-02 15:45:00",
       "rating": "Bien",
       "interval": 86400
     },
-    "CarlosGomez_Ciencia_1": {
+    "Julia_Ciencia_1": {
       "last_review": "2024-04-03 12:15:00",
-      "rating": "Mal",
-      "interval": 600
+      "rating": "Perfecto",
+      "interval": 604800
     }
   },
   "scores": {
-    "JuanPerez": {
+    "Decker": {
       "points": 250,
       "total_correct": 10,
       "total_attempts": 15,
       "streak": 3,
       "best_streak": 5
     },
-    "AnaLopez": {
+    "Bere": {
       "points": 180,
       "total_correct": 8,
       "total_attempts": 12,
       "streak": 2,
       "best_streak": 4
     },
-    "CarlosGomez": {
-      "points": 120,
-      "total_correct": 5,
-      "total_attempts": 10,
-      "streak": 1,
-      "best_streak": 3
+    "Julia": {
+      "points": 500,
+      "total_correct": 20,
+      "total_attempts": 22,
+      "streak": 7,
+      "best_streak": 7
     }
   }
 }
