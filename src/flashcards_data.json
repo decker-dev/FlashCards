@@ -1,22 +1,97 @@
 {
   "decks": {
-    "General": [
+    "Matemáticas": [
       {
-        "id": "General_1",
-        "question": "1",
-        "answer": "1",
-        "deck": "General"
+        "id": "Matemáticas_1",
+        "question": "¿Cuál es la fórmula del área de un círculo?",
+        "answer": "π * r^2",
+        "deck": "Matemáticas"
+      },
+      {
+        "id": "Matemáticas_2",
+        "question": "¿Cuál es el valor de π?",
+        "answer": "Aproximadamente 3.1416",
+        "deck": "Matemáticas"
+      }
+    ],
+    "Historia": [
+      {
+        "id": "Historia_1",
+        "question": "¿En qué año comenzó la Segunda Guerra Mundial?",
+        "answer": "1939",
+        "deck": "Historia"
+      },
+      {
+        "id": "Historia_2",
+        "question": "¿Quién fue el primer presidente de Estados Unidos?",
+        "answer": "George Washington",
+        "deck": "Historia"
+      }
+    ],
+    "Ciencia": [
+      {
+        "id": "Ciencia_1",
+        "question": "¿Cuál es la fórmula química del agua?",
+        "answer": "H2O",
+        "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_2",
+        "question": "¿Qué planeta es conocido como el planeta rojo?",
+        "answer": "Marte",
+        "deck": "Ciencia"
       }
     ]
   },
   "users": {
-    "b": {
-      "registration_date": "2024-11-06 01:27:41"
+    "JuanPerez": {
+      "registration_date": "2024-01-15 10:23:45"
     },
-    "2": {
-      "registration_date": "2024-11-06 08:22:14"
+    "AnaLopez": {
+      "registration_date": "2024-02-10 14:05:32"
+    },
+    "CarlosGomez": {
+      "registration_date": "2024-03-20 18:17:11"
     }
   },
-  "card_history": {},
-  "scores": {}
+  "card_history": {
+    "JuanPerez_Matemáticas_1": {
+      "last_review": "2024-04-01 10:30:00",
+      "rating": "Perfecto",
+      "interval": 604800
+    },
+    "AnaLopez_Historia_1": {
+      "last_review": "2024-04-02 15:45:00",
+      "rating": "Bien",
+      "interval": 86400
+    },
+    "CarlosGomez_Ciencia_1": {
+      "last_review": "2024-04-03 12:15:00",
+      "rating": "Mal",
+      "interval": 600
+    }
+  },
+  "scores": {
+    "JuanPerez": {
+      "points": 250,
+      "total_correct": 10,
+      "total_attempts": 15,
+      "streak": 3,
+      "best_streak": 5
+    },
+    "AnaLopez": {
+      "points": 180,
+      "total_correct": 8,
+      "total_attempts": 12,
+      "streak": 2,
+      "best_streak": 4
+    },
+    "CarlosGomez": {
+      "points": 120,
+      "total_correct": 5,
+      "total_attempts": 10,
+      "streak": 1,
+      "best_streak": 3
+    }
+  }
 }

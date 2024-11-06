@@ -41,7 +41,7 @@ def select_user(users):
         print("\n=== Selección de Usuario ===")
 
         if users:
-            print("\nUsuarios Existientes:")
+            print("\nUsuarios Existentes:")
             for i, name in enumerate(users.keys(), 1):
                 print(f"{i}. {name}")
             print(f"{len(users) + 1}. Crear Nuevo Usuario")
@@ -57,7 +57,7 @@ def select_user(users):
             print("\nUsuario No registrado.")
             return create_user(users)
 
-        show_error("Opción Invalida.")
+        show_error("Opción Inválida.")
 
 
 def update_score(scores, user, results):
@@ -106,7 +106,7 @@ def create_user(users):
             }
             return name
 
-        show_error("Invalido o Usuario Existente. Intente con Otro Nombre.")
+        show_error("Inválido o Usuario Existente. Intente con Otro Nombre.")
 
 
 def select_deck(decks, mode="practice"):
@@ -130,7 +130,7 @@ def select_deck(decks, mode="practice"):
             elif mode == "create" and option == len(decks) + 1:
                 return create_deck(decks)
 
-        show_error("Opción Invalida.")
+        show_error("Opción Inválida.")
 
 
 def create_deck(decks):
@@ -143,7 +143,7 @@ def create_deck(decks):
             decks[name] = []
             return name
 
-        show_error("Invalido o Nombre ya Existente. Intente con Otro Nombre.")
+        show_error("Inválido o Nombre ya Existente. Intente con Otro Nombre.")
 
 
 def add_card(decks):
@@ -167,22 +167,22 @@ def add_card(decks):
 
 def get_rating():
     while True:
-        print("\nHow did you do with this card?")
-        print("1. Perfect - Immediate and correct response")
-        print("2. Good - Hesitated but remembered")
-        print("3. Bad - Struggled to remember")
-        print("4. Terrible - Didn't remember at all")
+        print("\n¿Cómo te fue con esta tarjeta?")
+        print("1. Perfecto - Respuesta inmediata y correcta")
+        print("2. Bien - Dudó pero recordó")
+        print("3. Mal - Le costó recordar")
+        print("4. Terrible - No recordó en absoluto")
 
-        result = input("\nChoose an option (1-4): ")
+        result = input("\nElija una opción (1-4): ")
         if result in ['1', '2', '3', '4']:
             intervals = {
-                '1': ('Perfect', timedelta(days=7).total_seconds()),
-                '2': ('Good', timedelta(days=1).total_seconds()),
-                '3': ('Bad', timedelta(minutes=10).total_seconds()),
+                '1': ('Perfecto', timedelta(days=7).total_seconds()),
+                '2': ('Bien', timedelta(days=1).total_seconds()),
+                '3': ('Mal', timedelta(minutes=10).total_seconds()),
                 '4': ('Terrible', 0.0)
             }
             return intervals[result]
-        print("Please enter a number from 1 to 4")
+        print("Por favor, ingrese un número del 1 al 4")
 
 
 def calculate_available_cards(cards, card_history, user):
@@ -211,11 +211,11 @@ def calculate_available_cards(cards, card_history, user):
 
 def show_ranking(scores):
     clear_screen()
-    print("\n=== 🏆 User Ranking ===\n")
+    print("\n=== 🏆 Ranking de Usuarios ===\n")
 
     if not scores:
-        print("No scores registered yet.")
-        input("\nPress Enter to continue...")
+        print("No hay puntajes registrados aún.")
+        input("\nPresione Enter para continuar...")
         return
 
     sorted_users = sorted(scores.items(),
@@ -226,7 +226,7 @@ def show_ranking(scores):
     max_name_length = max(len(user) for user, _ in sorted_users)
     graph_width = 30
 
-    print(f"{'User':<{max_name_length}} | {'Points':>7} | {'Accuracy':>8} | Graph")
+    print(f"{'Usuario':<{max_name_length}} | {'Puntos':>7} | {'Precisión':>8} | Gráfico")
     print("-" * (max_name_length + graph_width + 22))
 
     for pos, (user, data) in enumerate(sorted_users, 1):
@@ -248,57 +248,57 @@ def show_ranking(scores):
 
         print(f"{medal}{user:<{max_name_length}} | {points:>7} | {accuracy:>7.1f}% | {bar}")
 
-    print("\nLegend:")
-    print("• Points: Perfect = 10pts, Good = 7pts, Bad = 3pts, Terrible = 1pt")
-    print("• Accuracy: Percentage of correct answers (Perfect + Good)")
-    input("\nPress Enter to continue...")
+    print("\nLeyenda:")
+    print("• Puntos: Perfecto = 10pts, Bien = 7pts, Mal = 3pts, Terrible = 1pt")
+    print("• Precisión: Porcentaje de respuestas correctas (Perfecto + Bien)")
+    input("\nPresione Enter para continuar...")
 
 
 def show_user_stats(scores, user):
     clear_screen()
     if user not in scores:
-        print(f"\nNo statistics available for {user}")
-        input("\nPress Enter to continue...")
+        print(f"\nNo hay estadísticas disponibles para {user}")
+        input("\nPresione Enter para continuar...")
         return
 
     data = scores[user]
-    print(f"\n=== 📊 Statistics of {user} ===\n")
+    print(f"\n=== 📊 Estadísticas de {user} ===\n")
 
     accuracy = (data['total_correct'] / data['total_attempts'] * 100) if data['total_attempts'] > 0 else 0
 
-    print(f"🏆 Total points: {data['points']}")
-    print(f"📈 Global accuracy: {accuracy:.1f}%")
-    print(f"🎯 Total correct: {data['total_correct']}")
-    print(f"🔄 Total attempts: {data['total_attempts']}")
-    print(f"🔥 Current streak: {data['streak']}")
-    print(f"⭐ Best streak: {data['best_streak']}")
+    print(f"🏆 Puntos totales: {data['points']}")
+    print(f"📈 Precisión global: {accuracy:.1f}%")
+    print(f"🎯 Correctas totales: {data['total_correct']}")
+    print(f"🔄 Intentos totales: {data['total_attempts']}")
+    print(f"🔥 Racha actual: {data['streak']}")
+    print(f"⭐ Mejor racha: {data['best_streak']}")
 
     if data['total_attempts'] > 0:
-        print("\nProgress:")
-        level = "Beginner"
+        print("\nProgreso:")
+        level = "Principiante"
         if data['points'] >= 1000:
-            level = "Master"
+            level = "Maestro"
         elif data['points'] >= 500:
-            level = "Expert"
+            level = "Experto"
         elif data['points'] >= 200:
-            level = "Advanced"
+            level = "Avanzado"
         elif data['points'] >= 100:
-            level = "Intermediate"
+            level = "Intermedio"
 
-        print(f"📚 Current level: {level}")
+        print(f"📚 Nivel actual: {level}")
 
-        if level != "Master":
+        if level != "Maestro":
             next_level = {
-                "Beginner": ("Intermediate", 100),
-                "Intermediate": ("Advanced", 200),
-                "Advanced": ("Expert", 500),
-                "Expert": ("Master", 1000)
+                "Principiante": ("Intermedio", 100),
+                "Intermedio": ("Avanzado", 200),
+                "Avanzado": ("Experto", 500),
+                "Experto": ("Maestro", 1000)
             }
             next_level_name, points_needed = next_level[level]
             points_remaining = max(0, points_needed - data['points'])
-            print(f"🎯 Points for {next_level_name}: {points_remaining}")
+            print(f"🎯 Puntos para {next_level_name}: {points_remaining}")
 
-    input("\nPress Enter to continue...")
+    input("\nPresione Enter para continuar...")
 
 
 def practice(decks, user, card_history, scores):
@@ -306,14 +306,14 @@ def practice(decks, user, card_history, scores):
     cards = decks[deck_name]
 
     if not cards:
-        show_error(f"There are no cards in the deck '{deck_name}'. Add some first.")
+        show_error(f"No hay tarjetas en el mazo '{deck_name}'. Agregue algunas primero.")
         return
 
     available_cards = calculate_available_cards(cards, card_history, user)
 
     if not available_cards:
-        show_error(f"No cards available for review in the deck '{deck_name}'.\n" +
-                   "Come back later when the review intervals are up.")
+        show_error(f"No hay tarjetas disponibles para revisar en el mazo '{deck_name}'.\n" +
+                   "Vuelva más tarde cuando los intervalos de revisión hayan terminado.")
         return
 
     random.shuffle(available_cards)
@@ -321,10 +321,10 @@ def practice(decks, user, card_history, scores):
 
     for i, card in enumerate(available_cards, 1):
         clear_screen()
-        print(f"\n=== Deck: {deck_name} - Question {i}/{len(available_cards)} ===")
-        print(f"\nQuestion: {card['question']}")
-        input("\nPress Enter to see the answer...")
-        print(f"\nAnswer: {card['answer']}")
+        print(f"\n=== Mazo: {deck_name} - Pregunta {i}/{len(available_cards)} ===")
+        print(f"\nPregunta: {card['question']}")
+        input("\nPresione Enter para ver la respuesta...")
+        print(f"\nRespuesta: {card['answer']}")
 
         rating, interval = get_rating()
         results[rating] += 1
@@ -343,21 +343,21 @@ def practice(decks, user, card_history, scores):
 def show_results(results, total_cards):
     clear_screen()
     print("\n=== Resultados de la Jugada ===")
-    print("\nBreaks según el Rating:")
+    print("\nClasificación según el rating:")
     for rating, count in results.items():
         percentage = (count / total_cards) * 100 if total_cards > 0 else 0
         print(f"{rating}: {count} Tarjetas ({percentage:.1f}%)")
 
-        if rating == 'Perfecto!':
+        if rating == 'Perfecto':
             print("  → Próxima Revisión en 1 semana")
         elif rating == 'Bien':
             print("  → Próxima Revisión en 1 día")
         elif rating == 'Mal':
-            print("  → Próxima Revisión en 10 minutes")
+            print("  → Próxima Revisión en 10 minutos")
         else:
             print("  → Aparecerá en la Próxima sesión")
 
-    input("\nPresionar Enter para continuar...")
+    input("\nPresione Enter para continuar...")
 
 
 def view_cards(decks, user, card_history):
@@ -366,33 +366,33 @@ def view_cards(decks, user, card_history):
 
     clear_screen()
     if not cards:
-        show_error(f"No Existen Tarjetas en este Mazo '{deck_name}'.")
+        show_error(f"No existen tarjetas en este mazo '{deck_name}'.")
     else:
-        print(f"\n=== Tarjetas del Mazo'{deck_name}' ===\n")
+        print(f"\n=== Tarjetas del Mazo '{deck_name}' ===\n")
         for i, card in enumerate(cards, 1):
-            print(f"Tarjetas {i}:")
-            print(f"Pregunta: {card['Pregunta']}")
-            print(f"Respuesta: {card['Respuesta']}")
+            print(f"Tarjeta {i}:")
+            print(f"Pregunta: {card['question']}")
+            print(f"Respuesta: {card['answer']}")
 
             history_key = f"{user}_{card['id']}"
             if history_key in card_history:
                 last_review = datetime.strptime(
-                    card_history[history_key]['Última Revisión'],
+                    card_history[history_key]['last_review'],
                     "%Y-%m-%d %H:%M:%S"
                 )
-                interval = timedelta(seconds=card_history[history_key]['Intervalo'])
+                interval = timedelta(seconds=card_history[history_key]['interval'])
                 next_review = last_review + interval
                 now = datetime.now()
 
                 if now < next_review:
                     remaining_time = next_review - now
-                    print(f"Status: Locked - Disponible en: {format_time(remaining_time)}")
+                    print(f"Estado: Bloqueado - Disponible en: {format_time(remaining_time)}")
                 else:
-                    print("Status: Disponible para Revisar")
+                    print("Estado: Disponible para revisar")
             else:
-                print("Status: Nuevo - Aún No Estudiado")
+                print("Estado: Nuevo - Aún no estudiado")
             print()
-    input("\nPresionar Enter para continuar...")
+    input("\nPresione Enter para continuar...")
 
 
 def format_time(td):
@@ -412,75 +412,75 @@ def edit_card(decks):
     deck_name = select_deck(decks)
     cards = decks[deck_name]
     if not cards:
-        show_error(f"No Existen Tarjetas en este Mazo '{deck_name}'.")
+        show_error(f"No existen tarjetas en este mazo '{deck_name}'.")
         return
 
     while True:
         clear_screen()
         print(f"\n=== Editar Tarjetas en el Mazo '{deck_name}' ===")
         for i, card in enumerate(cards, 1):
-            print(f"{i}. {card['Pregunta']}")
+            print(f"{i}. {card['question']}")
 
         option = input("\nElegir una Tarjeta para Editar (0 para cancelar): ")
         if option == '0':
             return
         if option.isdigit() and 1 <= int(option) <= len(cards):
             card = cards[int(option) - 1]
-            card['Pregunta'] = input(
-                f"Pregunta Actual: {card['question']} \nNueva Pregunta (dejar en Blanco para conservar): ") or card['Pregunta']
+            card['question'] = input(
+                f"Pregunta Actual: {card['question']} \nNueva Pregunta (dejar en Blanco para conservar): ") or card['question']
             card['answer'] = input(
-                f"Respuesta Actual: {card['Respuesta']} \nNueva Respuesta (dejar en Blanco para conservar): ") or card['Respuesta']
-            print("\nTarjeta correctamente Editada!")
-            input("Presionar Enter para continuar...")
+                f"Respuesta Actual: {card['answer']} \nNueva Respuesta (dejar en Blanco para conservar): ") or card['answer']
+            print("\nTarjeta editada correctamente!")
+            input("Presione Enter para continuar...")
             return
-        show_error("Opción Invalida.")
+        show_error("Opción Inválida.")
 
 
 def delete_card(decks):
     deck_name = select_deck(decks)
     cards = decks[deck_name]
     if not cards:
-        show_error(f"No hay Tarjetas en el Mazo '{deck_name}'.")
+        show_error(f"No hay tarjetas en el mazo '{deck_name}'.")
         return
 
     while True:
         clear_screen()
-        print(f"\n=== Eliminar Tarjetas en un Mazo '{deck_name}' ===")
+        print(f"\n=== Eliminar Tarjetas en el Mazo '{deck_name}' ===")
         for i, card in enumerate(cards, 1):
-            print(f"{i}. {card['Pregunta']}")
+            print(f"{i}. {card['question']}")
 
         option = input("\nElegir la Tarjeta que desea Eliminar (0 para cancelar): ")
         if option == '0':
             return
         if option.isdigit() and 1 <= int(option) <= len(cards):
             cards.pop(int(option) - 1)
-            print("\nTarjeta Eliminada Correctamente!")
-            input("Presionar Enter para continuar...")
+            print("\nTarjeta eliminada correctamente!")
+            input("Presione Enter para continuar...")
             return
-        show_error("Opción Invalida.")
+        show_error("Opción Inválida.")
 
 
 def edit_deck(decks):
     deck_name = select_deck(decks, mode="edit")
-    new_name = input(f"\nIngresar el nuevo Nombre del Mazo '{deck_name}' (Enter para cancelar): ").strip() #en Tarjetas usamos "0" para cancelar
+    new_name = input(f"\nIngresar el nuevo Nombre del Mazo '{deck_name}' (Enter para cancelar): ").strip()
     if not new_name:
         return
     if new_name and new_name not in decks:
         decks[new_name] = decks.pop(deck_name)
-        print("\nMazo Renombrado Correctamente!")
-        input("Presionar Enter para continuar...")
+        print("\nMazo renombrado correctamente!")
+        input("Presione Enter para continuar...")
     else:
-        show_error("Nombre Invalido o ya Existente.")
+        show_error("Nombre inválido o ya existente.")
 
 
 def delete_deck(decks):
     deck_name = select_deck(decks)
-    confirmation = input(f"\n Está seguro que desea Eliminar el Mazo '{deck_name}' y Todas sus Tarjetas? (y/n): ").lower()
+    confirmation = input(f"\n¿Está seguro que desea eliminar el mazo '{deck_name}' y todas sus tarjetas? (y/n): ").lower()
     if confirmation == 'y':
         del decks[deck_name]
-        print("\nMazo Eliminado Correctamente!")
+        print("\nMazo eliminado correctamente!")
     else:
-        show_error("Eliminación Cancelada.")
+        show_error("Eliminación cancelada.")
 
 
 def main_menu():
@@ -489,10 +489,10 @@ def main_menu():
     exit_program = True
     while exit_program:
         clear_screen()
-        print(f"\n=== 🎮 Flashcard Game - Usuario: {current_user} ===")
+        print(f"\n=== 🎮 Juego de Flashcards - Usuario: {current_user} ===")
         print("\n1. 📝 Añadir Tarjeta")
-        print("2. 🎯 Práctica")
-        print("3. 📊 Ver Tarjetas y Status")
+        print("2. 🎯 Practicar")
+        print("3. 📊 Ver Tarjetas y Estado")
         print("4. 📚 Crear Nuevo Mazo")
         print("5. 👤 Cambiar de Usuario")
         print("6. ✏️ Editar Tarjeta")
@@ -503,7 +503,7 @@ def main_menu():
         print("11. 📈 Ver mis Estadísticas")
         print("12. 🚪 Salir")
 
-        option = input("\nElegir una opción del 1 al 12")
+        option = input("\nElegir una opción del 1 al 12: ")
 
         if option == '1':
             decks = add_card(decks)
@@ -528,10 +528,10 @@ def main_menu():
         elif option == '11':
             show_user_stats(scores, current_user)
         elif option == '12':
-            print("\nGoodbye! 👋")
+            print("\n¡Adiós! 👋")
             exit_program = False
         else:
-            show_error("Opción Inválida. Please, elija una opción del 1 al 12")
+            show_error("Opción Inválida. Por favor, elija una opción del 1 al 12")
 
         save_data(decks, users, card_history, scores)
 
