@@ -32,21 +32,21 @@ def save_data(decks, users, card_history, scores):
 
 def show_error(message):
     print(f"\n{message}")
-    input("Press Enter to continue...")
+    input("Presione Enter para continuar...")
 
 
 def select_user(users):
     while True:
         clear_screen()
-        print("\n=== User Selection ===")
+        print("\n=== Selección de Usuario ===")
 
         if users:
-            print("\nExisting users:")
+            print("\nUsuarios Existientes:")
             for i, name in enumerate(users.keys(), 1):
                 print(f"{i}. {name}")
-            print(f"{len(users) + 1}. Create new user")
+            print(f"{len(users) + 1}. Crear Nuevo Usuario")
 
-            option = input("\nChoose an option: ")
+            option = input("\nElegir una Opción: ")
             if option.isdigit():
                 option = int(option)
                 if 1 <= option <= len(users):
@@ -54,10 +54,10 @@ def select_user(users):
                 elif option == len(users) + 1:
                     return create_user(users)
         else:
-            print("\nNo registered users.")
+            print("\nUsuario No registrado.")
             return create_user(users)
 
-        show_error("Invalid option.")
+        show_error("Opción Invalida.")
 
 
 def update_score(scores, user, results):
@@ -97,8 +97,8 @@ def update_score(scores, user, results):
 def create_user(users):
     while True:
         clear_screen()
-        print("\n=== Create New User ===")
-        name = input("\nEnter your name: ").strip()
+        print("\n=== Crear Nuevo Usuario ===")
+        name = input("\nIngrese el Nombre de Usuario: ").strip()
 
         if name and name not in users:
             users[name] = {
@@ -106,23 +106,23 @@ def create_user(users):
             }
             return name
 
-        show_error("Invalid or already existing name. Try another one.")
+        show_error("Invalido o Usuario Existente. Intente con Otro Nombre.")
 
 
 def select_deck(decks, mode="practice"):
     while True:
         clear_screen()
-        print(f"\n=== Select Deck for {mode} ===")
+        print(f"\n=== Selección de Mazo para {mode} ===")
 
-        print("\nAvailable decks:")
+        print("\nMazos Disponibles:")
         for i, name in enumerate(decks.keys(), 1):
             count = len(decks[name])
-            print(f"{i}. {name} ({count} cards)")
+            print(f"{i}. {name} ({count} Tarjetas)")
 
         if mode == "create":
-            print(f"{len(decks) + 1}. Create new deck")
+            print(f"{len(decks) + 1}. Crear Nuevo Mazo")
 
-        option = input("\nChoose an option: ")
+        option = input("\nElegir una Opción: ")
         if option.isdigit():
             option = int(option)
             if 1 <= option <= len(decks):
@@ -130,28 +130,28 @@ def select_deck(decks, mode="practice"):
             elif mode == "create" and option == len(decks) + 1:
                 return create_deck(decks)
 
-        show_error("Invalid option.")
+        show_error("Opción Invalida.")
 
 
 def create_deck(decks):
     while True:
         clear_screen()
-        print("\n=== Create New Deck ===")
-        name = input("\nEnter the name of the deck: ").strip()
+        print("\n=== Crear Nuevo Mazo ===")
+        name = input("\nIngrese el Nombre del Mazo: ").strip()
 
         if name and name not in decks:
             decks[name] = []
             return name
 
-        show_error("Invalid or already existing name. Try another one.")
+        show_error("Invalido o Nombre ya Existente. Intente con Otro Nombre.")
 
 
 def add_card(decks):
     deck_name = select_deck(decks, "create")
     clear_screen()
-    print(f"\n=== Add New Card to Deck '{deck_name}' ===")
-    question = input("\nEnter the question: ")
-    answer = input("Enter the answer: ")
+    print(f"\n=== Añadir Nueva Tarjeta al Mazo '{deck_name}' ===")
+    question = input("\nIngresar Pregunta: ")
+    answer = input("Ingresar Respuesta: ")
 
     new_card = {
         "id": f"{deck_name}_{len(decks[deck_name]) + 1}",
@@ -160,8 +160,8 @@ def add_card(decks):
         "deck": deck_name
     }
     decks[deck_name].append(new_card)
-    print("\nCard added successfully!")
-    input("Press Enter to continue...")
+    print("\nTarjeta Añadida Exitosamente!")
+    input("Presione Enter para continuar...")
     return decks
 
 
