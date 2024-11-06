@@ -69,6 +69,16 @@
       "last_review": "2024-04-03 12:15:00",
       "rating": "Perfecto",
       "interval": 604800
+    },
+    "Bere_Matemáticas_1": {
+      "last_review": "2024-11-06 20:02:23",
+      "rating": "Mal",
+      "interval": 600.0
+    },
+    "Bere_Matemáticas_2": {
+      "last_review": "2024-11-06 20:02:28",
+      "rating": "Bien",
+      "interval": 86400.0
     }
   },
   "scores": {
@@ -80,10 +90,10 @@
       "best_streak": 5
     },
     "Bere": {
-      "points": 180,
-      "total_correct": 8,
-      "total_attempts": 12,
-      "streak": 2,
+      "points": 190,
+      "total_correct": 9,
+      "total_attempts": 14,
+      "streak": 0,
       "best_streak": 4
     },
     "Julia": {

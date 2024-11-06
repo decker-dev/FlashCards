@@ -71,21 +71,21 @@ def update_score(scores, user, results):
         }
 
     points_per_answer = {
-        'Perfect': 10,
-        'Good': 7,
-        'Bad': 3,
-        'Terrible': 1
+        'Perfecto': 10,
+        'Bien': 7,
+        'Mal': 3,
+        'Terriblemente_Nada': 1
     }
 
     session_points = sum(points_per_answer[response] * quantity
                          for response, quantity in results.items())
 
     scores[user]['points'] += session_points
-    scores[user]['total_correct'] += results['Perfect'] + results['Good']
+    scores[user]['total_correct'] += results['Perfecto'] + results['Bien']
     scores[user]['total_attempts'] += sum(results.values())
 
     if sum(results.values()) > 0:
-        if results['Perfect'] + results['Good'] > results['Bad'] + results['Terrible']:
+        if results['Perfecto'] + results['Bien'] > results['Mal'] + results['Terriblemente_Nada']:
             scores[user]['streak'] += 1
         else:
             scores[user]['streak'] = 0
@@ -118,6 +118,7 @@ def select_deck(decks, mode="practice"):
         for i, name in enumerate(decks.keys(), 1):
             count = len(decks[name])
             print(f"{i}. {name} ({count} Tarjetas)")
+        print("0.Salir")
 
         if mode == "create":
             print(f"{len(decks) + 1}. Crear Nuevo Mazo")
@@ -125,6 +126,8 @@ def select_deck(decks, mode="practice"):
         option = input("\nElegir una Opción: ")
         if option.isdigit():
             option = int(option)
+            if option == 0:
+                return 0
             if 1 <= option <= len(decks):
                 return list(decks.keys())[option - 1]
             elif mode == "create" and option == len(decks) + 1:
@@ -148,6 +151,8 @@ def create_deck(decks):
 
 def add_card(decks):
     deck_name = select_deck(decks, "create")
+    if deck_name == 0:
+        return
     clear_screen()
     print(f"\n=== Añadir Nueva Tarjeta al Mazo '{deck_name}' ===")
     question = input("\nIngresar Pregunta: ")
@@ -171,7 +176,7 @@ def get_rating():
         print("1. Perfecto - Respuesta inmediata y correcta")
         print("2. Bien - Dudó pero recordó")
         print("3. Mal - Le costó recordar")
-        print("4. Terrible - No recordó en absoluto")
+        print("4. Terriblemente_Nada - No recordó en absoluto")
 
         result = input("\nElija una opción (1-4): ")
         if result in ['1', '2', '3', '4']:
@@ -179,7 +184,7 @@ def get_rating():
                 '1': ('Perfecto', timedelta(days=7).total_seconds()),
                 '2': ('Bien', timedelta(days=1).total_seconds()),
                 '3': ('Mal', timedelta(minutes=10).total_seconds()),
-                '4': ('Terrible', 0.0)
+                '4': ('Terriblemente_Nada', 0.0)
             }
             return intervals[result]
         print("Por favor, ingrese un número del 1 al 4")
@@ -249,7 +254,7 @@ def show_ranking(scores):
         print(f"{medal}{user:<{max_name_length}} | {points:>7} | {accuracy:>7.1f}% | {bar}")
 
     print("\nLeyenda:")
-    print("• Puntos: Perfecto = 10pts, Bien = 7pts, Mal = 3pts, Terrible = 1pt")
+    print("• Puntos: Perfecto = 10pts, Bien = 7pts, Mal = 3pts, Terriblemente_Nada = 1pt")
     print("• Precisión: Porcentaje de respuestas correctas (Perfecto + Bien)")
     input("\nPresione Enter para continuar...")
 
@@ -317,7 +322,7 @@ def practice(decks, user, card_history, scores):
         return
 
     random.shuffle(available_cards)
-    results = {'Perfect': 0, 'Good': 0, 'Bad': 0, 'Terrible': 0}
+    results = {'Perfecto': 0, 'Bien': 0, 'Mal': 0, 'Terriblemente_Nada': 0}
 
     for i, card in enumerate(available_cards, 1):
         clear_screen()
