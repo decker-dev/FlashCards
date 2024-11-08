@@ -102,6 +102,28 @@ def create_deck(decks):
             return name
         show_message("Nombre inválido o ya existente.")
 
+def edit_deck(decks):
+    deck_name = select_deck(decks)
+    if not deck_name:
+        return
+    new_name = get_input(f"\nIngrese el nuevo nombre para el mazo '{deck_name}' (dejar en blanco para cancelar)")
+    if new_name and new_name not in decks:
+        decks[new_name] = decks.pop(deck_name)
+        show_message("Mazo renombrado correctamente.")
+    else:
+        show_message("Nombre inválido o ya existente.")
+
+def delete_deck(decks):
+    deck_name = select_deck(decks)
+    if not deck_name:
+        return
+    confirmation = get_input(f"¿Está seguro que desea eliminar el mazo '{deck_name}' y todas sus tarjetas? (s/n)").lower()
+    if confirmation == 's':
+        del decks[deck_name]
+        show_message("Mazo eliminado correctamente.")
+    else:
+        show_message("Eliminación cancelada.")
+
 # ===================== Funciones de Tarjeta =====================
 
 def add_card(decks):
@@ -302,11 +324,13 @@ def main_menu():
             '2': "🎯 Practicar",
             '3': "📊 Ver Tarjetas y Estado",
             '4': "📚 Crear Nuevo Mazo",
-            '5': "👤 Cambiar de Usuario",
-            '6': "✏️ Editar Tarjeta",
-            '7': "🗑️ Eliminar Tarjeta",
-            '8': "🏆 Ver Ranking Global",
-            '9': "📈 Ver mis Estadísticas",
+            '5': "✏️ Editar Mazo",
+            '6': "🗑️ Eliminar Mazo",
+            '7': "👤 Cambiar de Usuario",
+            '8': "✏️ Editar Tarjeta",
+            '9': "🗑️ Eliminar Tarjeta",
+            '10': "🏆 Ver Ranking Global",
+            '11': "📈 Ver mis Estadísticas",
             '0': "🚪 Salir"
         }
         choice = select_option(f"\n=== 🎮 Juego de Flashcards - Usuario: {current_user} ===", options)
@@ -319,14 +343,18 @@ def main_menu():
         elif choice == '4':
             create_deck(decks)
         elif choice == '5':
-            current_user = select_user(users)
+            edit_deck(decks)
         elif choice == '6':
-            edit_card(decks)
+            delete_deck(decks)
         elif choice == '7':
-            delete_card(decks)
+            current_user = select_user(users)
         elif choice == '8':
-            show_ranking(scores)
+            edit_card(decks)
         elif choice == '9':
+            delete_card(decks)
+        elif choice == '10':
+            show_ranking(scores)
+        elif choice == '11':
             show_user_stats(scores, current_user)
         elif choice == '0':
             print("\n¡Adiós! 👋")
