@@ -1,19 +1,5 @@
 {
   "decks": {
-    "Matemáticas": [
-      {
-        "id": "Matemáticas_1",
-        "question": "¿Cuál es la fórmula del área de un círculo?",
-        "answer": "π * r^2",
-        "deck": "Matemáticas"
-      },
-      {
-        "id": "Matemáticas_2",
-        "question": "¿Cuál es el valor de π?",
-        "answer": "Aproximadamente 3.1416",
-        "deck": "Matemáticas"
-      }
-    ],
     "Historia": [
       {
         "id": "Historia_1",
@@ -40,6 +26,26 @@
         "question": "¿Qué planeta es conocido como el planeta rojo?",
         "answer": "Marte",
         "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_3",
+        "question": "Adioa",
+        "answer": "HOla",
+        "deck": "Ciencia"
+      }
+    ],
+    "Mate": [
+      {
+        "id": "Matemáticas_1",
+        "question": "¿Cuál es la fórmula del área de un círculo?",
+        "answer": "π * r^2",
+        "deck": "Matemáticas"
+      },
+      {
+        "id": "Matemáticas_2",
+        "question": "¿Cuál es el valor de π?",
+        "answer": "Aproximadamente 3.1416",
+        "deck": "Matemáticas"
       }
     ]
   },
@@ -56,9 +62,9 @@
   },
   "card_history": {
     "Decker_Matemáticas_1": {
-      "last_review": "2024-04-01 10:30:00",
-      "rating": "Perfecto",
-      "interval": 604800
+      "last_review": "2024-11-09 13:05:10",
+      "rating": "Bien",
+      "interval": 86400.0
     },
     "Bere_Historia_1": {
       "last_review": "2024-04-02 15:45:00",
@@ -79,14 +85,34 @@
       "last_review": "2024-11-06 20:02:28",
       "rating": "Bien",
       "interval": 86400.0
+    },
+    "Decker_Ciencia_1": {
+      "last_review": "2024-11-09 11:24:16",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Decker_Ciencia_3": {
+      "last_review": "2024-11-08 11:28:57",
+      "rating": "Perfecto",
+      "interval": 604800.0
+    },
+    "Decker_Ciencia_2": {
+      "last_review": "2024-11-08 11:16:03",
+      "rating": "Perfecto",
+      "interval": 604800.0
+    },
+    "Decker_Matemáticas_2": {
+      "last_review": "2024-11-09 13:04:38",
+      "rating": "Terriblemente_Nada",
+      "interval": 0.0
     }
   },
   "scores": {
     "Decker": {
-      "points": 250,
-      "total_correct": 10,
-      "total_attempts": 15,
-      "streak": 3,
+      "points": 296,
+      "total_correct": 15,
+      "total_attempts": 23,
+      "streak": 0,
       "best_streak": 5
     },
     "Bere": {
