@@ -1,4 +1,11 @@
+from src.card.card_controller import add_card_controller, view_cards_controller, edit_card_controller, \
+    delete_card_controller
+from src.deck.deck_controller import create_deck_controller, edit_deck_controller, delete_deck_controller
+from src.practice.practice_controller import practice_controller
+from src.stats.stats_controller import show_ranking_controller, show_user_stats_controller
+from src.user.user_controller import select_user_controller
 from src.utils.data_manager import load_data, save_data
+from src.utils.ui_utils import select_option, show_message
 
 
 def main_menu_controller():
@@ -59,3 +66,6 @@ def main_menu_controller():
         else:
             show_message("Opción inválida.")
         save_data(decks, users, card_history, scores)
+
+if __name__ == "__main__":
+    main_menu_controller()

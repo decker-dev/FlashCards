@@ -85,4 +85,4 @@ def view_cards_controller(decks, user, card_history):
         show_message("No hay tarjetas en este mazo.")
         return
     cards = decks[deck_name]
-    display_cards_view(cards, deck_name)
+    display_cards_view(cards, deck_name, user, card_history)
