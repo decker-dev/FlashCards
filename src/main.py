@@ -1,3 +1,12 @@
+from src.card.card_controller import add_card, view_cards, edit_card, delete_card
+from src.deck.deck_controller import create_deck, edit_deck, delete_deck
+from src.practice.practice_controller import practice
+from src.stats.stats_controller import show_ranking, show_user_stats
+from src.user.user_controller import select_user
+from src.utils.data_manager import load_data, save_data
+from src.utils.ui_utils import select_option, show_message
+
+
 def main_menu():
     """
     Función principal que maneja el flujo del programa y el menú principal.

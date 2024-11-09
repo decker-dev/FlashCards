@@ -1,4 +1,5 @@
-from utils.ui_utils import select_option, clear_screen
+from src.utils.ui_utils import select_option, clear_screen
+
 
 def get_rating():
     """

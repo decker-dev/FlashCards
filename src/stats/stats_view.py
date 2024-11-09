@@ -1,7 +1,7 @@
 from src.utils.ui_utils import clear_screen
 
 
-def show_ranking(scores):
+def view_show_ranking(scores):
     """
     Muestra el ranking global de usuarios basado en sus puntajes.
     """
@@ -27,7 +27,7 @@ def show_ranking(scores):
         print(f"{medal}{username:<15} | {points:>7} | {accuracy:>7.1f}% | {bar}")
     input("\nPresione Enter para continuar...")
 
-def show_user_stats(scores, user):
+def view_show_user_stats(scores, user):
     """
     Muestra las estadísticas individuales del usuario actual.
     """

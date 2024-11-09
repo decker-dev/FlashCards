@@ -1,3 +1,5 @@
+from src.stats.stats_view import view_show_ranking, view_show_user_stats
+
 
 def show_ranking(scores):
     """
