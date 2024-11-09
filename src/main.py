@@ -104,15 +104,16 @@ def select_option(prompt_message, options):
     Retorna:
     - str: La clave de la opción seleccionada.
     """
-    while True:
+    user_choice = None
+    while user_choice not in options:
         clear_screen()
         print(prompt_message)
         for option_key, option_value in options.items():
             print(f"{option_key}. {option_value}")
         user_choice = input("\nElegir una opción: ")
-        if user_choice in options:
-            return user_choice
-        show_message("Opción inválida. Intente nuevamente.")
+        if user_choice not in options:
+            show_message("Opción inválida. Intente nuevamente.")
+    return user_choice
 
 def get_input(prompt_message):
     """
@@ -156,12 +157,12 @@ def create_user(users):
     Retorna:
     - str: Nombre del nuevo usuario creado.
     """
-    while True:
-        username = get_input("\nIngrese el Nombre de Usuario")
-        if username and username not in users:
-            users[username] = {'registration_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-            return username
+    username = get_input("\nIngrese el Nombre de Usuario")
+    while not username or username in users:
         show_message("Nombre inválido o ya existente.")
+        username = get_input("\nIngrese el Nombre de Usuario")
+    users[username] = {'registration_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+    return username
 
 # ===================== Funciones de Mazo =====================
 
@@ -197,12 +198,12 @@ def create_deck(decks):
     Retorna:
     - str: Nombre del nuevo mazo creado.
     """
-    while True:
-        deck_name = get_input("\nIngrese el Nombre del Mazo")
-        if deck_name and deck_name not in decks:
-            decks[deck_name] = []
-            return deck_name
+    deck_name = get_input("\nIngrese el Nombre del Mazo")
+    while not deck_name or deck_name in decks:
         show_message("Nombre inválido o ya existente.")
+        deck_name = get_input("\nIngrese el Nombre del Mazo")
+    decks[deck_name] = []
+    return deck_name
 
 def edit_deck(decks):
     """
@@ -520,7 +521,8 @@ def main_menu():
     """
     decks, users, card_history, scores = load_data()
     current_user = select_user(users)
-    while True:
+    exit_program = False
+    while not exit_program:
         options = {
             '1': "📝 Añadir Tarjeta",
             '2': "🎯 Practicar",
@@ -561,7 +563,7 @@ def main_menu():
         elif user_choice == '0':
             print("\n¡Adiós! 👋")
             save_data(decks, users, card_history, scores)
-            break
+            exit_program = True  # Cambiamos el estado para salir del bucle
         else:
             show_message("Opción inválida.")
         save_data(decks, users, card_history, scores)
