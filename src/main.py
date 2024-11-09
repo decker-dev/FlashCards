@@ -20,9 +20,13 @@ def load_data(file_path="flashcards_data.json"):
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             data = json.load(file)
+            # Obtiene el valor de 'decks' o un diccionario por defecto si no existe
             decks = data.get('decks', {'General': []})
+            # Obtiene 'users' o un diccionario vacío si no existe
             users = data.get('users', {})
+            # Obtiene 'card_history' o un diccionario vacío si no existe
             card_history = data.get('card_history', {})
+            # Obtiene 'scores' o un diccionario vacío si no existe
             scores = data.get('scores', {})
             return decks, users, card_history, scores
     except FileNotFoundError:
@@ -55,6 +59,7 @@ def clear_screen():
     """
     Limpia la pantalla simulando saltos de línea.
     """
+    # Imprime 100 saltos de línea para simular la limpieza de pantalla
     print('\n' * 100)
 
 def show_message(message):
@@ -64,7 +69,9 @@ def show_message(message):
     Parámetros:
     - message (str): El mensaje a mostrar.
     """
+    # Muestra el mensaje con un salto de línea al inicio
     print(f"\n{message}")
+    # Espera a que el usuario presione Enter
     input("Presione Enter para continuar...")
 
 def format_time(time_difference):
@@ -78,13 +85,18 @@ def format_time(time_difference):
     - str: Cadena con el tiempo formateado.
     """
     days = time_difference.days
-    hours = time_difference.seconds // 3600  # Calcula las horas totales en los segundos
-    minutes = (time_difference.seconds % 3600) // 60  # Calcula los minutos restantes
+    # Calcula las horas totales en los segundos usando división entera
+    hours = time_difference.seconds // 3600  # Operador // para división entera
+    # Calcula los minutos restantes usando módulo y división entera
+    minutes = (time_difference.seconds % 3600) // 60  # Operador % para obtener el resto
     if days > 0:
+        # Usa f-strings para formatear la cadena con días y horas
         return f"{days} días, {hours} horas"
     elif hours > 0:
+        # Formatea la cadena con horas y minutos
         return f"{hours} horas, {minutes} minutos"
     else:
+        # Formatea la cadena con minutos
         return f"{minutes} minutos"
 
 # Nota: La función `format_time` es una **función pura** porque:
@@ -108,9 +120,12 @@ def select_option(prompt_message, options):
     while user_choice not in options:
         clear_screen()
         print(prompt_message)
+        # Itera sobre los pares clave-valor del diccionario 'options'
         for option_key, option_value in options.items():
             print(f"{option_key}. {option_value}")
+        # Solicita al usuario que elija una opción
         user_choice = input("\nElegir una opción: ")
+        # Verifica si la opción ingresada es válida
         if user_choice not in options:
             show_message("Opción inválida. Intente nuevamente.")
     return user_choice
@@ -125,6 +140,7 @@ def get_input(prompt_message):
     Retorna:
     - str: Entrada del usuario sin espacios en blanco al inicio y al final.
     """
+    # Solicita entrada al usuario y elimina espacios en blanco al inicio y al final
     return input(f"{prompt_message}: ").strip()
 
 # ===================== Funciones de Usuario =====================
@@ -139,12 +155,15 @@ def select_user(users):
     Retorna:
     - str: Nombre del usuario seleccionado o creado.
     """
-    # Crea un diccionario de opciones con índices numéricos como claves
+    # Crea un diccionario de opciones con índices numéricos (como cadenas) como claves
     options = {str(index+1): username for index, username in enumerate(users.keys())}
+    # Agrega una opción para crear un nuevo usuario
     options[str(len(users)+1)] = "Crear Nuevo Usuario"
     user_choice = select_option("\n=== Selección de Usuario ===", options)
     if user_choice == str(len(users)+1):
+        # Si se selecciona crear nuevo usuario
         return create_user(users)
+    # Retorna el nombre de usuario seleccionado
     return options[user_choice]
 
 def create_user(users):
@@ -159,8 +178,10 @@ def create_user(users):
     """
     username = get_input("\nIngrese el Nombre de Usuario")
     while not username or username in users:
+        # Verifica que el nombre de usuario no esté vacío y que no exista ya
         show_message("Nombre inválido o ya existente.")
         username = get_input("\nIngrese el Nombre de Usuario")
+    # Registra la fecha y hora de registro del usuario
     users[username] = {'registration_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
     return username
 
@@ -177,15 +198,20 @@ def select_deck(decks, include_create=False):
     Retorna:
     - str o None: Nombre del mazo seleccionado o None si se cancela.
     """
+    # Crea un diccionario de opciones con índices numéricos (como cadenas) como claves
     options = {str(index+1): deck_name for index, deck_name in enumerate(decks.keys())}
     if include_create:
+        # Agrega opción para crear un nuevo mazo
         options[str(len(decks)+1)] = "Crear Nuevo Mazo"
+    # Agrega opción para salir
     options['0'] = "Salir"
     user_choice = select_option("\n=== Selección de Mazo ===", options)
     if user_choice == '0':
         return None
     elif include_create and user_choice == str(len(decks)+1):
+        # Si se selecciona crear nuevo mazo
         return create_deck(decks)
+    # Retorna el nombre del mazo seleccionado
     return options[user_choice]
 
 def create_deck(decks):
@@ -200,8 +226,10 @@ def create_deck(decks):
     """
     deck_name = get_input("\nIngrese el Nombre del Mazo")
     while not deck_name or deck_name in decks:
+        # Verifica que el nombre del mazo no esté vacío y que no exista ya
         show_message("Nombre inválido o ya existente.")
         deck_name = get_input("\nIngrese el Nombre del Mazo")
+    # Agrega el nuevo mazo al diccionario con una lista vacía de tarjetas
     decks[deck_name] = []
     return deck_name
 
@@ -217,6 +245,7 @@ def edit_deck(decks):
         return
     new_deck_name = get_input(f"\nIngrese el nuevo nombre para el mazo '{deck_name}' (dejar en blanco para cancelar)")
     if new_deck_name and new_deck_name not in decks:
+        # Renombra el mazo cambiando la clave en el diccionario
         decks[new_deck_name] = decks.pop(deck_name)
         show_message("Mazo renombrado correctamente.")
     else:
@@ -234,6 +263,7 @@ def delete_deck(decks):
         return
     confirmation = get_input(f"¿Está seguro que desea eliminar el mazo '{deck_name}' y todas sus tarjetas? (s/n)").lower()
     if confirmation == 's':
+        # Elimina el mazo del diccionario
         del decks[deck_name]
         show_message("Mazo eliminado correctamente.")
     else:
@@ -254,11 +284,13 @@ def add_card(decks):
     question = get_input("\nIngresar Pregunta")
     answer = get_input("Ingresar Respuesta")
     new_card = {
+        # Crea un ID único para la tarjeta usando el nombre del mazo y el número de tarjetas más 1
         "id": f"{deck_name}_{len(decks[deck_name]) + 1}",
         "question": question,
         "answer": answer,
         "deck": deck_name
     }
+    # Añade la nueva tarjeta a la lista de tarjetas del mazo
     decks[deck_name].append(new_card)
     show_message("Tarjeta añadida exitosamente.")
 
@@ -280,6 +312,7 @@ def edit_card(decks):
     user_choice = select_option("\n=== Seleccione una Tarjeta para Editar ===", options)
     if user_choice == '0':
         return
+    # Convierte la opción seleccionada a un índice de lista (restando 1)
     selected_card = cards[int(user_choice)-1]
     # Solicita nueva pregunta y respuesta
     question = get_input(f"Pregunta Actual: {selected_card['question']} \nNueva Pregunta (dejar en blanco para conservar)")
@@ -302,11 +335,13 @@ def delete_card(decks):
         show_message("No hay tarjetas para eliminar en este mazo.")
         return
     cards = decks[deck_name]
+    # Crea opciones para seleccionar la tarjeta a eliminar
     options = {str(index+1): card['question'] for index, card in enumerate(cards)}
     options['0'] = "Cancelar"
     user_choice = select_option("\n=== Seleccione una Tarjeta para Eliminar ===", options)
     if user_choice == '0':
         return
+    # Elimina la tarjeta seleccionada de la lista
     cards.pop(int(user_choice)-1)
     show_message("Tarjeta eliminada correctamente.")
 
@@ -384,10 +419,11 @@ def practice(decks, user, card_history, scores):
     if not available_cards:
         show_message("No hay tarjetas disponibles para revisar en este momento.")
         return
-    random.shuffle(available_cards)  # Mezcla las tarjetas disponibles
+    random.shuffle(available_cards)  # Mezcla las tarjetas disponibles aleatoriamente
     results = {'Perfecto': 0, 'Bien': 0, 'Mal': 0, 'Terriblemente_Nada': 0}
     for index, card in enumerate(available_cards, 1):
         clear_screen()
+        # Muestra el número de la pregunta actual y el total
         print(f"\n=== Mazo: {deck_name} - Pregunta {index}/{len(available_cards)} ===")
         print(f"\nPregunta: {card['question']}")
         input("\nPresione Enter para ver la respuesta...")
@@ -417,14 +453,15 @@ def update_score(scores, user, results):
         # Inicializa las estadísticas si el usuario no existe en scores
         scores[user] = {'points': 0, 'total_correct': 0, 'total_attempts': 0, 'streak': 0, 'best_streak': 0}
     points_per_answer = {'Perfecto': 10, 'Bien': 7, 'Mal': 3, 'Terriblemente_Nada': 1}
-    # Calcula los puntos obtenidos en la sesión
+    # Calcula los puntos obtenidos en la sesión usando sum() y una comprensión de generador
     session_points = sum(points_per_answer[response] * quantity for response, quantity in results.items())
     scores[user]['points'] += session_points
-    # Actualiza las respuestas correctas y los intentos totales
+    # Actualiza las respuestas correctas (Perfecto y Bien)
     scores[user]['total_correct'] += results['Perfecto'] + results['Bien']
+    # Actualiza el total de intentos
     scores[user]['total_attempts'] += sum(results.values())
     if sum(results.values()) > 0:
-        # Actualiza la racha dependiendo del desempeño
+        # Si el usuario tuvo más respuestas correctas que incorrectas, incrementa la racha
         if results['Perfecto'] + results['Bien'] > results['Mal'] + results['Terriblemente_Nada']:
             scores[user]['streak'] += 1
         else:
@@ -445,6 +482,7 @@ def show_results(results, total_cards):
     print("\n=== Resultados de la Práctica ===")
     print("\nClasificación según el rating:")
     for rating, count in results.items():
+        # Calcula el porcentaje de cada tipo de respuesta
         percentage = (count / total_cards) * 100 if total_cards > 0 else 0
         print(f"{rating}: {count} Tarjetas ({percentage:.1f}%)")
         next_review = {
@@ -473,7 +511,8 @@ def show_ranking(scores):
         return
     # Ordena los usuarios por puntaje de mayor a menor
     sorted_users = sorted(scores.items(), key=lambda user_data: user_data[1]['points'], reverse=True)
-    max_points = max(user_stats['points'] for _, user_stats in sorted_users)  # Puntaje máximo para normalizar la gráfica
+    # Obtiene el puntaje máximo para normalizar la gráfica
+    max_points = max(user_stats['points'] for _, user_stats in sorted_users)
     graph_width = 30  # Ancho máximo de la barra gráfica
     print(f"{'Usuario':<15} | {'Puntos':>7} | {'Precisión':>8} | Gráfico")
     print("-" * (15 + graph_width + 22))
@@ -481,11 +520,15 @@ def show_ranking(scores):
         points = user_stats['points']
         total_correct = user_stats['total_correct']
         total_attempts = user_stats['total_attempts']
+        # Calcula la precisión como porcentaje
         accuracy = (total_correct / total_attempts * 100) if total_attempts > 0 else 0
         # Calcula la longitud de la barra proporcional al puntaje
         bar_length = int((points / max_points) * graph_width) if max_points > 0 else 0
+        # Crea la barra gráfica usando multiplicación de cadenas
         bar = '█' * bar_length
+        # Asigna medallas a los tres primeros lugares
         medal = {1: '🥇', 2: '🥈', 3: '🥉'}.get(position, '')
+        # Muestra la información formateada
         print(f"{medal}{username:<15} | {points:>7} | {accuracy:>7.1f}% | {bar}")
     input("\nPresione Enter para continuar...")
 
@@ -503,8 +546,9 @@ def show_user_stats(scores, user):
         input("\nPresione Enter para continuar...")
         return
     user_data = scores[user]
-    print(f"\n=== 📊 Estadísticas de {user} ===\n")
+    # Calcula la precisión como porcentaje
     accuracy = (user_data['total_correct'] / user_data['total_attempts'] * 100) if user_data['total_attempts'] > 0 else 0
+    print(f"\n=== 📊 Estadísticas de {user} ===\n")
     print(f"🏆 Puntos totales: {user_data['points']}")
     print(f"📈 Precisión global: {accuracy:.1f}%")
     print(f"🎯 Correctas totales: {user_data['total_correct']}")
@@ -585,6 +629,7 @@ def view_cards(decks, user, card_history):
     clear_screen()
     print(f"\n=== Tarjetas del Mazo '{deck_name}' ===\n")
     for index, card in enumerate(cards, 1):
+        # Muestra el número de la tarjeta usando enumerate()
         print(f"Tarjeta {index}:")
         print(f"Pregunta: {card['question']}")
         print(f"Respuesta: {card['answer']}")
