@@ -1,11 +1,18 @@
+from datetime import timedelta
+
 from src.utils.ui_utils import select_option, clear_screen
 
 
-def get_rating():
+def get_rating_view():
     """
     Solicita al usuario que califique su desempeño en una tarjeta.
+
+    Parameters:
+        None
+
+    Returns:
+        tuple: (rating, interval)
     """
-    from datetime import timedelta
     options = {
         '1': "Perfecto - Respuesta inmediata y correcta",
         '2': "Bien - Dudó pero recordó",
@@ -21,9 +28,16 @@ def get_rating():
     }
     return intervals[user_choice]
 
-def show_results(results, total_cards):
+def show_results_view(results, total_cards):
     """
     Muestra los resultados de la práctica al usuario.
+
+    Parameters:
+        results (dict): Resultados de la práctica actual.
+        total_cards (int): Número total de tarjetas practicadas.
+
+    Returns:
+        None
     """
     clear_screen()
     print("\n=== Resultados de la Práctica ===")

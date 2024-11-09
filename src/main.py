@@ -1,18 +1,18 @@
-from src.card.card_controller import add_card, view_cards, edit_card, delete_card
-from src.deck.deck_controller import create_deck, edit_deck, delete_deck
-from src.practice.practice_controller import practice
-from src.stats.stats_controller import show_ranking, show_user_stats
-from src.user.user_controller import select_user
 from src.utils.data_manager import load_data, save_data
-from src.utils.ui_utils import select_option, show_message
 
 
-def main_menu():
+def main_menu_controller():
     """
-    Función principal que maneja el flujo del programa y el menú principal.
+    Maneja el flujo del programa y el menú principal.
+
+    Parameters:
+        None
+
+    Returns:
+        None
     """
     decks, users, card_history, scores = load_data()
-    current_user = select_user(users)
+    current_user = select_user_controller(users)
     exit_program = False
     while not exit_program:
         options = {
@@ -31,27 +31,27 @@ def main_menu():
         }
         user_choice = select_option(f"\n=== 🎮 Juego de Flashcards - Usuario: {current_user} ===", options)
         if user_choice == '1':
-            add_card(decks)
+            add_card_controller(decks)
         elif user_choice == '2':
-            practice(decks, current_user, card_history, scores)
+            practice_controller(decks, current_user, card_history, scores)
         elif user_choice == '3':
-            view_cards(decks, current_user, card_history)
+            view_cards_controller(decks, current_user, card_history)
         elif user_choice == '4':
-            create_deck(decks)
+            create_deck_controller(decks)
         elif user_choice == '5':
-            edit_deck(decks)
+            edit_deck_controller(decks)
         elif user_choice == '6':
-            delete_deck(decks)
+            delete_deck_controller(decks)
         elif user_choice == '7':
-            current_user = select_user(users)
+            current_user = select_user_controller(users)
         elif user_choice == '8':
-            edit_card(decks)
+            edit_card_controller(decks)
         elif user_choice == '9':
-            delete_card(decks)
+            delete_card_controller(decks)
         elif user_choice == '10':
-            show_ranking(scores)
+            show_ranking_controller(scores)
         elif user_choice == '11':
-            show_user_stats(scores, current_user)
+            show_user_stats_controller(scores, current_user)
         elif user_choice == '0':
             print("\n¡Adiós! 👋")
             save_data(decks, users, card_history, scores)
@@ -59,7 +59,3 @@ def main_menu():
         else:
             show_message("Opción inválida.")
         save_data(decks, users, card_history, scores)
-
-
-if __name__ == "__main__":
-    main_menu()

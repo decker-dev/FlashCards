@@ -1,14 +1,27 @@
-from src.stats.stats_view import view_show_ranking, view_show_user_stats
+from src.stats.stats_view import show_ranking_view, show_user_stats_view
 
 
-def show_ranking(scores):
+def show_ranking_controller(scores):
     """
     Controlador para mostrar el ranking global.
-    """
-    view_show_ranking(scores)
 
-def show_user_stats(scores, user):
+    Parameters:
+        scores (dict): Puntajes y estadísticas de los usuarios.
+
+    Returns:
+        None
+    """
+    show_ranking_view(scores)
+
+def show_user_stats_controller(scores, user):
     """
     Controlador para mostrar las estadísticas del usuario.
+
+    Parameters:
+        scores (dict): Puntajes y estadísticas de los usuarios.
+        user (str): Nombre del usuario actual.
+
+    Returns:
+        None
     """
-    view_show_user_stats(scores, user)
+    show_user_stats_view(scores, user)

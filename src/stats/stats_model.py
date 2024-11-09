@@ -1,6 +1,14 @@
-def update_score(scores, user, results):
+def update_score_model(scores, user, results):
     """
     Actualiza las estadísticas y puntajes del usuario.
+
+    Parameters:
+        scores (dict): Puntajes y estadísticas de los usuarios.
+        user (str): Nombre del usuario actual.
+        results (dict): Resultados de la práctica actual.
+
+    Returns:
+        None
     """
     if user not in scores:
         scores[user] = {'points': 0, 'total_correct': 0, 'total_attempts': 0, 'streak': 0, 'best_streak': 0}

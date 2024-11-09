@@ -1,9 +1,15 @@
 from src.utils.ui_utils import clear_screen
 
 
-def view_show_ranking(scores):
+def show_ranking_view(scores):
     """
     Muestra el ranking global de usuarios basado en sus puntajes.
+
+    Parameters:
+        scores (dict): Puntajes y estadísticas de los usuarios.
+
+    Returns:
+        None
     """
     clear_screen()
     print("\n=== 🏆 Ranking de Usuarios ===\n")
@@ -27,9 +33,16 @@ def view_show_ranking(scores):
         print(f"{medal}{username:<15} | {points:>7} | {accuracy:>7.1f}% | {bar}")
     input("\nPresione Enter para continuar...")
 
-def view_show_user_stats(scores, user):
+def show_user_stats_view(scores, user):
     """
     Muestra las estadísticas individuales del usuario actual.
+
+    Parameters:
+        scores (dict): Puntajes y estadísticas de los usuarios.
+        user (str): Nombre del usuario actual.
+
+    Returns:
+        None
     """
     clear_screen()
     if user not in scores:

@@ -3,6 +3,12 @@ import json
 def load_data(file_path="flashcards_data.json"):
     """
     Carga los datos desde un archivo JSON.
+
+    Parameters:
+        file_path (str): Ruta del archivo JSON a cargar.
+
+    Returns:
+        tuple: Contiene decks (dict), users (dict), card_history (dict), scores (dict).
     """
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -18,6 +24,16 @@ def load_data(file_path="flashcards_data.json"):
 def save_data(decks, users, card_history, scores, file_path="flashcards_data.json"):
     """
     Guarda los datos en un archivo JSON.
+
+    Parameters:
+        decks (dict): Diccionario con los mazos y sus tarjetas.
+        users (dict): Diccionario con la información de los usuarios.
+        card_history (dict): Historial de revisión de tarjetas por usuario.
+        scores (dict): Puntajes y estadísticas de los usuarios.
+        file_path (str): Ruta del archivo JSON donde se guardarán los datos.
+
+    Returns:
+        None
     """
     data = {
         'decks': decks,

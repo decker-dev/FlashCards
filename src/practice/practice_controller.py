@@ -1,15 +1,24 @@
 import random
 
 from src.deck.deck_controller import select_deck_controller
-from src.practice.practice_model import calculate_available_cards, update_card_history
-from src.practice.practice_view import get_rating, show_results
-from src.stats.stats_model import update_score
+from src.practice.practice_model import calculate_available_cards_model, update_card_history_model
+from src.practice.practice_view import get_rating_view, show_results_view
+from src.stats.stats_model import update_score_model
 from src.utils.ui_utils import show_message, clear_screen
 
 
-def practice(decks, user, card_history, scores):
+def practice_controller(decks, user, card_history, scores):
     """
     Permite al usuario practicar las tarjetas disponibles en un mazo.
+
+    Parameters:
+        decks (dict): Diccionario de mazos existentes.
+        user (str): Nombre del usuario actual.
+        card_history (dict): Historial de revisión de tarjetas por usuario.
+        scores (dict): Puntajes y estadísticas de los usuarios.
+
+    Returns:
+        None
     """
     deck_name = select_deck_controller(decks)
     if not deck_name:
@@ -18,7 +27,7 @@ def practice(decks, user, card_history, scores):
     if not cards:
         show_message(f"No hay tarjetas en el mazo '{deck_name}'.")
         return
-    available_cards = calculate_available_cards(cards, card_history, user)
+    available_cards = calculate_available_cards_model(cards, card_history, user)
     if not available_cards:
         show_message("No hay tarjetas disponibles para revisar en este momento.")
         return
@@ -30,8 +39,8 @@ def practice(decks, user, card_history, scores):
         print(f"\nPregunta: {card['question']}")
         input("\nPresione Enter para ver la respuesta...")
         print(f"\nRespuesta: {card['answer']}")
-        rating, interval = get_rating()
+        rating, interval = get_rating_view()
         results[rating] += 1
-        update_card_history(card_history, user, card['id'], rating, interval)
-    update_score(scores, user, results)
-    show_results(results, len(available_cards))
+        update_card_history_model(card_history, user, card['id'], rating, interval)
+    update_score_model(scores, user, results)
+    show_results_view(results, len(available_cards))

@@ -1,25 +1,37 @@
-from src.card.card_model import create_card, delete_card, edit_card
-from src.card.card_view import get_card_input, select_card_view, display_cards
-from src.deck.deck_controller import select_deck
+from src.card.card_model import create_card_model, edit_card_model, delete_card_model
+from src.card.card_view import get_card_input_view, select_card_view, display_cards_view
+from src.deck.deck_controller import select_deck_controller
 from src.utils.ui_utils import show_message, get_input
 
 
 def add_card_controller(decks):
     """
     Añade una nueva tarjeta a un mazo seleccionado.
+
+    Parameters:
+        decks (dict): Diccionario de mazos existentes.
+
+    Returns:
+        None
     """
-    deck_name = select_deck(decks, include_create=True)
+    deck_name = select_deck_controller(decks, include_create=True)
     if not deck_name:
         return
-    question, answer = get_card_input()
-    create_card(decks, deck_name, question, answer)
+    question, answer = get_card_input_view()
+    create_card_model(decks, deck_name, question, answer)
     show_message("Tarjeta añadida exitosamente.")
 
 def edit_card_controller(decks):
     """
     Permite al usuario editar una tarjeta existente en un mazo.
+
+    Parameters:
+        decks (dict): Diccionario de mazos existentes.
+
+    Returns:
+        None
     """
-    deck_name = select_deck(decks)
+    deck_name = select_deck_controller(decks)
     if not deck_name or not decks[deck_name]:
         show_message("No hay tarjetas para editar en este mazo.")
         return
@@ -31,14 +43,20 @@ def edit_card_controller(decks):
     selected_card = cards[card_index]
     question = get_input(f"Pregunta Actual: {selected_card['question']} \nNueva Pregunta (dejar en blanco para conservar)")
     answer = get_input(f"Respuesta Actual: {selected_card['answer']} \nNueva Respuesta (dejar en blanco para conservar)")
-    edit_card(selected_card, question, answer)
+    edit_card_model(selected_card, question, answer)
     show_message("Tarjeta editada correctamente.")
 
 def delete_card_controller(decks):
     """
     Permite al usuario eliminar una tarjeta existente en un mazo.
+
+    Parameters:
+        decks (dict): Diccionario de mazos existentes.
+
+    Returns:
+        None
     """
-    deck_name = select_deck(decks)
+    deck_name = select_deck_controller(decks)
     if not deck_name or not decks[deck_name]:
         show_message("No hay tarjetas para eliminar en este mazo.")
         return
@@ -47,16 +65,24 @@ def delete_card_controller(decks):
     if user_choice == '0':
         return
     card_index = int(user_choice) - 1
-    delete_card(decks, deck_name, card_index)
+    delete_card_model(decks, deck_name, card_index)
     show_message("Tarjeta eliminada correctamente.")
 
 def view_cards_controller(decks, user, card_history):
     """
     Muestra las tarjetas de un mazo y su estado de disponibilidad.
+
+    Parameters:
+        decks (dict): Diccionario de mazos existentes.
+        user (str): Nombre del usuario actual.
+        card_history (dict): Historial de revisión de tarjetas por usuario.
+
+    Returns:
+        None
     """
-    deck_name = select_deck(decks)
+    deck_name = select_deck_controller(decks)
     if not deck_name or not decks[deck_name]:
         show_message("No hay tarjetas en este mazo.")
         return
     cards = decks[deck_name]
-    display_cards(cards, deck_name)
+    display_cards_view(cards, deck_name)
