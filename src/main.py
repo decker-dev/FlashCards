@@ -557,6 +557,44 @@ def show_user_stats(scores, user):
     print(f"⭐ Mejor racha: {user_data['best_streak']}")
     input("\nPresione Enter para continuar...")
 
+def view_cards(decks, user, card_history):
+    """
+    Muestra las tarjetas de un mazo y su estado de disponibilidad.
+
+    Parámetros:
+    - decks (dict): Diccionario de mazos existentes.
+    - user (str): Nombre del usuario actual.
+    - card_history (dict): Historial de revisión de tarjetas por usuario.
+    """
+    deck_name = select_deck(decks)
+    if not deck_name or not decks[deck_name]:
+        show_message("No hay tarjetas en este mazo.")
+        return
+    cards = decks[deck_name]
+    clear_screen()
+    print(f"\n=== Tarjetas del Mazo '{deck_name}' ===\n")
+    for index, card in enumerate(cards, 1):
+        # Muestra el número de la tarjeta usando enumerate()
+        print(f"Tarjeta {index}:")
+        print(f"Pregunta: {card['question']}")
+        print(f"Respuesta: {card['answer']}")
+        history_key = f"{user}_{card['id']}"
+        if history_key in card_history:
+            last_review = datetime.strptime(card_history[history_key]['last_review'], "%Y-%m-%d %H:%M:%S")
+            interval = timedelta(seconds=card_history[history_key]['interval'])
+            next_review = last_review + interval
+            now = datetime.now()
+            if now < next_review:
+                # Calcula el tiempo restante hasta la próxima revisión
+                remaining_time = next_review - now
+                print(f"Estado: Bloqueado - Disponible en: {format_time(remaining_time)}")
+            else:
+                print("Estado: Disponible para revisar")
+        else:
+            print("Estado: Nuevo - Aún no estudiado")
+        print()
+    input("\nPresione Enter para continuar...")
+
 # ===================== Menú Principal =====================
 
 def main_menu():
@@ -611,44 +649,6 @@ def main_menu():
         else:
             show_message("Opción inválida.")
         save_data(decks, users, card_history, scores)
-
-def view_cards(decks, user, card_history):
-    """
-    Muestra las tarjetas de un mazo y su estado de disponibilidad.
-
-    Parámetros:
-    - decks (dict): Diccionario de mazos existentes.
-    - user (str): Nombre del usuario actual.
-    - card_history (dict): Historial de revisión de tarjetas por usuario.
-    """
-    deck_name = select_deck(decks)
-    if not deck_name or not decks[deck_name]:
-        show_message("No hay tarjetas en este mazo.")
-        return
-    cards = decks[deck_name]
-    clear_screen()
-    print(f"\n=== Tarjetas del Mazo '{deck_name}' ===\n")
-    for index, card in enumerate(cards, 1):
-        # Muestra el número de la tarjeta usando enumerate()
-        print(f"Tarjeta {index}:")
-        print(f"Pregunta: {card['question']}")
-        print(f"Respuesta: {card['answer']}")
-        history_key = f"{user}_{card['id']}"
-        if history_key in card_history:
-            last_review = datetime.strptime(card_history[history_key]['last_review'], "%Y-%m-%d %H:%M:%S")
-            interval = timedelta(seconds=card_history[history_key]['interval'])
-            next_review = last_review + interval
-            now = datetime.now()
-            if now < next_review:
-                # Calcula el tiempo restante hasta la próxima revisión
-                remaining_time = next_review - now
-                print(f"Estado: Bloqueado - Disponible en: {format_time(remaining_time)}")
-            else:
-                print("Estado: Disponible para revisar")
-        else:
-            print("Estado: Nuevo - Aún no estudiado")
-        print()
-    input("\nPresione Enter para continuar...")
 
 if __name__ == "__main__":
     main_menu()
