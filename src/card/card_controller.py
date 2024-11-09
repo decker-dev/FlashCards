@@ -1,10 +1,10 @@
-from src.card.card_model import create_card
+from src.card.card_model import create_card, delete_card, edit_card
 from src.card.card_view import get_card_input, select_card_view, display_cards
 from src.deck.deck_controller import select_deck
 from src.utils.ui_utils import show_message, get_input
 
 
-def add_card(decks):
+def add_card_controller(decks):
     """
     Añade una nueva tarjeta a un mazo seleccionado.
     """
@@ -15,7 +15,7 @@ def add_card(decks):
     create_card(decks, deck_name, question, answer)
     show_message("Tarjeta añadida exitosamente.")
 
-def edit_card(decks):
+def edit_card_controller(decks):
     """
     Permite al usuario editar una tarjeta existente en un mazo.
     """
@@ -34,7 +34,7 @@ def edit_card(decks):
     edit_card(selected_card, question, answer)
     show_message("Tarjeta editada correctamente.")
 
-def delete_card(decks):
+def delete_card_controller(decks):
     """
     Permite al usuario eliminar una tarjeta existente en un mazo.
     """
@@ -50,7 +50,7 @@ def delete_card(decks):
     delete_card(decks, deck_name, card_index)
     show_message("Tarjeta eliminada correctamente.")
 
-def view_cards(decks, user, card_history):
+def view_cards_controller(decks, user, card_history):
     """
     Muestra las tarjetas de un mazo y su estado de disponibilidad.
     """

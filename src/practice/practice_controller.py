@@ -1,6 +1,6 @@
 import random
 
-from src.deck.deck_controller import select_deck
+from src.deck.deck_controller import select_deck_controller
 from src.practice.practice_model import calculate_available_cards, update_card_history
 from src.practice.practice_view import get_rating, show_results
 from src.stats.stats_model import update_score
@@ -11,7 +11,7 @@ def practice(decks, user, card_history, scores):
     """
     Permite al usuario practicar las tarjetas disponibles en un mazo.
     """
-    deck_name = select_deck(decks)
+    deck_name = select_deck_controller(decks)
     if not deck_name:
         return
     cards = decks[deck_name]

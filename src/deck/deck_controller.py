@@ -1,9 +1,9 @@
-from src.deck.deck_model import rename_deck
+from src.deck.deck_model import rename_deck, delete_deck, create_deck
 from src.deck.deck_view import select_deck_view, get_deck_name
 from src.utils.ui_utils import show_message, get_input
 
 
-def select_deck(decks, include_create=False):
+def select_deck_controller(decks, include_create=False):
     """
     Permite al usuario seleccionar un mazo existente o crear uno nuevo.
     """
@@ -11,12 +11,12 @@ def select_deck(decks, include_create=False):
     if user_choice == '0':
         return None
     elif include_create and user_choice == str(len(decks)+1):
-        return handle_create_deck(decks)
+        return handle_create_deck_controller(decks)
     else:
         options = {str(index+1): deck_name for index, deck_name in enumerate(decks.keys())}
         return options[user_choice]
 
-def handle_create_deck(decks):
+def handle_create_deck_controller(decks):
     """
     Maneja la creación de un nuevo mazo.
     """
@@ -28,7 +28,7 @@ def handle_create_deck(decks):
     show_message("Mazo creado exitosamente.")
     return deck_name
 
-def create_deck(decks):
+def create_deck_controller(decks):
     """
     Crea un nuevo mazo.
     """
@@ -40,11 +40,11 @@ def create_deck(decks):
     show_message("Mazo creado exitosamente.")
     return deck_name
 
-def edit_deck(decks):
+def edit_deck_controller(decks):
     """
     Permite al usuario renombrar un mazo existente.
     """
-    deck_name = select_deck(decks)
+    deck_name = select_deck_controller(decks)
     if not deck_name:
         return
     new_deck_name = get_deck_name(f"\nIngrese el nuevo nombre para el mazo '{deck_name}' (dejar en blanco para cancelar)")
@@ -54,11 +54,11 @@ def edit_deck(decks):
     else:
         show_message("Nombre inválido o ya existente.")
 
-def delete_deck(decks):
+def delete_deck_controller(decks):
     """
     Permite al usuario eliminar un mazo existente.
     """
-    deck_name = select_deck(decks)
+    deck_name = select_deck_controller(decks)
     if not deck_name:
         return
     confirmation = get_input(f"¿Está seguro que desea eliminar el mazo '{deck_name}' y todas sus tarjetas? (s/n)").lower()
