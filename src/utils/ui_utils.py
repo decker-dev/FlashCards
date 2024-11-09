@@ -34,7 +34,9 @@ def format_time(time_difference):
         str: Cadena con el tiempo formateado.
     """
     days = time_difference.days
+    # Calcula las horas totales en el objeto timedelta
     hours = time_difference.seconds // 3600
+    # Calcula los minutos restantes después de quitar las horas
     minutes = (time_difference.seconds % 3600) // 60
     if days > 0:
         return f"{days} días, {hours} horas"
@@ -58,6 +60,7 @@ def select_option(prompt_message, options):
     while user_choice not in options:
         clear_screen()
         print(prompt_message)
+        # Recorre el diccionario de opciones y muestra cada una
         for option_key, option_value in options.items():
             print(f"{option_key}. {option_value}")
         user_choice = input("\nElegir una opción: ")

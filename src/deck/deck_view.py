@@ -12,10 +12,16 @@ def select_deck_view(decks, include_create=False):
     Returns:
         str: Opción seleccionada por el usuario.
     """
-    options = {str(index+1): deck_name for index, deck_name in enumerate(decks.keys())}
+    # Creamos un diccionario 'options' para el menú de selección de mazo
+    # 'enumerate(decks.keys())' crea pares de índice y nombre de mazo
+    # Por ejemplo, si decks.keys() es ['Matemáticas', 'Historia'], enumerate(decks.keys()) genera (0, 'Matemáticas'), (1, 'Historia')
+    options = {str(index + 1): deck_name for index, deck_name in enumerate(decks.keys())}
     if include_create:
-        options[str(len(decks)+1)] = "Crear Nuevo Mazo"
+        # Añadimos una opción adicional para crear un nuevo mazo
+        options[str(len(decks) + 1)] = "Crear Nuevo Mazo"
+    # Añadimos la opción de 'Salir' con la clave '0'
     options['0'] = "Salir"
+    # Mostramos el menú de opciones y obtenemos la elección del usuario
     user_choice = select_option("\n=== Selección de Mazo ===", options)
     return user_choice
 

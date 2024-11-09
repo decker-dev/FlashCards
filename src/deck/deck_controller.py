@@ -17,10 +17,13 @@ def select_deck_controller(decks, include_create=False):
     user_choice = select_deck_view(decks, include_create)
     if user_choice == '0':
         return None
-    elif include_create and user_choice == str(len(decks)+1):
+    elif include_create and user_choice == str(len(decks) + 1):
+        # El usuario eligió crear un nuevo mazo
         return handle_create_deck_controller(decks)
     else:
-        options = {str(index+1): deck_name for index, deck_name in enumerate(decks.keys())}
+        # Reconstruimos el diccionario 'options' para mapear las opciones a los nombres de mazos
+        options = {str(index + 1): deck_name for index, deck_name in enumerate(decks.keys())}
+        # Retornamos el nombre del mazo seleccionado
         return options[user_choice]
 
 def handle_create_deck_controller(decks):
@@ -35,6 +38,7 @@ def handle_create_deck_controller(decks):
     """
     deck_name = get_deck_name_view("\nIngrese el Nombre del Mazo")
     while not deck_name or deck_name in decks:
+        # Verifica que el nombre no esté vacío y que no exista ya en el diccionario 'decks'
         show_message("Nombre inválido o ya existente.")
         deck_name = get_deck_name_view("\nIngrese el Nombre del Mazo")
     create_deck_model(decks, deck_name)

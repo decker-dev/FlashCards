@@ -12,11 +12,13 @@ def create_card_model(decks, deck_name, question, answer):
         dict: La tarjeta creada.
     """
     new_card = {
+        # Genera un ID único para la tarjeta combinando el nombre del mazo y el número total de tarjetas más uno
         "id": f"{deck_name}_{len(decks[deck_name]) + 1}",
         "question": question,
         "answer": answer,
         "deck": deck_name
     }
+    # Añade la nueva tarjeta a la lista de tarjetas del mazo correspondiente
     decks[deck_name].append(new_card)
     return new_card
 
@@ -49,4 +51,5 @@ def delete_card_model(decks, deck_name, card_index):
     Returns:
         None
     """
+    # Elimina la tarjeta en la posición 'card_index' de la lista de tarjetas del mazo
     decks[deck_name].pop(card_index)

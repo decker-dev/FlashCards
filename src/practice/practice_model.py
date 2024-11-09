@@ -15,14 +15,18 @@ def calculate_available_cards_model(cards, card_history, user):
     now = datetime.now()
     available_cards = []
     for card in cards:
+        # Construye una clave única para identificar el historial de esta tarjeta para el usuario actual
         history_key = f"{user}_{card['id']}"
         if history_key not in card_history:
+            # Si la tarjeta no ha sido estudiada antes, está disponible
             available_cards.append(card)
         else:
+            # Si la tarjeta tiene historial, verifica si ya es tiempo de volver a revisarla
             last_review = datetime.strptime(card_history[history_key]['last_review'], "%Y-%m-%d %H:%M:%S")
             interval = timedelta(seconds=card_history[history_key]['interval'])
             next_review = last_review + interval
             if now >= next_review:
+                # Si la fecha actual es igual o posterior a la próxima revisión, la tarjeta está disponible
                 available_cards.append(card)
     return available_cards
 
@@ -40,7 +44,9 @@ def update_card_history_model(card_history, user, card_id, rating, interval):
     Returns:
         None
     """
+    # Construye una clave única para identificar el historial de esta tarjeta para el usuario actual
     history_key = f"{user}_{card_id}"
+    # Actualiza el historial con la fecha actual, el rating y el nuevo intervalo
     card_history[history_key] = {
         'last_review': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         'rating': rating,

@@ -18,10 +18,13 @@ def main_menu_controller():
     Returns:
         None
     """
+    # Carga los datos almacenados desde un archivo JSON
     decks, users, card_history, scores = load_data()
+    # Permite al usuario seleccionar o crear un usuario
     current_user = select_user_controller(users)
     exit_program = False
     while not exit_program:
+        # Define las opciones del menú principal en un diccionario
         options = {
             '1': "📝 Añadir Tarjeta",
             '2': "🎯 Practicar",
@@ -36,7 +39,9 @@ def main_menu_controller():
             '11': "📈 Ver mis Estadísticas",
             '0': "🚪 Salir"
         }
+        # Muestra el menú y obtiene la opción seleccionada por el usuario
         user_choice = select_option(f"\n=== 🎮 Juego de Flashcards - Usuario: {current_user} ===", options)
+        # Ejecuta acciones basadas en la opción seleccionada
         if user_choice == '1':
             add_card_controller(decks)
         elif user_choice == '2':
@@ -61,10 +66,12 @@ def main_menu_controller():
             show_user_stats_controller(scores, current_user)
         elif user_choice == '0':
             print("\n¡Adiós! 👋")
+            # Guarda los datos antes de salir del programa
             save_data(decks, users, card_history, scores)
             exit_program = True
         else:
             show_message("Opción inválida.")
+        # Guarda los datos después de cada acción
         save_data(decks, users, card_history, scores)
 
 if __name__ == "__main__":

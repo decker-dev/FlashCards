@@ -28,8 +28,13 @@ def select_card_view(cards, action):
     Returns:
         str: Opción seleccionada por el usuario.
     """
-    options = {str(index+1): card['question'] for index, card in enumerate(cards)}
+    # Creamos un diccionario 'options' para el menú de selección de tarjetas
+    # 'enumerate(cards)' genera pares de índice y tarjeta
+    # 'index + 1' se utiliza para que las opciones empiecen desde 1
+    # 'card['question']' es el texto de la pregunta de la tarjeta
+    options = {str(index + 1): card['question'] for index, card in enumerate(cards)}
     options['0'] = "Cancelar"
+    # Mostramos el menú y obtenemos la elección del usuario
     user_choice = select_option(f"\n=== Seleccione una Tarjeta para {action} ===", options)
     return user_choice
 
@@ -53,13 +58,16 @@ def display_cards_view(cards, deck_name, user, card_history):
         print(f"Tarjeta {index}:")
         print(f"Pregunta: {card['question']}")
         print(f"Respuesta: {card['answer']}")
+        # Construye una clave única para identificar el historial de esta tarjeta para el usuario actual
         history_key = f"{user}_{card['id']}"
         if history_key in card_history:
+            # Si la tarjeta tiene historial, obtenemos la última revisión y el intervalo
             last_review = datetime.strptime(card_history[history_key]['last_review'], "%Y-%m-%d %H:%M:%S")
             interval_seconds = card_history[history_key]['interval']
             interval = timedelta(seconds=interval_seconds)
             next_review = last_review + interval
             if now < next_review:
+                # Si aún no es tiempo de revisar la tarjeta, calculamos el tiempo restante
                 remaining_time = next_review - now
                 print(f"Estado: Bloqueado - Disponible en: {format_time(remaining_time)}")
             else:

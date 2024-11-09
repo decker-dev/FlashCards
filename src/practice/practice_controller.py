@@ -20,6 +20,7 @@ def practice_controller(decks, user, card_history, scores):
     Returns:
         None
     """
+    # Permite al usuario seleccionar un mazo
     deck_name = select_deck_controller(decks)
     if not deck_name:
         return
@@ -27,10 +28,12 @@ def practice_controller(decks, user, card_history, scores):
     if not cards:
         show_message(f"No hay tarjetas en el mazo '{deck_name}'.")
         return
+    # Calcula las tarjetas disponibles para practicar
     available_cards = calculate_available_cards_model(cards, card_history, user)
     if not available_cards:
         show_message("No hay tarjetas disponibles para revisar en este momento.")
         return
+    # Mezcla las tarjetas disponibles aleatoriamente
     random.shuffle(available_cards)
     results = {'Perfecto': 0, 'Bien': 0, 'Mal': 0, 'Terriblemente_Nada': 0}
     for index, card in enumerate(available_cards, 1):
@@ -39,8 +42,13 @@ def practice_controller(decks, user, card_history, scores):
         print(f"\nPregunta: {card['question']}")
         input("\nPresione Enter para ver la respuesta...")
         print(f"\nRespuesta: {card['answer']}")
+        # Obtiene el rating y el intervalo para la tarjeta actual
         rating, interval = get_rating_view()
+        # Actualiza el conteo de resultados según el rating
         results[rating] += 1
+        # Actualiza el historial de la tarjeta
         update_card_history_model(card_history, user, card['id'], rating, interval)
+    # Actualiza las estadísticas del usuario
     update_score_model(scores, user, results)
+    # Muestra los resultados de la práctica
     show_results_view(results, len(available_cards))

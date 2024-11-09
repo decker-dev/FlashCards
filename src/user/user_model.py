@@ -11,5 +11,6 @@ def create_user_model(users, username):
     Returns:
         str: Nombre del usuario creado.
     """
+    # Añade el nuevo usuario al diccionario con la fecha de registro actual
     users[username] = {'registration_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
     return username

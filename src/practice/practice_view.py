@@ -19,7 +19,9 @@ def get_rating_view():
         '3': "Mal - Le costó recordar",
         '4': "Terriblemente_Nada - No recordó en absoluto"
     }
+    # Muestra las opciones de calificación y obtiene la elección del usuario
     user_choice = select_option("\n¿Cómo te fue con esta tarjeta?", options)
+    # Define los intervalos hasta la próxima revisión según la calificación
     intervals = {
         '1': ('Perfecto', timedelta(days=7).total_seconds()),
         '2': ('Bien', timedelta(days=1).total_seconds()),
@@ -43,8 +45,10 @@ def show_results_view(results, total_cards):
     print("\n=== Resultados de la Práctica ===")
     print("\nClasificación según el rating:")
     for rating, count in results.items():
+        # Calcula el porcentaje de tarjetas por rating
         percentage = (count / total_cards) * 100 if total_cards > 0 else 0
         print(f"{rating}: {count} Tarjetas ({percentage:.1f}%)")
+        # Muestra el tiempo hasta la próxima revisión según el rating
         next_review = {
             'Perfecto': "1 semana",
             'Bien': "1 día",
