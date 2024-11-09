@@ -67,19 +67,19 @@ def show_message(message):
     print(f"\n{message}")
     input("Presione Enter para continuar...")
 
-def format_time(td):
+def format_time(time_difference):
     """
     Formatea un objeto timedelta en una cadena legible.
 
     Parámetros:
-    - td (timedelta): Diferencia de tiempo a formatear.
+    - time_difference (timedelta): Diferencia de tiempo a formatear.
 
     Retorna:
     - str: Cadena con el tiempo formateado.
     """
-    days = td.days
-    hours = td.seconds // 3600
-    minutes = (td.seconds % 3600) // 60
+    days = time_difference.days
+    hours = time_difference.seconds // 3600  # Calcula las horas totales en los segundos
+    minutes = (time_difference.seconds % 3600) // 60  # Calcula los minutos restantes
     if days > 0:
         return f"{days} días, {hours} horas"
     elif hours > 0:
@@ -93,12 +93,12 @@ def format_time(td):
 
 # ===================== Interfaz de Usuario =====================
 
-def select_option(prompt, options):
+def select_option(prompt_message, options):
     """
     Muestra un menú de opciones y devuelve la elección del usuario.
 
     Parámetros:
-    - prompt (str): Mensaje a mostrar al usuario.
+    - prompt_message (str): Mensaje a mostrar al usuario.
     - options (dict): Diccionario de opciones disponibles.
 
     Retorna:
@@ -106,25 +106,25 @@ def select_option(prompt, options):
     """
     while True:
         clear_screen()
-        print(prompt)
-        for key, value in options.items():
-            print(f"{key}. {value}")
-        choice = input("\nElegir una opción: ")
-        if choice in options:
-            return choice
+        print(prompt_message)
+        for option_key, option_value in options.items():
+            print(f"{option_key}. {option_value}")
+        user_choice = input("\nElegir una opción: ")
+        if user_choice in options:
+            return user_choice
         show_message("Opción inválida. Intente nuevamente.")
 
-def get_input(prompt):
+def get_input(prompt_message):
     """
     Solicita una entrada al usuario.
 
     Parámetros:
-    - prompt (str): Mensaje a mostrar al usuario.
+    - prompt_message (str): Mensaje a mostrar al usuario.
 
     Retorna:
     - str: Entrada del usuario sin espacios en blanco al inicio y al final.
     """
-    return input(f"{prompt}: ").strip()
+    return input(f"{prompt_message}: ").strip()
 
 # ===================== Funciones de Usuario =====================
 
@@ -138,12 +138,13 @@ def select_user(users):
     Retorna:
     - str: Nombre del usuario seleccionado o creado.
     """
-    options = {str(i+1): name for i, name in enumerate(users.keys())}
+    # Crea un diccionario de opciones con índices numéricos como claves
+    options = {str(index+1): username for index, username in enumerate(users.keys())}
     options[str(len(users)+1)] = "Crear Nuevo Usuario"
-    choice = select_option("\n=== Selección de Usuario ===", options)
-    if choice == str(len(users)+1):
+    user_choice = select_option("\n=== Selección de Usuario ===", options)
+    if user_choice == str(len(users)+1):
         return create_user(users)
-    return options[choice]
+    return options[user_choice]
 
 def create_user(users):
     """
@@ -156,10 +157,10 @@ def create_user(users):
     - str: Nombre del nuevo usuario creado.
     """
     while True:
-        name = get_input("\nIngrese el Nombre de Usuario")
-        if name and name not in users:
-            users[name] = {'registration_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-            return name
+        username = get_input("\nIngrese el Nombre de Usuario")
+        if username and username not in users:
+            users[username] = {'registration_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+            return username
         show_message("Nombre inválido o ya existente.")
 
 # ===================== Funciones de Mazo =====================
@@ -175,16 +176,16 @@ def select_deck(decks, include_create=False):
     Retorna:
     - str o None: Nombre del mazo seleccionado o None si se cancela.
     """
-    options = {str(i+1): name for i, name in enumerate(decks.keys())}
+    options = {str(index+1): deck_name for index, deck_name in enumerate(decks.keys())}
     if include_create:
         options[str(len(decks)+1)] = "Crear Nuevo Mazo"
     options['0'] = "Salir"
-    choice = select_option("\n=== Selección de Mazo ===", options)
-    if choice == '0':
+    user_choice = select_option("\n=== Selección de Mazo ===", options)
+    if user_choice == '0':
         return None
-    elif include_create and choice == str(len(decks)+1):
+    elif include_create and user_choice == str(len(decks)+1):
         return create_deck(decks)
-    return options[choice]
+    return options[user_choice]
 
 def create_deck(decks):
     """
@@ -197,10 +198,10 @@ def create_deck(decks):
     - str: Nombre del nuevo mazo creado.
     """
     while True:
-        name = get_input("\nIngrese el Nombre del Mazo")
-        if name and name not in decks:
-            decks[name] = []
-            return name
+        deck_name = get_input("\nIngrese el Nombre del Mazo")
+        if deck_name and deck_name not in decks:
+            decks[deck_name] = []
+            return deck_name
         show_message("Nombre inválido o ya existente.")
 
 def edit_deck(decks):
@@ -213,9 +214,9 @@ def edit_deck(decks):
     deck_name = select_deck(decks)
     if not deck_name:
         return
-    new_name = get_input(f"\nIngrese el nuevo nombre para el mazo '{deck_name}' (dejar en blanco para cancelar)")
-    if new_name and new_name not in decks:
-        decks[new_name] = decks.pop(deck_name)
+    new_deck_name = get_input(f"\nIngrese el nuevo nombre para el mazo '{deck_name}' (dejar en blanco para cancelar)")
+    if new_deck_name and new_deck_name not in decks:
+        decks[new_deck_name] = decks.pop(deck_name)
         show_message("Mazo renombrado correctamente.")
     else:
         show_message("Nombre inválido o ya existente.")
@@ -272,18 +273,20 @@ def edit_card(decks):
         show_message("No hay tarjetas para editar en este mazo.")
         return
     cards = decks[deck_name]
-    options = {str(i+1): card['question'] for i, card in enumerate(cards)}
+    # Crea opciones para seleccionar la tarjeta a editar
+    options = {str(index+1): card['question'] for index, card in enumerate(cards)}
     options['0'] = "Cancelar"
-    choice = select_option("\n=== Seleccione una Tarjeta para Editar ===", options)
-    if choice == '0':
+    user_choice = select_option("\n=== Seleccione una Tarjeta para Editar ===", options)
+    if user_choice == '0':
         return
-    card = cards[int(choice)-1]
-    question = get_input(f"Pregunta Actual: {card['question']} \nNueva Pregunta (dejar en blanco para conservar)")
-    answer = get_input(f"Respuesta Actual: {card['answer']} \nNueva Respuesta (dejar en blanco para conservar)")
+    selected_card = cards[int(user_choice)-1]
+    # Solicita nueva pregunta y respuesta
+    question = get_input(f"Pregunta Actual: {selected_card['question']} \nNueva Pregunta (dejar en blanco para conservar)")
+    answer = get_input(f"Respuesta Actual: {selected_card['answer']} \nNueva Respuesta (dejar en blanco para conservar)")
     if question:
-        card['question'] = question
+        selected_card['question'] = question
     if answer:
-        card['answer'] = answer
+        selected_card['answer'] = answer
     show_message("Tarjeta editada correctamente.")
 
 def delete_card(decks):
@@ -298,12 +301,12 @@ def delete_card(decks):
         show_message("No hay tarjetas para eliminar en este mazo.")
         return
     cards = decks[deck_name]
-    options = {str(i+1): card['question'] for i, card in enumerate(cards)}
+    options = {str(index+1): card['question'] for index, card in enumerate(cards)}
     options['0'] = "Cancelar"
-    choice = select_option("\n=== Seleccione una Tarjeta para Eliminar ===", options)
-    if choice == '0':
+    user_choice = select_option("\n=== Seleccione una Tarjeta para Eliminar ===", options)
+    if user_choice == '0':
         return
-    cards.pop(int(choice)-1)
+    cards.pop(int(user_choice)-1)
     show_message("Tarjeta eliminada correctamente.")
 
 # ===================== Funciones de Práctica =====================
@@ -321,14 +324,14 @@ def get_rating():
         '3': "Mal - Le costó recordar",
         '4': "Terriblemente_Nada - No recordó en absoluto"
     }
-    choice = select_option("\n¿Cómo te fue con esta tarjeta?", options)
+    user_choice = select_option("\n¿Cómo te fue con esta tarjeta?", options)
     intervals = {
         '1': ('Perfecto', timedelta(days=7).total_seconds()),
         '2': ('Bien', timedelta(days=1).total_seconds()),
         '3': ('Mal', timedelta(minutes=10).total_seconds()),
         '4': ('Terriblemente_Nada', 0.0)
     }
-    return intervals[choice]
+    return intervals[user_choice]
 
 def calculate_available_cards(cards, card_history, user):
     """
@@ -345,14 +348,17 @@ def calculate_available_cards(cards, card_history, user):
     now = datetime.now()
     available_cards = []
     for card in cards:
-        history_key = f"{user}_{card['id']}"
+        history_key = f"{user}_{card['id']}"  # Llave única por usuario y tarjeta
         if history_key not in card_history:
+            # Si la tarjeta no ha sido revisada antes, está disponible
             available_cards.append(card)
         else:
+            # Obtiene la última revisión y el intervalo para la tarjeta
             last_review = datetime.strptime(card_history[history_key]['last_review'], "%Y-%m-%d %H:%M:%S")
             interval = timedelta(seconds=card_history[history_key]['interval'])
             next_review = last_review + interval
             if now >= next_review:
+                # Si es tiempo de revisar la tarjeta nuevamente
                 available_cards.append(card)
     return available_cards
 
@@ -377,23 +383,24 @@ def practice(decks, user, card_history, scores):
     if not available_cards:
         show_message("No hay tarjetas disponibles para revisar en este momento.")
         return
-    random.shuffle(available_cards)
+    random.shuffle(available_cards)  # Mezcla las tarjetas disponibles
     results = {'Perfecto': 0, 'Bien': 0, 'Mal': 0, 'Terriblemente_Nada': 0}
-    for i, card in enumerate(available_cards, 1):
+    for index, card in enumerate(available_cards, 1):
         clear_screen()
-        print(f"\n=== Mazo: {deck_name} - Pregunta {i}/{len(available_cards)} ===")
+        print(f"\n=== Mazo: {deck_name} - Pregunta {index}/{len(available_cards)} ===")
         print(f"\nPregunta: {card['question']}")
         input("\nPresione Enter para ver la respuesta...")
         print(f"\nRespuesta: {card['answer']}")
-        rating, interval = get_rating()
-        results[rating] += 1
+        rating, interval = get_rating()  # Obtiene la calificación y el intervalo correspondiente
+        results[rating] += 1  # Actualiza el contador de resultados
         history_key = f"{user}_{card['id']}"
+        # Actualiza el historial con la nueva revisión
         card_history[history_key] = {
             'last_review': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             'rating': rating,
             'interval': interval
         }
-    update_score(scores, user, results)
+    update_score(scores, user, results)  # Actualiza el puntaje del usuario
     show_results(results, len(available_cards))
 
 def update_score(scores, user, results):
@@ -406,17 +413,22 @@ def update_score(scores, user, results):
     - results (dict): Resultados de la práctica actual.
     """
     if user not in scores:
+        # Inicializa las estadísticas si el usuario no existe en scores
         scores[user] = {'points': 0, 'total_correct': 0, 'total_attempts': 0, 'streak': 0, 'best_streak': 0}
     points_per_answer = {'Perfecto': 10, 'Bien': 7, 'Mal': 3, 'Terriblemente_Nada': 1}
+    # Calcula los puntos obtenidos en la sesión
     session_points = sum(points_per_answer[response] * quantity for response, quantity in results.items())
     scores[user]['points'] += session_points
+    # Actualiza las respuestas correctas y los intentos totales
     scores[user]['total_correct'] += results['Perfecto'] + results['Bien']
     scores[user]['total_attempts'] += sum(results.values())
     if sum(results.values()) > 0:
+        # Actualiza la racha dependiendo del desempeño
         if results['Perfecto'] + results['Bien'] > results['Mal'] + results['Terriblemente_Nada']:
             scores[user]['streak'] += 1
         else:
             scores[user]['streak'] = 0
+    # Actualiza la mejor racha si es necesario
     if scores[user]['streak'] > scores[user]['best_streak']:
         scores[user]['best_streak'] = scores[user]['streak']
 
@@ -458,20 +470,22 @@ def show_ranking(scores):
         print("No hay puntajes registrados aún.")
         input("\nPresione Enter para continuar...")
         return
-    sorted_users = sorted(scores.items(), key=lambda x: x[1]['points'], reverse=True)
-    max_points = max(data['points'] for _, data in sorted_users)
-    graph_width = 30
+    # Ordena los usuarios por puntaje de mayor a menor
+    sorted_users = sorted(scores.items(), key=lambda user_data: user_data[1]['points'], reverse=True)
+    max_points = max(user_stats['points'] for _, user_stats in sorted_users)  # Puntaje máximo para normalizar la gráfica
+    graph_width = 30  # Ancho máximo de la barra gráfica
     print(f"{'Usuario':<15} | {'Puntos':>7} | {'Precisión':>8} | Gráfico")
     print("-" * (15 + graph_width + 22))
-    for pos, (user, data) in enumerate(sorted_users, 1):
-        points = data['points']
-        total_correct = data['total_correct']
-        total_attempts = data['total_attempts']
+    for position, (username, user_stats) in enumerate(sorted_users, 1):
+        points = user_stats['points']
+        total_correct = user_stats['total_correct']
+        total_attempts = user_stats['total_attempts']
         accuracy = (total_correct / total_attempts * 100) if total_attempts > 0 else 0
+        # Calcula la longitud de la barra proporcional al puntaje
         bar_length = int((points / max_points) * graph_width) if max_points > 0 else 0
         bar = '█' * bar_length
-        medal = {1: '🥇', 2: '🥈', 3: '🥉'}.get(pos, '')
-        print(f"{medal}{user:<15} | {points:>7} | {accuracy:>7.1f}% | {bar}")
+        medal = {1: '🥇', 2: '🥈', 3: '🥉'}.get(position, '')
+        print(f"{medal}{username:<15} | {points:>7} | {accuracy:>7.1f}% | {bar}")
     input("\nPresione Enter para continuar...")
 
 def show_user_stats(scores, user):
@@ -487,15 +501,15 @@ def show_user_stats(scores, user):
         print(f"\nNo hay estadísticas disponibles para {user}")
         input("\nPresione Enter para continuar...")
         return
-    data = scores[user]
+    user_data = scores[user]
     print(f"\n=== 📊 Estadísticas de {user} ===\n")
-    accuracy = (data['total_correct'] / data['total_attempts'] * 100) if data['total_attempts'] > 0 else 0
-    print(f"🏆 Puntos totales: {data['points']}")
+    accuracy = (user_data['total_correct'] / user_data['total_attempts'] * 100) if user_data['total_attempts'] > 0 else 0
+    print(f"🏆 Puntos totales: {user_data['points']}")
     print(f"📈 Precisión global: {accuracy:.1f}%")
-    print(f"🎯 Correctas totales: {data['total_correct']}")
-    print(f"🔄 Intentos totales: {data['total_attempts']}")
-    print(f"🔥 Racha actual: {data['streak']}")
-    print(f"⭐ Mejor racha: {data['best_streak']}")
+    print(f"🎯 Correctas totales: {user_data['total_correct']}")
+    print(f"🔄 Intentos totales: {user_data['total_attempts']}")
+    print(f"🔥 Racha actual: {user_data['streak']}")
+    print(f"⭐ Mejor racha: {user_data['best_streak']}")
     input("\nPresione Enter para continuar...")
 
 # ===================== Menú Principal =====================
@@ -521,30 +535,30 @@ def main_menu():
             '11': "📈 Ver mis Estadísticas",
             '0': "🚪 Salir"
         }
-        choice = select_option(f"\n=== 🎮 Juego de Flashcards - Usuario: {current_user} ===", options)
-        if choice == '1':
+        user_choice = select_option(f"\n=== 🎮 Juego de Flashcards - Usuario: {current_user} ===", options)
+        if user_choice == '1':
             add_card(decks)
-        elif choice == '2':
+        elif user_choice == '2':
             practice(decks, current_user, card_history, scores)
-        elif choice == '3':
+        elif user_choice == '3':
             view_cards(decks, current_user, card_history)
-        elif choice == '4':
+        elif user_choice == '4':
             create_deck(decks)
-        elif choice == '5':
+        elif user_choice == '5':
             edit_deck(decks)
-        elif choice == '6':
+        elif user_choice == '6':
             delete_deck(decks)
-        elif choice == '7':
+        elif user_choice == '7':
             current_user = select_user(users)
-        elif choice == '8':
+        elif user_choice == '8':
             edit_card(decks)
-        elif choice == '9':
+        elif user_choice == '9':
             delete_card(decks)
-        elif choice == '10':
+        elif user_choice == '10':
             show_ranking(scores)
-        elif choice == '11':
+        elif user_choice == '11':
             show_user_stats(scores, current_user)
-        elif choice == '0':
+        elif user_choice == '0':
             print("\n¡Adiós! 👋")
             save_data(decks, users, card_history, scores)
             break
@@ -568,8 +582,8 @@ def view_cards(decks, user, card_history):
     cards = decks[deck_name]
     clear_screen()
     print(f"\n=== Tarjetas del Mazo '{deck_name}' ===\n")
-    for i, card in enumerate(cards, 1):
-        print(f"Tarjeta {i}:")
+    for index, card in enumerate(cards, 1):
+        print(f"Tarjeta {index}:")
         print(f"Pregunta: {card['question']}")
         print(f"Respuesta: {card['answer']}")
         history_key = f"{user}_{card['id']}"
@@ -579,6 +593,7 @@ def view_cards(decks, user, card_history):
             next_review = last_review + interval
             now = datetime.now()
             if now < next_review:
+                # Calcula el tiempo restante hasta la próxima revisión
                 remaining_time = next_review - now
                 print(f"Estado: Bloqueado - Disponible en: {format_time(remaining_time)}")
             else:
