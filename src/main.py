@@ -74,18 +74,18 @@ def main_menu_controller():
     while not exit_program:
         # Define las opciones del menú principal en un diccionario
         options = {
-            '1': "📝   Añadir Tarjeta",
-            '2': "🎯   Practicar",
-            '3': "📊   Ver Tarjetas y Estado",
-            '4': "📚   Crear Nuevo Mazo",
-            '5': "✏️Editar Mazo",
+            '1': "📝 Añadir Tarjeta",
+            '2': "🎯 Practicar",
+            '3': "📊 Ver Tarjetas y Estado",
+            '4': "📚 Crear Nuevo Mazo",
+            '5': "✏️ Editar Mazo",
             '6': "🗑️ Eliminar Mazo",
             '7': "👤 Cambiar de Usuario",
-            '8': "✏️Editar Tarjeta",
+            '8': "✏️ Editar Tarjeta",
             '9': "🗑️ Eliminar Tarjeta",
             '10': "🏆 Ver Ranking Global",
             '11': "📈 Ver mis Estadísticas",
-            '0' : "🚪  Salir"
+            '0': "🚪 Salir"
         }
         # Muestra el menú y obtiene la opción seleccionada por el usuario
         user_choice = select_option(f"\n=== 🎮 Juego de Flashcards - Usuario: {current_user} ===", options)
