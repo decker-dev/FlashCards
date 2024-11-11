@@ -18,6 +18,54 @@ def main_menu_controller():
     Returns:
         None
     """
+
+
+    # Diseño ASCII del título "Flash Cards"
+    flashcards_ascii = """
+    ┌─────────────────────────────────────────────────────────────────────────────────────┐
+    │                                                                                     │
+    │                                                                                     │                                                                   
+    │   ███████ ██       █████  ███████ ██   ██  ██████  █████  ██████  ██████  ███████   │ 
+    │   ██      ██      ██   ██ ██      ██   ██ ██      ██   ██ ██   ██ ██   ██ ██        │
+    │   █████   ██      ███████ ███████ ███████ ██      ███████ ██████  ██   ██ ███████   │
+    │   ██      ██      ██   ██      ██ ██   ██ ██      ██   ██ ██   ██ ██   ██      ██   │
+    │   ██      ███████ ██   ██ ███████ ██   ██  ██████ ██   ██ ██   ██ ██████  ███████   │
+    │                                                                                     │
+    │                                                                                     │
+    │                               URBANO + ALE SAMANIEGO                                │
+    │                                                                                     │
+    │                   UADE 2C-2024 - Programación 1 - TPO GRUPO 12                      │
+    │                                                                                     │
+    │                                                                                     │
+    └─────────────────────────────────────────────────────────────────────────────────────┘
+    """
+    # Imprime el título al inicio
+    print(flashcards_ascii)
+
+    def main_menu_controller():
+        """
+        Maneja el flujo del programa y el menú principal.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
+
+        # ╔══════════════════════════════════════════════════════════════════╗
+        # ║ Carga los datos almacenados desde un archivo JSON               ║
+        # ║                                                                 ║
+        # ║ decks, users, card_history, scores = load_data()                ║
+        # ║                                                                 ║
+        # ║ Permite al usuario seleccionar o crear un usuario               ║
+        # ║                                                                 ║
+        # ║ current_user = select_user_controller(users)                    ║
+        # ║                                                                 ║
+        # ║ exit_program = False                                            ║
+        # ╚══════════════════════════════════════════════════════════════════╝
+
+
     # Carga los datos almacenados desde un archivo JSON
     decks, users, card_history, scores = load_data()
     # Permite al usuario seleccionar o crear un usuario
@@ -26,18 +74,18 @@ def main_menu_controller():
     while not exit_program:
         # Define las opciones del menú principal en un diccionario
         options = {
-            '1': "📝 Añadir Tarjeta",
-            '2': "🎯 Practicar",
-            '3': "📊 Ver Tarjetas y Estado",
-            '4': "📚 Crear Nuevo Mazo",
-            '5': "✏️ Editar Mazo",
+            '1': "📝   Añadir Tarjeta",
+            '2': "🎯   Practicar",
+            '3': "📊   Ver Tarjetas y Estado",
+            '4': "📚   Crear Nuevo Mazo",
+            '5': "✏️Editar Mazo",
             '6': "🗑️ Eliminar Mazo",
             '7': "👤 Cambiar de Usuario",
-            '8': "✏️ Editar Tarjeta",
+            '8': "✏️Editar Tarjeta",
             '9': "🗑️ Eliminar Tarjeta",
             '10': "🏆 Ver Ranking Global",
             '11': "📈 Ver mis Estadísticas",
-            '0': "🚪 Salir"
+            '0' : "🚪  Salir"
         }
         # Muestra el menú y obtiene la opción seleccionada por el usuario
         user_choice = select_option(f"\n=== 🎮 Juego de Flashcards - Usuario: {current_user} ===", options)

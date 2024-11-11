@@ -13,6 +13,7 @@ def select_user_controller(users):
     Returns:
         str: Nombre del usuario seleccionado o creado.
     """
+
     user_choice = select_user_view(users)
     # Verificamos si el usuario eligió la opción de crear un nuevo usuario
     if user_choice == str(len(users) + 1):
