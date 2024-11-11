@@ -30,11 +30,12 @@ def get_rating_view():
     }
     return intervals[user_choice]
 
-def show_results_view(results, total_cards):
+def show_results_view(results, total_cards, is_random=False):
     """
     Muestra los resultados de la práctica al usuario.
 
     Parameters:
+        is_random: (bool): Indica si la práctica fue aleatoria.
         results (dict): Resultados de la práctica actual.
         total_cards (int): Número total de tarjetas practicadas.
 
@@ -55,5 +56,6 @@ def show_results_view(results, total_cards):
             'Mal': "10 minutos",
             'Terriblemente_Nada': "Inmediato"
         }
-        print(f"  → Próxima Revisión en: {next_review[rating]}")
+        if not is_random:
+            print(f"  → Próxima Revisión en: {next_review[rating]}")
     input("\nPresione Enter para continuar...")

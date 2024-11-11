@@ -60,9 +60,6 @@ def random_practice_controller(decks):
 
     Parameters:
         decks (dict): Diccionario de mazos existentes.
-        user (str): Nombre del usuario actual.
-        card_history (dict): Historial de revisión de tarjetas por usuario.
-        scores (dict): Puntajes y estadísticas de los usuarios.
 
     Returns:
         None
@@ -88,4 +85,4 @@ def random_practice_controller(decks):
         rating, interval = get_rating_view()
         results[rating] += 1
 
-    show_results_view(results, len(cards))
+    show_results_view(results, len(cards), is_random=True)
