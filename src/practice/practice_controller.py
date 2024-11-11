@@ -53,3 +53,39 @@ def practice_controller(decks, user, card_history, scores):
     update_score_model(scores, user, results)
     # Muestra los resultados de la práctica
     show_results_view(results, len(available_cards))
+
+def random_practice_controller(decks):
+    """
+    Permite al usuario practicar con tarjetas aleatorias del mazo seleccionado.
+
+    Parameters:
+        decks (dict): Diccionario de mazos existentes.
+        user (str): Nombre del usuario actual.
+        card_history (dict): Historial de revisión de tarjetas por usuario.
+        scores (dict): Puntajes y estadísticas de los usuarios.
+
+    Returns:
+        None
+    """
+    # Permite al usuario seleccionar un mazo
+    deck_name = select_deck_controller(decks)
+    if not deck_name:
+        return
+    cards = decks[deck_name]
+    if not cards:
+        show_message(f"No hay tarjetas en el mazo '{deck_name}'.")
+        return
+    # Mezcla las tarjetas del mazo aleatoriamente
+    random.shuffle(cards)
+    results = {'Perfecto': 0, 'Bien': 0, 'Mal': 0, 'Terriblemente_Nada': 0}
+    for index, card in enumerate(cards, 1):
+        clear_screen()
+        print(f"\n=== Mazo: {deck_name} - Pregunta {index}/{len(cards)} ===")
+        print(f"\nPregunta: {card['question']}")
+        input("\nPresione Enter para ver la respuesta...")
+        print(f"\nRespuesta: {card['answer']}")
+        input("\nPresione Enter para calificar la tarjeta...")
+        rating, interval = get_rating_view()
+        results[rating] += 1
+
+    show_results_view(results, len(cards))

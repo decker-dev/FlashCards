@@ -45,4 +45,4 @@ def save_data(decks, users, card_history, scores, file_path="flashcards_data.jso
     }
     with open(file_path, 'w', encoding='utf-8') as file:
         # Guarda los datos en formato JSON con una indentación para mayor legibilidad
-        json.dump(data, file, indent=2)
+        json.dump(data, file, ensure_ascii=False, indent=2)

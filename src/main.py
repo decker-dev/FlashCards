@@ -1,7 +1,7 @@
 from src.card.card_controller import add_card_controller, view_cards_controller, edit_card_controller, \
     delete_card_controller
 from src.deck.deck_controller import create_deck_controller, edit_deck_controller, delete_deck_controller
-from src.practice.practice_controller import practice_controller
+from src.practice.practice_controller import practice_controller, random_practice_controller
 from src.stats.stats_controller import show_ranking_controller, show_user_stats_controller
 from src.user.user_controller import select_user_controller
 from src.utils.data_manager import load_data, save_data
@@ -95,7 +95,8 @@ def main_menu_controller():
         elif user_choice == '2':
             practice_controller(decks, current_user, card_history, scores)
         elif user_choice == '3':
-            view_cards_controller(decks, current_user, card_history)
+            random_practice_controller(decks)
+
         elif user_choice == '4':
             create_deck_controller(decks)
         elif user_choice == '5':
