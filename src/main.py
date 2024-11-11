@@ -42,29 +42,6 @@ def main_menu_controller():
     # Imprime el título al inicio
     print(flashcards_ascii)
     input("Presiona Enter para comenzar...")
-    def main_menu_controller():
-        """
-        Maneja el flujo del programa y el menú principal.
-
-        Parameters:
-            None
-
-        Returns:
-            None
-        """
-
-        # ╔══════════════════════════════════════════════════════════════════╗
-        # ║ Carga los datos almacenados desde un archivo JSON               ║
-        # ║                                                                 ║
-        # ║ decks, users, card_history, scores = load_data()                ║
-        # ║                                                                 ║
-        # ║ Permite al usuario seleccionar o crear un usuario               ║
-        # ║                                                                 ║
-        # ║ current_user = select_user_controller(users)                    ║
-        # ║                                                                 ║
-        # ║ exit_program = False                                            ║
-        # ╚══════════════════════════════════════════════════════════════════╝
-
 
     # Carga los datos almacenados desde un archivo JSON
     decks, users, card_history, scores = load_data()
@@ -76,15 +53,16 @@ def main_menu_controller():
         options = {
             '1': "📝 Añadir Tarjeta",
             '2': "🎯 Practicar",
-            '3': "📊 Ver Tarjetas y Estado",
-            '4': "📚 Crear Nuevo Mazo",
-            '5': "✏️ Editar Mazo",
-            '6': "🗑️ Eliminar Mazo",
-            '7': "👤 Cambiar de Usuario",
-            '8': "✏️ Editar Tarjeta",
-            '9': "🗑️ Eliminar Tarjeta",
-            '10': "🏆 Ver Ranking Global",
-            '11': "📈 Ver mis Estadísticas",
+            '3': "🎲 Practica Libre",
+            '4': "📊 Ver Tarjetas y Estado",
+            '5': "📚 Crear Nuevo Mazo",
+            '6': "✏️ Editar Mazo",
+            '7': "🗑️ Eliminar Mazo",
+            '8': "👤 Cambiar de Usuario",
+            '9': "✏️ Editar Tarjeta",
+            '10': "🗑️ Eliminar Tarjeta",
+            '11': "🏆 Ver Ranking Global",
+            '12': "📈 Ver mis Estadísticas",
             '0': "🚪 Salir"
         }
         # Muestra el menú y obtiene la opción seleccionada por el usuario
@@ -96,22 +74,23 @@ def main_menu_controller():
             practice_controller(decks, current_user, card_history, scores)
         elif user_choice == '3':
             random_practice_controller(decks)
-
         elif user_choice == '4':
-            create_deck_controller(decks)
+            view_cards_controller(decks, current_user, card_history)
         elif user_choice == '5':
-            edit_deck_controller(decks)
+            create_deck_controller(decks)
         elif user_choice == '6':
-            delete_deck_controller(decks)
+            edit_deck_controller(decks)
         elif user_choice == '7':
-            current_user = select_user_controller(users)
+            delete_deck_controller(decks)
         elif user_choice == '8':
-            edit_card_controller(decks)
+            current_user = select_user_controller(users)
         elif user_choice == '9':
-            delete_card_controller(decks)
+            edit_card_controller(decks)
         elif user_choice == '10':
-            show_ranking_controller(scores)
+            delete_card_controller(decks)
         elif user_choice == '11':
+            show_ranking_controller(scores)
+        elif user_choice == '12':
             show_user_stats_controller(scores, current_user)
         elif user_choice == '0':
             print("\n¡Adiós! 👋")
