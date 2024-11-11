@@ -41,7 +41,7 @@ def main_menu_controller():
     """
     # Imprime el título al inicio
     print(flashcards_ascii)
-
+    input("Presiona Enter para comenzar...")
     def main_menu_controller():
         """
         Maneja el flujo del programa y el menú principal.
