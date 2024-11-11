@@ -58,9 +58,6 @@
     },
     "Julia": {
       "registration_date": "2024-03-20 18:17:11"
-    },
-    "Lucas": {
-      "registration_date": "2024-11-10 17:26:40"
     }
   },
   "card_history": {
@@ -108,16 +105,6 @@
       "last_review": "2024-11-09 13:04:38",
       "rating": "Terriblemente_Nada",
       "interval": 0.0
-    },
-    "Lucas_Historia_1": {
-      "last_review": "2024-11-10 17:28:43",
-      "rating": "Perfecto",
-      "interval": 604800.0
-    },
-    "Lucas_Historia_2": {
-      "last_review": "2024-11-10 17:29:54",
-      "rating": "Mal",
-      "interval": 600.0
     }
   },
   "scores": {
@@ -141,13 +128,6 @@
       "total_attempts": 22,
       "streak": 7,
       "best_streak": 7
-    },
-    "Lucas": {
-      "points": 13,
-      "total_correct": 1,
-      "total_attempts": 2,
-      "streak": 0,
-      "best_streak": 0
     }
   }
 }

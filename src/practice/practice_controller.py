@@ -42,6 +42,7 @@ def practice_controller(decks, user, card_history, scores):
         print(f"\nPregunta: {card['question']}")
         input("\nPresione Enter para ver la respuesta...")
         print(f"\nRespuesta: {card['answer']}")
+        input("\nPresione Enter para calificar la tarjeta...")
         # Obtiene el rating y el intervalo para la tarjeta actual
         rating, interval = get_rating_view()
         # Actualiza el conteo de resultados según el rating
