@@ -47,7 +47,16 @@
         "answer": "Aproximadamente 3.1416",
         "deck": "Matemáticas"
       }
-    ]
+    ],
+    "Fisica": [
+      {
+        "id": "Fisica_1",
+        "question": "Quien fué Isaac Newton?",
+        "answer": "Un físico",
+        "deck": "Fisica"
+      }
+    ],
+    "2": []
   },
   "users": {
     "Decker": {
@@ -67,9 +76,9 @@
       "interval": 86400.0
     },
     "Bere_Historia_1": {
-      "last_review": "2024-04-02 15:45:00",
+      "last_review": "2024-11-23 22:04:00",
       "rating": "Bien",
-      "interval": 86400
+      "interval": 86400.0
     },
     "Julia_Ciencia_1": {
       "last_review": "2024-04-03 12:15:00",
@@ -105,6 +114,11 @@
       "last_review": "2024-11-09 13:04:38",
       "rating": "Terriblemente_Nada",
       "interval": 0.0
+    },
+    "Bere_Historia_2": {
+      "last_review": "2024-11-23 22:03:41",
+      "rating": "Terriblemente_Nada",
+      "interval": 0.0
     }
   },
   "scores": {
@@ -116,9 +130,9 @@
       "best_streak": 5
     },
     "Bere": {
-      "points": 190,
-      "total_correct": 9,
-      "total_attempts": 14,
+      "points": 198,
+      "total_correct": 10,
+      "total_attempts": 16,
       "streak": 0,
       "best_streak": 4
     },

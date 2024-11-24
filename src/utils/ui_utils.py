@@ -45,7 +45,7 @@ def format_time(time_difference):
     else:
         return f"{minutes} minutos"
 
-def select_option(prompt_message, options):
+def select_option(prompt_message='', options={}):
     """
     Muestra un menú de opciones y devuelve la elección del usuario.
 
