@@ -1,4 +1,4 @@
-from src.utils.ui_utils import select_option, get_input
+from utils.ui_utils import select_option, get_input
 
 
 def select_deck_view(decks, include_create=False):

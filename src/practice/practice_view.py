@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from src.utils.ui_utils import select_option, clear_screen
+from utils.ui_utils import select_option, clear_screen
 
 
 def get_rating_view():

@@ -1,13 +1,11 @@
-from src.card.card_controller import add_card_controller, view_cards_controller, edit_card_controller, \
+from card.card_controller import add_card_controller, view_cards_controller, edit_card_controller, \
     delete_card_controller
-from src.deck.deck_controller import create_deck_controller, edit_deck_controller, delete_deck_controller
-#from src.graphics import print_flashcards, print_welcome
-from src.graphics import print_flashcards
-from src.practice.practice_controller import practice_controller, random_practice_controller
-from src.stats.stats_controller import show_ranking_controller, show_user_stats_controller
-from src.user.user_controller import select_user_controller
-from src.utils.data_manager import load_data, save_data
-from src.utils.ui_utils import select_option, show_message
+from deck.deck_controller import create_deck_controller, edit_deck_controller, delete_deck_controller
+from practice.practice_controller import practice_controller, random_practice_controller
+from stats.stats_controller import show_ranking_controller, show_user_stats_controller
+from user.user_controller import select_user_controller
+from utils.data_manager import load_data, save_data
+from utils.ui_utils import select_option, show_message
 
 """flashcards_ascii = 
 ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -48,9 +46,6 @@ def main_menu_controller():
     # Imprime el título al inicio
     print_flashcards()
     input("Presiona Enter para comenzar...")
-
-    #print(print_welcome)
-
 
     # Carga los datos almacenados desde un archivo JSON
     decks, users, card_history, scores = load_data()
