@@ -2,6 +2,8 @@ from datetime import timedelta
 
 from utils.ui_utils import select_option, clear_screen
 
+from src.graphics.graphics import print_bar
+
 
 def get_rating_view():
     """
@@ -43,8 +45,9 @@ def show_results_view(results, total_cards, is_random=False):
         None
     """
     clear_screen()
-    print("\n=== Resultados de la Práctica ===")
-    print("\nClasificación según el rating:")
+    print_bar(is_upper=True)
+    print("\n\t 🎯 🏆 Resultados de la Práctica 🏆 🎯  ")
+    print("\n\t Clasificación según el rating:\n")
     for rating, count in results.items():
         # Calcula el porcentaje de tarjetas por rating
         percentage = (count / total_cards) * 100 if total_cards > 0 else 0
@@ -54,7 +57,7 @@ def show_results_view(results, total_cards, is_random=False):
             'Perfecto': "1 semana",
             'Bien': "1 día",
             'Mal': "10 minutos",
-            'Terriblemente_Nada': "Inmediato"
+            'Nada': "Inmediato"
         }
         if not is_random:
             print(f"  → Próxima Revisión en: {next_review[rating]}")

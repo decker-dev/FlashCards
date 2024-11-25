@@ -4,8 +4,6 @@ from utils.ui_utils import show_message
 
 
 def select_user_controller(users):
-
-
     """
     Permite al usuario seleccionar o crear un usuario.
 

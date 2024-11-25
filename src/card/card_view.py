@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 
 from utils.ui_utils import get_input, select_option, clear_screen, format_time
 
+from src.graphics.graphics import print_bar
+
 
 def get_card_input_view():
     """
@@ -35,7 +37,7 @@ def select_card_view(cards, action):
     options = {str(index + 1): card['question'] for index, card in enumerate(cards)}
     options['0'] = "Cancelar"
     # Mostramos el menú y obtenemos la elección del usuario
-    user_choice = select_option(f"\n=== Seleccione una Tarjeta para {action} ===", options)
+    user_choice = select_option(f"\n === 📚 🖋️ Seleccione una Tarjeta para {action} 🖋️ 📚 ===", options)
     return user_choice
 
 def display_cards_view(cards, deck_name, user, card_history):
@@ -52,7 +54,7 @@ def display_cards_view(cards, deck_name, user, card_history):
         None
     """
     clear_screen()
-    print(f"\n=== Tarjetas del Mazo '{deck_name}' ===\n")
+    print(f"\n=== 📚 🖋️ Tarjetas del Mazo '{deck_name}' 🖋️ 📚 ️===\n")
     now = datetime.now()
     for index, card in enumerate(cards, 1):
         print(f"Tarjeta {index}:")

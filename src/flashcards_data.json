@@ -12,6 +12,12 @@
         "question": "¿Quién fue el primer presidente de Estados Unidos?",
         "answer": "George Washington",
         "deck": "Historia"
+      },
+      {
+        "id": "Historia_3",
+        "question": "",
+        "answer": "",
+        "deck": "Historia"
       }
     ],
     "Ciencia": [
@@ -32,19 +38,43 @@
         "question": "Adioa",
         "answer": "HOla",
         "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_4",
+        "question": "",
+        "answer": "",
+        "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_5",
+        "question": "",
+        "answer": "",
+        "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_6",
+        "question": "",
+        "answer": "",
+        "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_7",
+        "question": "",
+        "answer": "",
+        "deck": "Ciencia"
       }
     ],
     "Mate": [
       {
-        "id": "Matemáticas_1",
-        "question": "¿Cuál es la fórmula del área de un círculo?",
-        "answer": "π * r^2",
-        "deck": "Matemáticas"
-      },
-      {
         "id": "Matemáticas_2",
         "question": "¿Cuál es el valor de π?",
         "answer": "Aproximadamente 3.1416",
+        "deck": "Matemáticas"
+      },
+      {
+        "id": "Matemáticas_1",
+        "question": "¿Cuál es la fórmula del área de un círculo?",
+        "answer": "π * r^2",
         "deck": "Matemáticas"
       }
     ],
@@ -56,7 +86,15 @@
         "deck": "Fisica"
       }
     ],
-    "2": []
+    "2": [],
+    "Programación": [
+      {
+        "id": "Programación_1",
+        "question": "",
+        "answer": "",
+        "deck": "Programación"
+      }
+    ]
   },
   "users": {
     "Decker": {
@@ -116,9 +154,14 @@
       "interval": 0.0
     },
     "Bere_Historia_2": {
-      "last_review": "2024-11-23 22:03:41",
-      "rating": "Terriblemente_Nada",
-      "interval": 0.0
+      "last_review": "2024-11-24 16:09:19",
+      "rating": "Perfecto",
+      "interval": 604800.0
+    },
+    "Bere_Historia_3": {
+      "last_review": "2024-11-24 17:50:33",
+      "rating": "Bien",
+      "interval": 86400.0
     }
   },
   "scores": {
@@ -130,10 +173,10 @@
       "best_streak": 5
     },
     "Bere": {
-      "points": 198,
-      "total_correct": 10,
-      "total_attempts": 16,
-      "streak": 0,
+      "points": 215,
+      "total_correct": 12,
+      "total_attempts": 18,
+      "streak": 2,
       "best_streak": 4
     },
     "Julia": {

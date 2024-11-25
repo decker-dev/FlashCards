@@ -21,7 +21,7 @@ def select_user_view(users):
     # 'len(users) + 1' nos da el siguiente número disponible para la nueva opción
     options[str(len(users) + 1)] = "Crear Nuevo Usuario"
     # Mostramos el menú de opciones y obtenemos la elección del usuario
-    user_choice = select_option("\n=== Selección de Usuario ===", options)
+    user_choice = select_option("", options)
     return user_choice
 
 def get_username_view():

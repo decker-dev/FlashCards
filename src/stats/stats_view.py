@@ -1,5 +1,7 @@
 from utils.ui_utils import clear_screen
 
+from src.graphics.graphics import print_bar
+
 
 def show_ranking_view(scores):
     """
@@ -12,7 +14,8 @@ def show_ranking_view(scores):
         None
     """
     clear_screen()
-    print("\n=== 🏆 Ranking de Usuarios ===\n")
+    print_bar(is_upper=True)
+    print("\n=== 🌈  🎉 🏆 Ranking de Usuarios 🏆 🎉 🌈 ===\n")
     if not scores:
         print("No hay puntajes registrados aún.")
         input("\nPresione Enter para continuar...")
@@ -51,6 +54,7 @@ def show_user_stats_view(scores, user):
         None
     """
     clear_screen()
+    print_bar(is_upper=True)
     if user not in scores:
         print(f"\nNo hay estadísticas disponibles para {user}")
         input("\nPresione Enter para continuar...")
@@ -58,11 +62,11 @@ def show_user_stats_view(scores, user):
     user_data = scores[user]
     # Calcula la precisión como porcentaje
     accuracy = (user_data['total_correct'] / user_data['total_attempts'] * 100) if user_data['total_attempts'] > 0 else 0
-    print(f"\n=== 📊 Estadísticas de {user} ===\n")
-    print(f"🏆 Puntos totales: {user_data['points']}")
-    print(f"📈 Precisión global: {accuracy:.1f}%")
-    print(f"🎯 Correctas totales: {user_data['total_correct']}")
-    print(f"🔄 Intentos totales: {user_data['total_attempts']}")
-    print(f"🔥 Racha actual: {user_data['streak']}")
-    print(f"⭐ Mejor racha: {user_data['best_streak']}")
+    print(f"\n\t=== 📊 Estadísticas de {user} ===\n")
+    print(f"\t🏆 Puntos totales: {user_data['points']}")
+    print(f"\t📈 Precisión global: {accuracy:.1f}%")
+    print(f"\t🎯 Correctas totales: {user_data['total_correct']}")
+    print(f"\t🔄 Intentos totales: {user_data['total_attempts']}")
+    print(f"\t🔥 Racha actual: {user_data['streak']}")
+    print(f"\t⭐ Mejor racha: {user_data['best_streak']}")
     input("\nPresione Enter para continuar...")

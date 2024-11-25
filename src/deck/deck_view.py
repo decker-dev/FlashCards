@@ -1,5 +1,7 @@
 from utils.ui_utils import select_option, get_input
 
+from src.graphics.graphics import print_bar
+
 
 def select_deck_view(decks, include_create=False):
     """
@@ -22,7 +24,7 @@ def select_deck_view(decks, include_create=False):
     # Añadimos la opción de 'Salir' con la clave '0'
     options['0'] = "Salir"
     # Mostramos el menú de opciones y obtenemos la elección del usuario
-    user_choice = select_option("\n=== Selección de Mazo ===", options)
+    user_choice = select_option("\n === 🕹️ 🎯 Selección de Mazo 🎯 🕹️ ===", options)
     return user_choice
 
 def get_deck_name_view(prompt):

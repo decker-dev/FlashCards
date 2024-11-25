@@ -6,6 +6,8 @@ from practice.practice_view import get_rating_view, show_results_view
 from stats.stats_model import update_score_model
 from utils.ui_utils import show_message, clear_screen
 
+from src.graphics.graphics import print_bar
+
 
 def practice_controller(decks, user, card_history, scores):
     """
@@ -35,14 +37,15 @@ def practice_controller(decks, user, card_history, scores):
         return
     # Mezcla las tarjetas disponibles aleatoriamente
     random.shuffle(available_cards)
-    results = {'Perfecto': 0, 'Bien': 0, 'Mal': 0, 'Terriblemente_Nada': 0}
+    results = {'Perfecto': 0, 'Bien': 0, 'Mal': 0, 'Nada': 0}
     for index, card in enumerate(available_cards, 1):
         clear_screen()
-        print(f"\n=== Mazo: {deck_name} - Pregunta {index}/{len(available_cards)} ===")
-        print(f"\nPregunta: {card['question']}")
-        input("\nPresione Enter para ver la respuesta...")
-        print(f"\nRespuesta: {card['answer']}")
-        input("\nPresione Enter para calificar la tarjeta...")
+        print_bar(is_upper=True)
+        print(f"\t=== 🧩 📚 Mazo: {deck_name} - Pregunta {index}/{len(available_cards)}  📚 🧩 ===")
+        print(f"\n \t Pregunta: {card['question']}")
+        input("\n \t Presione Enter para ver la respuesta...")
+        print(f"\n \tRespuesta: {card['answer']}")
+        input("\n \t Presione Enter para calificar la tarjeta...")
         # Obtiene el rating y el intervalo para la tarjeta actual
         rating, interval = get_rating_view()
         # Actualiza el conteo de resultados según el rating
@@ -74,14 +77,15 @@ def random_practice_controller(decks):
         return
     # Mezcla las tarjetas del mazo aleatoriamente
     random.shuffle(cards)
-    results = {'Perfecto': 0, 'Bien': 0, 'Mal': 0, 'Terriblemente_Nada': 0}
+    results = {'Perfecto': 0, 'Bien': 0, 'Mal': 0, 'Nada': 0}
     for index, card in enumerate(cards, 1):
         clear_screen()
-        print(f"\n=== Mazo: {deck_name} - Pregunta {index}/{len(cards)} ===")
-        print(f"\nPregunta: {card['question']}")
-        input("\nPresione Enter para ver la respuesta...")
-        print(f"\nRespuesta: {card['answer']}")
-        input("\nPresione Enter para calificar la tarjeta...")
+        print_bar(is_upper=True)
+        print(f"\t 📚 🧩 Mazo: {deck_name} - Pregunta {index}/{len(cards)} 🧩 📚 ")
+        print(f"\n \tPregunta: {card['question']}")
+        input("\n \tPresione Enter para ver la respuesta...")
+        print(f"\n \tRespuesta: {card['answer']}")
+        input("\n \tPresione Enter para calificar la tarjeta...")
         rating, interval = get_rating_view()
         results[rating] += 1
 

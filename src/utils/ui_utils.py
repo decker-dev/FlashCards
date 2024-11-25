@@ -1,3 +1,6 @@
+from src.graphics.graphics import print_bar, print_welcome, print_screen_title
+
+
 def clear_screen():
     """
     Limpia la pantalla simulando saltos de línea.
@@ -8,7 +11,7 @@ def clear_screen():
     Returns:
         None
     """
-    print('\n' * 100)
+    print('\n' * 10)
 
 def show_message(message):
     """
@@ -20,7 +23,7 @@ def show_message(message):
     Returns:
         None
     """
-    print(f"\n{message}")
+    print(f"{message}")
     input("Presione Enter para continuar...")
 
 def format_time(time_difference):
@@ -56,17 +59,27 @@ def select_option(prompt_message='', options={}):
     Returns:
         str: La clave de la opción seleccionada.
     """
+    # print('--- ',prompt_message)
+    # print('---',options)
     user_choice = None
     while user_choice not in options:
-        clear_screen()
-        print(prompt_message)
+        # print(prompt_message)
+        parts = prompt_message.split("===")
+        if len(parts) > 1:
+            screen_title = parts[1].strip()
+
+            print_screen_title(screen_title)
         # Recorre el diccionario de opciones y muestra cada una
+        # print_bar(current_user)
         for option_key, option_value in options.items():
-            print(f"{option_key}. {option_value}")
-        user_choice = input("\nElegir una opción: ")
+            print(f"\t{option_key}. {option_value}")
+        print_bar(is_upper=False)
+        user_choice = input("Elegir una opción: ")
         if user_choice not in options:
             show_message("Opción inválida. Intente nuevamente.")
-    return user_choice
+            print_welcome()
+        # print('---', user_choice)
+        return user_choice
 
 def get_input(prompt_message):
     """
