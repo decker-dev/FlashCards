@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from utils.ui_utils import get_input, select_option, clear_screen, format_time
 
-from src.graphics.graphics import print_bar
+from graphics.graphics import print_bar
 
 
 def get_card_input_view():
