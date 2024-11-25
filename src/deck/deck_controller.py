@@ -2,9 +2,6 @@ from deck.deck_model import create_deck_model, rename_deck_model, delete_deck_mo
 from deck.deck_view import select_deck_view, get_deck_name_view
 from utils.ui_utils import show_message, get_input
 
-from src.graphics.graphics import print_bar
-
-
 def select_deck_controller(decks, include_create=False):
     """
     Permite al usuario seleccionar un mazo existente o crear uno nuevo.

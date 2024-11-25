@@ -1,4 +1,4 @@
-from src.graphics.graphics import print_bar, print_welcome, print_screen_title
+from graphics.graphics import print_bar, print_welcome, print_screen_title
 
 
 def clear_screen():
@@ -11,7 +11,7 @@ def clear_screen():
     Returns:
         None
     """
-    print('\n' * 10)
+    print('\n' * 100)
 
 def show_message(message):
     """

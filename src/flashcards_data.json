@@ -12,12 +12,6 @@
         "question": "¿Quién fue el primer presidente de Estados Unidos?",
         "answer": "George Washington",
         "deck": "Historia"
-      },
-      {
-        "id": "Historia_3",
-        "question": "",
-        "answer": "",
-        "deck": "Historia"
       }
     ],
     "Ciencia": [
@@ -35,32 +29,8 @@
       },
       {
         "id": "Ciencia_3",
-        "question": "Adioa",
-        "answer": "HOla",
-        "deck": "Ciencia"
-      },
-      {
-        "id": "Ciencia_4",
-        "question": "",
-        "answer": "",
-        "deck": "Ciencia"
-      },
-      {
-        "id": "Ciencia_5",
-        "question": "",
-        "answer": "",
-        "deck": "Ciencia"
-      },
-      {
-        "id": "Ciencia_6",
-        "question": "",
-        "answer": "",
-        "deck": "Ciencia"
-      },
-      {
-        "id": "Ciencia_7",
-        "question": "",
-        "answer": "",
+        "question": "¿Cuál es el símbolo químico del oro?",
+        "answer": "Au",
         "deck": "Ciencia"
       }
     ],
@@ -76,23 +46,6 @@
         "question": "¿Cuál es la fórmula del área de un círculo?",
         "answer": "π * r^2",
         "deck": "Matemáticas"
-      }
-    ],
-    "Fisica": [
-      {
-        "id": "Fisica_1",
-        "question": "Quien fué Isaac Newton?",
-        "answer": "Un físico",
-        "deck": "Fisica"
-      }
-    ],
-    "2": [],
-    "Programación": [
-      {
-        "id": "Programación_1",
-        "question": "",
-        "answer": "",
-        "deck": "Programación"
       }
     ]
   },

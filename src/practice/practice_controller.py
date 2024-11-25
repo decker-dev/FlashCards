@@ -6,7 +6,7 @@ from practice.practice_view import get_rating_view, show_results_view
 from stats.stats_model import update_score_model
 from utils.ui_utils import show_message, clear_screen
 
-from src.graphics.graphics import print_bar
+from graphics.graphics import print_bar
 
 
 def practice_controller(decks, user, card_history, scores):

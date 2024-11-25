@@ -1,6 +1,6 @@
 from utils.ui_utils import clear_screen
 
-from src.graphics.graphics import print_bar
+from graphics.graphics import print_bar
 
 
 def show_ranking_view(scores):

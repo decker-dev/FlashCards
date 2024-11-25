@@ -1,8 +1,5 @@
 from utils.ui_utils import select_option, get_input
 
-from src.graphics.graphics import print_bar
-
-
 def select_deck_view(decks, include_create=False):
     """
     Muestra el menú para seleccionar un mazo.

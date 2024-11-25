@@ -2,7 +2,7 @@ from datetime import timedelta
 
 from utils.ui_utils import select_option, clear_screen
 
-from src.graphics.graphics import print_bar
+from graphics.graphics import print_bar
 
 
 def get_rating_view():
