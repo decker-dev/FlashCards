@@ -1,4 +1,4 @@
-from src.utils.ui_utils import clear_screen
+from utils.ui_utils import clear_screen
 
 
 def show_ranking_view(scores):

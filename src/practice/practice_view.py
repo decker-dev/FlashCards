@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from src.utils.ui_utils import select_option, clear_screen
+from utils.ui_utils import select_option, clear_screen
 
 
 def get_rating_view():
@@ -17,7 +17,7 @@ def get_rating_view():
         '1': "Perfecto - Respuesta inmediata y correcta",
         '2': "Bien - Dudó pero recordó",
         '3': "Mal - Le costó recordar",
-        '4': "Terriblemente_Nada - No recordó en absoluto"
+        '4': "Terriblemente - No recordó en absoluto"
     }
     # Muestra las opciones de calificación y obtiene la elección del usuario
     user_choice = select_option("\n¿Cómo te fue con esta tarjeta?", options)
@@ -26,7 +26,7 @@ def get_rating_view():
         '1': ('Perfecto', timedelta(days=7).total_seconds()),
         '2': ('Bien', timedelta(days=1).total_seconds()),
         '3': ('Mal', timedelta(minutes=10).total_seconds()),
-        '4': ('Terriblemente_Nada', 0.0)
+        '4': ('Terriblemente', 0.0)
     }
     return intervals[user_choice]
 
@@ -54,7 +54,7 @@ def show_results_view(results, total_cards, is_random=False):
             'Perfecto': "1 semana",
             'Bien': "1 día",
             'Mal': "10 minutos",
-            'Terriblemente_Nada': "Inmediato"
+            'Terriblemente': "Inmediato"
         }
         if not is_random:
             print(f"  → Próxima Revisión en: {next_review[rating]}")

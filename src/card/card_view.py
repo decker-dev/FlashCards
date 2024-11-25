@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from src.utils.ui_utils import get_input, select_option, clear_screen, format_time
+from utils.ui_utils import get_input, select_option, clear_screen, format_time
 
 
 def get_card_input_view():
