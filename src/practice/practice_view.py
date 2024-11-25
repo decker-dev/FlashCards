@@ -19,7 +19,7 @@ def get_rating_view():
         '1': "Perfecto - Respuesta inmediata y correcta",
         '2': "Bien - Dudó pero recordó",
         '3': "Mal - Le costó recordar",
-        '4': "Terriblemente_Nada - No recordó en absoluto"
+        '4': "Nada - No recordó en absoluto"
     }
     # Muestra las opciones de calificación y obtiene la elección del usuario
     user_choice = select_option("\n¿Cómo te fue con esta tarjeta?", options)
@@ -28,7 +28,7 @@ def get_rating_view():
         '1': ('Perfecto', timedelta(days=7).total_seconds()),
         '2': ('Bien', timedelta(days=1).total_seconds()),
         '3': ('Mal', timedelta(minutes=10).total_seconds()),
-        '4': ('Terriblemente_Nada', 0.0)
+        '4': ('Nada', 0.0)
     }
     return intervals[user_choice]
 
