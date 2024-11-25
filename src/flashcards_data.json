@@ -32,6 +32,12 @@
         "question": "¿Cuál es el símbolo químico del oro?",
         "answer": "Au",
         "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_4",
+        "question": "Cuáles son los estados de la materia?",
+        "answer": "Solido, Líquido y Gaseoso",
+        "deck": "Ciencia"
       }
     ],
     "Mate": [
@@ -47,7 +53,8 @@
         "answer": "π * r^2",
         "deck": "Matemáticas"
       }
-    ]
+    ],
+    "Biología": []
   },
   "users": {
     "Decker": {
@@ -67,9 +74,9 @@
       "interval": 86400.0
     },
     "Bere_Historia_1": {
-      "last_review": "2024-11-23 22:04:00",
-      "rating": "Bien",
-      "interval": 86400.0
+      "last_review": "2024-11-25 00:45:19",
+      "rating": "Perfecto",
+      "interval": 604800.0
     },
     "Julia_Ciencia_1": {
       "last_review": "2024-04-03 12:15:00",
@@ -77,12 +84,12 @@
       "interval": 604800
     },
     "Bere_Matemáticas_1": {
-      "last_review": "2024-11-06 20:02:23",
-      "rating": "Mal",
-      "interval": 600.0
+      "last_review": "2024-11-25 00:45:47",
+      "rating": "Bien",
+      "interval": 86400.0
     },
     "Bere_Matemáticas_2": {
-      "last_review": "2024-11-06 20:02:28",
+      "last_review": "2024-11-25 00:45:52",
       "rating": "Bien",
       "interval": 86400.0
     },
@@ -115,6 +122,26 @@
       "last_review": "2024-11-24 17:50:33",
       "rating": "Bien",
       "interval": 86400.0
+    },
+    "Bere_Ciencia_3": {
+      "last_review": "2024-11-25 00:43:13",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Bere_Ciencia_2": {
+      "last_review": "2024-11-25 00:43:19",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Bere_Ciencia_1": {
+      "last_review": "2024-11-25 00:43:28",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Bere_Ciencia_4": {
+      "last_review": "2024-11-25 10:54:55",
+      "rating": "Bien",
+      "interval": 86400.0
     }
   },
   "scores": {
@@ -126,11 +153,11 @@
       "best_streak": 5
     },
     "Bere": {
-      "points": 215,
-      "total_correct": 12,
-      "total_attempts": 18,
-      "streak": 2,
-      "best_streak": 4
+      "points": 267,
+      "total_correct": 19,
+      "total_attempts": 25,
+      "streak": 6,
+      "best_streak": 6
     },
     "Julia": {
       "points": 500,

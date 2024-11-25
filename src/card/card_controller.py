@@ -3,6 +3,8 @@ from card.card_view import get_card_input_view, select_card_view, display_cards_
 from deck.deck_controller import select_deck_controller
 from utils.ui_utils import show_message, get_input
 
+from graphics.graphics import print_bar
+
 
 def add_card_controller(decks):
     """
@@ -15,6 +17,7 @@ def add_card_controller(decks):
         None
     """
     # Permite al usuario seleccionar un mazo existente o crear uno nuevo
+    #print_bar(is_upper=True)
     deck_name = select_deck_controller(decks, include_create=True)
     if not deck_name:
         return
@@ -23,6 +26,7 @@ def add_card_controller(decks):
     # Crea y añade la nueva tarjeta al mazo seleccionado
     create_card_model(decks, deck_name, question, answer)
     show_message("Tarjeta añadida exitosamente.")
+    #print_bar(is_upper=False)
 
 def edit_card_controller(decks):
     """
@@ -35,6 +39,7 @@ def edit_card_controller(decks):
         None
     """
     # Permite al usuario seleccionar un mazo
+    #print_bar(is_upper=True)
     deck_name = select_deck_controller(decks)
     if not deck_name or not decks[deck_name]:
         show_message("No hay tarjetas para editar en este mazo.")
@@ -53,6 +58,7 @@ def edit_card_controller(decks):
     # Actualiza la tarjeta con la nueva información
     edit_card_model(selected_card, question, answer)
     show_message("Tarjeta editada correctamente.")
+    #print_bar(is_upper=False)
 
 def delete_card_controller(decks):
     """
@@ -65,6 +71,7 @@ def delete_card_controller(decks):
         None
     """
     # Permite al usuario seleccionar un mazo
+    print_bar(is_upper=True)
     deck_name = select_deck_controller(decks)
     if not deck_name or not decks[deck_name]:
         show_message("No hay tarjetas para eliminar en este mazo.")
@@ -79,6 +86,7 @@ def delete_card_controller(decks):
     # Elimina la tarjeta seleccionada
     delete_card_model(decks, deck_name, card_index)
     show_message("Tarjeta eliminada correctamente.")
+    print_bar(is_upper=False)
 
 def view_cards_controller(decks, user, card_history):
     """

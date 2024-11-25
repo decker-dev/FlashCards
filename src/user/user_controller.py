@@ -2,6 +2,11 @@ from user.user_model import create_user_model
 from user.user_view import select_user_view, get_username_view
 from utils.ui_utils import show_message
 
+from graphics.graphics import print_bar
+
+from graphics.graphics import print_welcome
+from utils.ui_utils import clear_screen
+
 
 def select_user_controller(users):
     """
@@ -13,7 +18,8 @@ def select_user_controller(users):
     Returns:
         str: Nombre del usuario seleccionado o creado.
     """
-
+    clear_screen()
+    print_welcome()
     user_choice = select_user_view(users)
     # Verificamos si el usuario eligió la opción de crear un nuevo usuario
     if user_choice == str(len(users) + 1):
@@ -24,6 +30,7 @@ def select_user_controller(users):
         options = {str(index + 1): username for index, username in enumerate(users.keys())}
         # Retornamos el nombre del usuario seleccionado
         return options[user_choice]
+
 
 def handle_create_user_controller(users):
     """

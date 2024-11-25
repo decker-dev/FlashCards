@@ -2,6 +2,9 @@ from datetime import datetime, timedelta
 
 from utils.ui_utils import get_input, select_option, clear_screen, format_time
 
+from src.graphics.graphics import print_bar
+
+
 def get_card_input_view():
     """
     Solicita al usuario que ingrese la pregunta y respuesta de la tarjeta.
@@ -51,10 +54,11 @@ def display_cards_view(cards, deck_name, user, card_history):
         None
     """
     clear_screen()
-    print(f"\n=== 📚 🖋️ Tarjetas del Mazo '{deck_name}' 🖋️ 📚 ️===\n")
+    print_bar(is_upper=True)
+    print(f"\n\t 📚 🖋️ Tarjetas del Mazo '{deck_name}' 🖋️ 📚 ️\n")
     now = datetime.now()
     for index, card in enumerate(cards, 1):
-        print(f"Tarjeta {index}:")
+        print(f"\tTarjeta {index}:")
         print(f"Pregunta: {card['question']}")
         print(f"Respuesta: {card['answer']}")
         # Construye una clave única para identificar el historial de esta tarjeta para el usuario actual
@@ -74,4 +78,5 @@ def display_cards_view(cards, deck_name, user, card_history):
         else:
             print("Estado: Nuevo - Aún no estudiado")
         print()
+    print_bar(is_upper=False)
     input("\nPresione Enter para continuar...")
