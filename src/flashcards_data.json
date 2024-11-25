@@ -16,15 +16,15 @@
     ],
     "Ciencia": [
       {
-        "id": "Ciencia_1",
-        "question": "¿Cuál es la fórmula química del agua?",
-        "answer": "H2O",
-        "deck": "Ciencia"
-      },
-      {
         "id": "Ciencia_2",
         "question": "¿Qué planeta es conocido como el planeta rojo?",
         "answer": "Marte",
+        "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_1",
+        "question": "¿Cuál es la fórmula química del agua?",
+        "answer": "H2O",
         "deck": "Ciencia"
       },
       {
