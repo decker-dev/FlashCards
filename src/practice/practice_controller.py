@@ -23,7 +23,7 @@ def practice_controller(decks, user, card_history, scores):
         None
     """
     # Permite al usuario seleccionar un mazo
-    clear_screen()
+    #clear_screen()
     deck_name = select_deck_controller(decks)
     if not deck_name:
         return

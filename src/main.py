@@ -9,6 +9,8 @@ from utils.data_manager import load_data, save_data
 from utils.ui_utils import select_option, show_message, clear_screen
 
 
+
+
 def main_menu_controller():
     """
     Maneja el flujo del programa y el menú principal.
@@ -93,7 +95,6 @@ def main_menu_controller():
 
         # Guarda los datos después de cada acción
         save_data(decks, users, card_history, scores)
-
 
 if __name__ == "__main__":
     main_menu_controller()

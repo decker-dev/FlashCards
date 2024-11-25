@@ -3,7 +3,7 @@ from card.card_view import get_card_input_view, select_card_view, display_cards_
 from deck.deck_controller import select_deck_controller
 from utils.ui_utils import show_message, get_input
 
-from src.graphics.graphics import print_bar
+from graphics.graphics import print_bar
 
 
 def add_card_controller(decks):

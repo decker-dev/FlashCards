@@ -1,0 +1,173 @@
+{
+  "decks": {
+    "Historia": [
+      {
+        "id": "Historia_1",
+        "question": "¿En qué año comenzó la Segunda Guerra Mundial?",
+        "answer": "1939",
+        "deck": "Historia"
+      },
+      {
+        "id": "Historia_2",
+        "question": "¿Quién fue el primer presidente de Estados Unidos?",
+        "answer": "George Washington",
+        "deck": "Historia"
+      }
+    ],
+    "Ciencia": [
+      {
+        "id": "Ciencia_2",
+        "question": "¿Qué planeta es conocido como el planeta rojo?",
+        "answer": "Marte",
+        "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_1",
+        "question": "¿Cuál es la fórmula química del agua?",
+        "answer": "H2O",
+        "deck": "Ciencia"
+      },
+      {
+        "id": "Ciencia_3",
+        "question": "¿Cuál es el símbolo químico del oro?",
+        "answer": "Au",
+        "deck": "Ciencia"
+      }
+    ],
+    "Biología": [],
+    "Geografía": [
+      {
+        "id": "Geografía_1",
+        "question": "Cuál es la capital de Buenos Aires?",
+        "answer": "La Plata",
+        "deck": "Geografía"
+      }
+    ],
+    "Matemática": [
+      {
+        "id": "Matemáticas_2",
+        "question": "¿Cuál es el valor de π?",
+        "answer": "Aproximadamente 3.1416",
+        "deck": "Matemáticas"
+      },
+      {
+        "id": "Matemáticas_1",
+        "question": "¿Cuál es la fórmula del área de un círculo?",
+        "answer": "π * r^2",
+        "deck": "Matemáticas"
+      },
+      {
+        "id": "Mate_3",
+        "question": "",
+        "answer": "",
+        "deck": "Mate"
+      }
+    ]
+  },
+  "users": {
+    "Decker": {
+      "registration_date": "2024-01-15 10:23:45"
+    },
+    "Bere": {
+      "registration_date": "2024-02-10 14:05:32"
+    },
+    "Julia": {
+      "registration_date": "2024-03-20 18:17:11"
+    }
+  },
+  "card_history": {
+    "Decker_Matemáticas_1": {
+      "last_review": "2024-11-09 13:05:10",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Bere_Historia_1": {
+      "last_review": "2024-11-25 00:45:19",
+      "rating": "Perfecto",
+      "interval": 604800.0
+    },
+    "Julia_Ciencia_1": {
+      "last_review": "2024-04-03 12:15:00",
+      "rating": "Perfecto",
+      "interval": 604800
+    },
+    "Bere_Matemáticas_1": {
+      "last_review": "2024-11-25 00:45:47",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Bere_Matemáticas_2": {
+      "last_review": "2024-11-25 00:45:52",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Decker_Ciencia_1": {
+      "last_review": "2024-11-09 11:24:16",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Decker_Ciencia_3": {
+      "last_review": "2024-11-08 11:28:57",
+      "rating": "Perfecto",
+      "interval": 604800.0
+    },
+    "Decker_Ciencia_2": {
+      "last_review": "2024-11-08 11:16:03",
+      "rating": "Perfecto",
+      "interval": 604800.0
+    },
+    "Decker_Matemáticas_2": {
+      "last_review": "2024-11-09 13:04:38",
+      "rating": "Nada",
+      "interval": 0.0
+    },
+    "Bere_Historia_2": {
+      "last_review": "2024-11-24 16:09:19",
+      "rating": "Perfecto",
+      "interval": 604800.0
+    },
+    "Bere_Historia_3": {
+      "last_review": "2024-11-24 17:50:33",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Bere_Ciencia_3": {
+      "last_review": "2024-11-25 00:43:13",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Bere_Ciencia_2": {
+      "last_review": "2024-11-25 00:43:19",
+      "rating": "Bien",
+      "interval": 86400.0
+    },
+    "Bere_Ciencia_1": {
+      "last_review": "2024-11-25 00:43:28",
+      "rating": "Bien",
+      "interval": 86400.0
+    }
+  },
+  "scores": {
+    "Decker": {
+      "points": 296,
+      "total_correct": 15,
+      "total_attempts": 23,
+      "streak": 0,
+      "best_streak": 5
+    },
+    "Bere": {
+      "points": 260,
+      "total_correct": 18,
+      "total_attempts": 24,
+      "streak": 5,
+      "best_streak": 5
+    },
+    "Julia": {
+      "points": 500,
+      "total_correct": 20,
+      "total_attempts": 22,
+      "streak": 7,
+      "best_streak": 7
+    }
+  }
+}
