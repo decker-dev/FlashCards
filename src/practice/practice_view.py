@@ -61,4 +61,5 @@ def show_results_view(results, total_cards, is_random=False):
         }
         if not is_random:
             print(f"  → Próxima Revisión en: {next_review[rating]}")
+    print_bar(is_upper=False)
     input("\nPresione Enter para continuar...")

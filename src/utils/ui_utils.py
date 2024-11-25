@@ -11,7 +11,7 @@ def clear_screen():
     Returns:
         None
     """
-    print('\n' * 100)
+    print('\n' * 10)
 
 def show_message(message):
     """

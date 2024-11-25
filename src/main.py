@@ -6,7 +6,7 @@ from graphics.graphics import print_flashcards, print_welcome, print_bar
 from stats.stats_controller import show_ranking_controller, show_user_stats_controller
 from user.user_controller import select_user_controller
 from utils.data_manager import load_data, save_data
-from utils.ui_utils import select_option, show_message
+from utils.ui_utils import select_option, show_message, clear_screen
 
 
 def main_menu_controller():
@@ -25,15 +25,17 @@ def main_menu_controller():
     input("Presiona Enter para comenzar...")
 
     # Carga los datos almacenados desde un archivo JSON
-    print_welcome()
+    clear_screen()
     decks, users, card_history, scores = load_data()
 
     # Permite al usuario seleccionar o crear un usuario
+
     current_user = select_user_controller(users)
     exit_program = False
     while not exit_program:
         # Define las opciones del menú principal en un diccionario
         screen_title = 'Menú de opciones'
+        clear_screen()
         options = {
             '1': "🎯 Practicar",
             '2': "🎲 Practica Libre",
@@ -52,7 +54,8 @@ def main_menu_controller():
 
         # Muestra el menú y obtiene la opción seleccionada por el usuario
         print_bar(current_user=current_user)
-        user_choice = select_option(f" 🎮 🕹️ Opciones del Juego 🕹️ 🎮\n", options)
+        print("\t 🎮 🕹️ Opciones del Juego 🕹️ 🎮\n ")
+        user_choice = select_option(f"\n ", options)
         #print_screen(screen_title, options, current_user)
         #user_choice = select_option(options=options)
         # Ejecuta acciones basadas en la opción seleccionada
