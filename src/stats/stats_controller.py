@@ -1,4 +1,4 @@
-from src.stats.stats_view import show_ranking_view
+from src.stats.stats_view import show_ranking_view, show_user_stats_view
 
 
 def show_ranking_controller(scores):
