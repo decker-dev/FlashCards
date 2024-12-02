@@ -1,6 +1,6 @@
-from user.user_model import create_user_model
-from user.user_view import select_user_view, get_username_view
-from utils.ui_utils import show_message
+from src.user.user_model import create_user_model
+from src.user.user_view import select_user_view, get_username_view
+from src.utils.ui_utils import show_message
 
 
 def select_user_controller(users):

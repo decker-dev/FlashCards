@@ -1,7 +1,7 @@
-from card.card_model import create_card_model, edit_card_model, delete_card_model
-from card.card_view import get_card_input_view, select_card_view, display_cards_view
-from deck.deck_controller import select_deck_controller
-from utils.ui_utils import show_message, get_input
+from src.card.card_model import create_card_model, edit_card_model
+from src.card.card_view import get_card_input_view, select_card_view, display_cards_view
+from src.deck.deck_controller import select_deck_controller
+from src.utils.ui_utils import show_message, get_input
 
 
 def add_card_controller(decks):

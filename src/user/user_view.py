@@ -1,4 +1,4 @@
-from utils.ui_utils import select_option, get_input
+from src.utils.ui_utils import select_option, get_input
 
 
 def select_user_view(users):

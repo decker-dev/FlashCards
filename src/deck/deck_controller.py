@@ -1,6 +1,6 @@
-from deck.deck_model import create_deck_model, rename_deck_model, delete_deck_model
-from deck.deck_view import select_deck_view, get_deck_name_view
-from utils.ui_utils import show_message, get_input
+from src.deck.deck_model import create_deck_model, delete_deck_model
+from src.deck.deck_view import select_deck_view, get_deck_name_view
+from src.utils.ui_utils import show_message, get_input
 
 
 def select_deck_controller(decks, include_create=False):
